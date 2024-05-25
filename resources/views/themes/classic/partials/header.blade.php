@@ -116,6 +116,10 @@
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link" href="umkm/resources.html">Artikel UMKM</a></li>
                         </ul>
                     </li>
+
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link navbar__link"><span>Daftar Anggota</span> <i class="fa fa-angle-down"></i></a>
+                    </li>
                     
                     <li class="nav-item " id="contactMainMenu"><a class="nav-link navbar__link" href="contact.html">Contact Us</a></li>
                 </ul>
