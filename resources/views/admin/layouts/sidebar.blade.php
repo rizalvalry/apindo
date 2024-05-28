@@ -41,6 +41,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            @php
+                                $id = '';
+                            @endphp
+                            <a href="{{ route('admin.listingviews') }}" class="sidebar-link" >
+                                <i class="fas fa-list-ol text-orange"></i>@lang('My Listings')
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="{{route('admin.purchasePackageList')}}">
                                 <i class="fa fa-shopping-cart text-indigo" aria-hidden="true" title="Purchase Package History"></i>
                                 <span class="hide-menu">@lang('Purchase History')</span>

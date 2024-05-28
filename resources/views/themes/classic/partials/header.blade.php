@@ -4,7 +4,7 @@
         <div class="container">
             <div class="navbar-upper__wrapper">
                 <div class="navbar-upper__logo">
-                    <a href="index.html" class="navbar-upper__image-container">
+                    <a href="{{ route('home') }}" class="navbar-upper__image-container">
                         <img src="{{ getFile(config('basic.default_file_driver'),config('basic.logo_image')) }}"
                             class="navbar-upper__image" alt="{{config('basic.site_title')}}">
                     </a>
@@ -150,7 +150,7 @@
                     </li>
 
                     <li class="nav-item dropdown ">
-                        <a class="nav-link navbar__link"><span>Daftar Anggota</span> <i
+                        <a class="nav-link navbar__link" href="{{ route('maps') }}"><span>Daftar Anggota</span> <i
                                 class="fa fa-angle-down"></i></a>
                     </li>
 

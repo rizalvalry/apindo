@@ -41,6 +41,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <?php
+                                $id = '';
+                            ?>
+                            <a href="<?php echo e(route('admin.listingviews')); ?>" class="sidebar-link" >
+                                <i class="fas fa-list-ol text-orange"></i><?php echo app('translator')->get('My Listings'); ?>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="<?php echo e(route('admin.purchasePackageList')); ?>">
                                 <i class="fa fa-shopping-cart text-indigo" aria-hidden="true" title="Purchase Package History"></i>
                                 <span class="hide-menu"><?php echo app('translator')->get('Purchase History'); ?></span>

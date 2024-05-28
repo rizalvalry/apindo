@@ -103,6 +103,13 @@ class FrontendController extends Controller
         }
     }
 
+    public function maps()
+    {
+        $data['title'] = "Maps Indonesia";
+
+        return view($this->theme . 'maps', $data);
+    }
+
     public function about()
     {
         $templateSection = ['testimonial', 'about-us', 'investor', 'faq', 'we-accept', 'how-it-work', 'how-we-work', 'know-more-us'];

@@ -4,11 +4,7 @@
 <style>
 .home-section {
     background: url({{getFile(optional($banner_heading->media)->driver,
-    $banner_heading->templateMedia()->image)
-}
-}
-
-);
+    $banner_heading->templateMedia()->image)}});
 }
 </style>
 @endpush

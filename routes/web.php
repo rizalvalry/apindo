@@ -30,6 +30,7 @@ Route::get('cron', function () {
         return Illuminate\Support\Facades\Artisan::call('expiryDate:cron');
 })->name('cron');
 
+
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['guest']], function () {
@@ -89,6 +90,7 @@ Route::group(['middleware' => ['auth', 'Maintenance'], 'prefix' => 'user', 'as' 
 
             // Listing
             Route::get('listings/{type?}', 'User\ListingController@listing')->name('allListing');
+            //listing admin
             Route::get('/wish-list', 'User\ListingController@wishList')->name('wishList');
 
             Route::delete('/favourite-listings-delete/{id?}', 'User\ListingController@favouriteListingDelete')->name('favouriteListingDelete');
@@ -184,6 +186,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::put('/profile', 'Admin\DashboardController@profileUpdate')->name('profileUpdate');
         Route::get('/password', 'Admin\DashboardController@password')->name('password');
         Route::put('/password', 'Admin\DashboardController@passwordUpdate')->name('passwordUpdate');
+
+        Route::get('listings/{type?}', 'Admin\ListingController@listings')->name('listingviews');
+        Route::get('add-listing/{id?}', 'Admin\ListingController@addListing')->name('addListing');
 
 
         Route::get('/role-permission', 'Admin\ManageRolePermissionController@staff')->name('staff');
@@ -433,7 +438,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 });
 
-Route::group(['middleware' => ['Maintenance']], function () {
+Route::group(['middleware' => ['Maintenance']], function () {   
     Route::match(['get', 'post'], 'success', 'PaymentController@success')->name('success');
     Route::match(['get', 'post'], 'success', 'PaymentController@success')->name('success');
     Route::match(['get', 'post'], 'failed', 'PaymentController@failed')->name('failed');
@@ -447,6 +452,7 @@ Route::group(['middleware' => ['Maintenance']], function () {
 
     Route::get('/', 'FrontendController@index')->name('home');
     Route::get('/about', 'FrontendController@about')->name('about');
+    Route::get('/maps', 'FrontendController@maps')->name('maps');
     Route::get('/pricing', 'FrontendController@pricing')->name('pricing');
     Route::get('/purchasePlan', 'FrontendController@purchasePlan')->name('purchasePlan');
 

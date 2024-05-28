@@ -38,6 +38,90 @@ class ListingController extends Controller
 {
     use Upload, Notify, ListingTrait;
 
+    public function __construct()
+    {
+        // $this->middleware(['auth']);
+        // $this->middleware(function ($request, $next) {
+        //     $this->user = auth()->user();
+        //     return $next($request);
+        // });
+        $this->theme = template();
+    }
+
+    public function listings(Request $request, $type = null)
+    {
+        $listing = Listing::with('get_user')->findOrFail(1);
+        $listing->status = 1;
+        $listing->save();
+
+    
+        $user = $listing->get_user;
+
+        $types = ['pending', 'approved', 'rejected'];
+        abort_if(isset($type) && !in_array($type, $types), 404);
+        $current_user = $user;
+        $data['packages'] = Package::with('details')->where('status', 1)->latest()->get();
+        $data['listingCategories'] = ListingCategory::with('details')->where('status', 1)->latest()->get();
+        $data['allAddresses'] = Place::with('details')->where('status', 1)->latest()->get();
+
+        $data['my_packages'] = PurchasePackage::with('get_package')->where('user_id', auth()->id())->get();
+
+        $search = $request->all();
+        $categoryIds = $request->category;
+       
+        $data['user_listings'] = Listing::with(['get_package.get_package', 'get_place.details'])->latest()
+            ->when(isset($categoryIds), function ($query) use ($categoryIds) {
+                if (implode('',$categoryIds) == 'all'){
+                    $query->where('status', 1)->where('is_active', 1);
+                }else{
+                    foreach ($categoryIds as $key => $category_id) {
+                        $query->whereJsonContains('category_id', $category_id);
+                    }
+                }
+            })
+            ->when(isset($search['name']), function ($query) use ($search) {
+                return $query->where('title', 'LIKE', "%{$search['name']}%");
+            })
+            ->when(isset($search['package']), function ($query) use ($search) {
+                return $query->whereHas('get_package', function ($q) use ($search) {
+                    $q->where('package_id', $search['package']);
+                });
+            })
+            ->when(isset($search['location']), function ($query) use ($search) {
+                return $query->whereHas('get_place', function ($q3) use ($search) {
+                    $q3->where('id', $search['location']);
+                });
+            })
+            ->when($type == 'pending', function ($query) {
+                return $query->where('status', '0');
+            })
+            ->when($type == 'approved', function ($query) {
+                return $query->where('status', '1');
+            })
+            ->when($type == 'rejected', function ($query) {
+                return $query->where('status', '2');
+            })
+            ->where('user_id', 1)
+            ->paginate(config('basic.paginate'));
+
+            // dd($data);
+            // return view($this->theme . 'admin.listing.listing', $data);
+
+        return view('admin.listing.listing', $data);
+    }
+
+    public function addListing($id)
+    {
+        $data['all_listings_category'] = ListingCategory::with('details')->where('status', 1)->latest()->get();
+        $data['all_places'] = Place::with('details')->where('status', 1)->latest()->get();
+        $data['all_amenities'] = Amenity::with('details')->where('status', 1)->latest()->get();
+
+        $data['single_package_infos'] = PurchasePackage::with('get_package')->where('user_id', 1)->where('status', 1)->findOrFail($id);
+        // return view($this->theme . 'admin.addListing', $data, compact('id'));
+        return view('admin.listing.addListing', $data, compact('id'));
+
+    }
+
     public function listingCategoryList()
     {
         $data['listingCategory'] = ListingCategory::with('details')->latest()->get();
