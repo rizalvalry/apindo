@@ -64,6 +64,9 @@
 <!-- jquery cdn -->
 <script src="<?php echo e(asset('assets/global/js/jquery.min.js')); ?>"></script>
 
+<!-- Header JS -->
+<script src="<?php echo e(asset('assets/global/js/header-head.js')); ?>"></script>
+
 
 <!-- select 2 -->
 <script src="<?php echo e(asset('assets/global/js/select2.min.js')); ?>"></script>

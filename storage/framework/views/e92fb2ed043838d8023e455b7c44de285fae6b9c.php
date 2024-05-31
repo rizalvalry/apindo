@@ -21,6 +21,52 @@
     <link href="<?php echo e(asset('assets/admin/css/custom.css')); ?>" rel="stylesheet">
 
     <?php echo $__env->yieldPushContent('style'); ?>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+
+    <?php echo $__env->make('partials.seo', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+    <title><?php echo $__env->yieldContent('title'); ?></title>
+
+    <!-- bootstrap 5 -->
+    <link rel="stylesheet" href="<?php echo e(asset($themeTrue.'css/bootstrap5.min.css')); ?>"/>
+
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="<?php echo e(asset($themeTrue.'css/jquery-ui.css')); ?>"/>
+
+    <!-- radial progress -->
+    <link rel="stylesheet" href="<?php echo e(asset($themeTrue.'css/radialprogress.css')); ?>"/>
+
+    <!-- select 2 -->
+    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/select2.min.css')); ?>"/>
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/esri-leaflet-geocoder.css')); ?>"/>
+
+    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/leaflet-search.css')); ?>"/>
+
+    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/leaflet.css')); ?>"/>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/Control.FullScreen.css')); ?>"/>
+
+    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/owl.carousel.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/owl.theme.default.min.css')); ?>" />
+
+    <!-- font awesome 5 -->
+    <script src="<?php echo e(asset('assets/global/js/fontawesomepro.js')); ?>"></script>
+
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/leaflet-search-two.css')); ?>"/>
+    <link rel="stylesheet" href="<?php echo e(asset($themeTrue.'css/user-style.css')); ?>"/>
+
+    <?php echo $__env->yieldPushContent('css-lib'); ?>
+    <!----  Push your custom css  ----->
+    <?php echo $__env->yieldPushContent('style'); ?>
+
 </head>
 <body>
 <div class="preloader">

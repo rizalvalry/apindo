@@ -189,6 +189,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::get('listings/{type?}', 'Admin\ListingController@listings')->name('listingviews');
         Route::get('add-listing/{id?}', 'Admin\ListingController@addListing')->name('addListing');
+        Route::post('listing-store/{id}', 'Admin\ListingController@listingStore')->name('listingStore');
+
 
 
         Route::get('/role-permission', 'Admin\ManageRolePermissionController@staff')->name('staff');
@@ -455,6 +457,9 @@ Route::group(['middleware' => ['Maintenance']], function () {
     Route::get('/maps', 'FrontendController@maps')->name('maps');
     Route::get('/pricing', 'FrontendController@pricing')->name('pricing');
     Route::get('/purchasePlan', 'FrontendController@purchasePlan')->name('purchasePlan');
+    Route::get('/place-details/{provinceName}', 'FrontendController@getPlaceDetails');
+
+
 
     Route::get('/listing/{id?}/{type?}', 'FrontendController@listingSearch')->name('listing');
     Route::get('/listing-details/{title?}/{id?}', 'FrontendController@listing_details')->name('listing-details');

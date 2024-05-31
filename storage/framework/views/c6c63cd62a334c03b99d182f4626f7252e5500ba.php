@@ -46,6 +46,7 @@
 
 <script>
     const indonesiaMapUrl = "<?php echo e(asset('assets/global/js/indonesia.json')); ?>";
+    const baseURL = "<?php echo e($base_url); ?>";
 
     const stateSpecific = [
         { name: "Papua", color: "#9D7CD6" },
@@ -61,7 +62,7 @@
         { name: "Kalimantan Selatan", color: "#FA70AA" },
         { name: "Kalimantan Barat", color: "#FA70AA" },
         { name: "Sulawesi Selatan", color: "#FFD647" },
-        { name: "Jakarta Raya", color: "#FA70AA" },
+        { name: "Jakarta", color: "#FA70AA" },
         { name: "Jawa Barat", color: "#FA70AA" },
         { name: "Papua Barat", color: "#46CFDD" },
         { name: "Nusa Tenggara Timur", color: "#9D7CD6" },
@@ -126,8 +127,23 @@
             .on("click", function(event, d) {
                 const index = data.features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
-                console.log(`Clicked on: ${provinceName}`);
-                alert(`You clicked on ${provinceName}`);
+                
+                fetch(`/apindo/place-details/${provinceName}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            const url = `${baseURL}/listing?name=&location=${data.id}`;
+                            if (confirm(`You clicked on ${provinceName}`)) {
+                    window.location.href = url;
+                }
+            } else {
+                alert(`No details found for ${provinceName}`);
+            }
+        })
+                    .catch(error => {
+                        console.error('Error fetching place details:', error);
+                        alert('An error occurred while fetching place details.');
+                    });
             })
             .append("title")
             .text((d, i) => stateSpecific[i] ? stateSpecific[i].name : "Unknown");
@@ -136,7 +152,7 @@
     };
 
 </script>
-
 <?php $__env->stopSection(); ?>
+
 
 <?php echo $__env->make($theme.'layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/maps.blade.php ENDPATH**/ ?>

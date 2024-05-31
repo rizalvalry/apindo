@@ -183,7 +183,7 @@
         </div>
 
 
-        <form action="{{ route('user.listingStore', $id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.listingStore', $id) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="media mt-0 mb-2 d-flex justify-content-end">
                 <a href="{{route('user.allListing')}}" class="btn btn-sm  btn-primary mr-2">

@@ -106,9 +106,20 @@ class FrontendController extends Controller
     public function maps()
     {
         $data['title'] = "Maps Indonesia";
+        $data['base_url'] = config('app.url');
 
         return view($this->theme . 'maps', $data);
     }
+
+    public function getPlaceDetails($provinceName)
+{
+    $placeDetail = DB::table('place_details')
+                    ->where('place', 'LIKE', '%' . $provinceName . '%')
+                    ->first();
+
+    return response()->json($placeDetail);
+}
+
 
     public function about()
     {

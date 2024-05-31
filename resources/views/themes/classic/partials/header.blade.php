@@ -67,20 +67,20 @@
                         <a class="nav-link navbar__link"><span>Apindo</span> <i class="fa fa-angle-down"></i></a>
                         <ul class="navbar-nav navbar__nav-second">
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="apindo/history.html">Sejarah</a></li>
+                                    href="https://apindo.or.id/apindo/history">Sejarah</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="apindo/vision-mission.html">Visi & Misi</a></li>
+                                    href="https://apindo.or.id/apindo/vision-mission">Visi & Misi</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="apindo/organization-structure.html">Struktur Organisasi</a></li>
+                                    href="https://apindo.or.id/apindo/organization-structure">Struktur Organisasi</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="apindo/business-unit.html">Unit Bisnis</a></li>
+                                    href="https://apindo.or.id/apindo/business-unit">Unit Bisnis</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown ">
                         <a class="nav-link navbar__link"><span>Keanggotaan</span> <i class="fa fa-angle-down"></i></a>
                         <ul class="navbar-nav navbar__nav-second">
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="membership/alb-register.html">Pendaftaran ALB</a></li>
+                                    href="https://apindo.or.id/membership/alb-register">Pendaftaran ALB</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown has-notif ">
@@ -91,31 +91,31 @@
                         <a class="nav-link navbar__link"><span>Apindo Daerah</span> <i class="fa fa-angle-down"></i></a>
                         <ul class="navbar-nav navbar__nav-second">
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="apindo-region/news.html">Berita Daerah</a></li>
+                                    href="https://apindo.or.id/apindo-region/news">Berita Daerah</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="apindo-region/contacts.html">Kontak APINDO Daerah</a></li>
+                                    href="https://apindo.or.id/apindo-region/contacts">Kontak APINDO Daerah</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown ">
                         <a class="nav-link navbar__link"><span>Media</span> <i class="fa fa-angle-down"></i></a>
                         <ul class="navbar-nav navbar__nav-second">
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="media/press-conferences.html">Konferensi Pers</a></li>
+                                    href="https://apindo.or.id/media/press-conferences">Konferensi Pers</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="media/news.html">Berita</a></li>
+                                    href="https://apindo.or.id/media/news">Berita</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown ">
                         <a class="nav-link navbar__link"><span>Regulasi</span> <i class="fa fa-angle-down"></i></a>
                         <ul class="navbar-nav navbar__nav-second">
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="regulation/employment.html">Ketenagakerjaan</a></li>
+                                    href="https://apindo.or.id/regulation/employment">Ketenagakerjaan</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="regulation/trading.html">Perdagangan</a></li>
+                                    href="https://apindo.or.id/regulation/trading">Perdagangan</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="regulation/industry.html">Industri</a></li>
+                                    href="https://apindo.or.id/regulation/industry">Industri</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="regulation/covid-19.html">COVID-19</a></li>
+                                    href="https://apindo.or.id/regulation/covid-19">COVID-19</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown ">
@@ -123,29 +123,29 @@
                                 class="fa fa-angle-down"></i></a>
                         <ul class="navbar-nav navbar__nav-second">
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="publication-reference/annual-reports.html">Laporan Tahunan</a></li>
+                                    href="https://apindo.or.id/publication-reference/annual-reports">Laporan Tahunan</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="publication-reference/study-and-researches.html">Kajian &amp; Penelitian</a>
+                                    href="https://apindo.or.id/publication-reference/study-and-researches">Kajian &amp; Penelitian</a>
                             </li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="publication-reference/e-news-letters.html">Buletin Elektronik</a></li>
+                                    href="https://apindo.or.id/publication-reference/e-news-letters">Buletin Elektronik</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item "><a class="nav-link navbar__link" href="stunting.html">Stunting</a></li>
+                    <li class="nav-item "><a class="nav-link navbar__link" href="https://apindo.or.id/stunting">Stunting</a></li>
 
                     <li class="nav-item dropdown ">
                         <a class="nav-link navbar__link"><span>UMKM</span> <i class="fa fa-angle-down"></i></a>
                         <ul class="navbar-nav navbar__nav-second">
-                            <li class="nav-item"><a class="nav-link navbar__dropdown-link" href="umkm/dpn.html">UMKM DPN
+                            <li class="nav-item"><a class="nav-link navbar__dropdown-link" href="https://apindo.or.id/umkm/dpn">UMKM DPN
                                     Apindo</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
                                     href="https://aua.topkarir.com/">Portal AUA</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="umkm/dpp-dpk-activities.html">Kegiatan UMKM DPN/DPP/DPK&nbsp;</a></li>
+                                    href="https://apindo.or.id/umkm/dpp-dpk-activities">Kegiatan UMKM DPN/DPP/DPK&nbsp;</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="umkm/publications.html">Publikasi UMKM</a></li>
+                                    href="https://apindo.or.id/umkm/publications">Publikasi UMKM</a></li>
                             <li class="nav-item"><a class="nav-link navbar__dropdown-link"
-                                    href="umkm/resources.html">Artikel UMKM</a></li>
+                                    href="https://apindo.or.id/umkm/resources">Artikel UMKM</a></li>
                         </ul>
                     </li>
 

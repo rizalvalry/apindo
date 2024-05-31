@@ -21,6 +21,52 @@
     <link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet">
 
     @stack('style')
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    @include('partials.seo')
+
+    <title>@yield('title')</title>
+
+    <!-- bootstrap 5 -->
+    <link rel="stylesheet" href="{{ asset($themeTrue.'css/bootstrap5.min.css') }}"/>
+
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="{{ asset($themeTrue.'css/jquery-ui.css') }}"/>
+
+    <!-- radial progress -->
+    <link rel="stylesheet" href="{{ asset($themeTrue.'css/radialprogress.css') }}"/>
+
+    <!-- select 2 -->
+    <link rel="stylesheet" href="{{ asset('assets/global/css/select2.min.css') }}"/>
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="{{ asset('assets/global/css/esri-leaflet-geocoder.css') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('assets/global/css/leaflet-search.css') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('assets/global/css/leaflet.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/global/css/Control.FullScreen.css') }}"/>
+
+    <link rel="stylesheet" href="{{asset('assets/global/css/owl.carousel.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/global/css/owl.theme.default.min.css')}}" />
+
+    <!-- font awesome 5 -->
+    <script src="{{ asset('assets/global/js/fontawesomepro.js') }}"></script>
+
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{{ asset('assets/global/css/leaflet-search-two.css') }}"/>
+    <link rel="stylesheet" href="{{ asset($themeTrue.'css/user-style.css') }}"/>
+
+    @stack('css-lib')
+    <!----  Push your custom css  ----->
+    @stack('style')
+
 </head>
 <body>
 <div class="preloader">

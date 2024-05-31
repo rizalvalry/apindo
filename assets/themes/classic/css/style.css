@@ -206,15 +206,17 @@ a.btn-custom {
 }
 
 .navbar {
-    padding: 0px 15px;
+    /* padding: 0px 15px; */
+    padding: z;
     -webkit-transition: 0.4s;
     transition: 0.4s;
     /* background: var(--white); */
     background: #007CC2;
+    max-height: 50px;
 }
 
 .navbar.active {
-    background: var(--white);
+    background: #007CC2;
     -webkit-box-shadow: var(--shadow);
     box-shadow: var(--shadow);
 }
@@ -262,7 +264,8 @@ a.btn-custom {
 }
 
 .navbar .nav-item {
-    margin: 15px 15px;
+    /* margin: 15px 15px; */
+    margin: 5px;
     padding: 5px 0;
 }
 
@@ -4449,7 +4452,7 @@ a.btn-custom {
     }
 
     .navbar {
-        padding: 0;
+        padding: 15px;
     }
 
     .navbar .navbar-text .btn-custom {

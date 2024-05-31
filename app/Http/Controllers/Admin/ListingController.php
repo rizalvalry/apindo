@@ -122,6 +122,179 @@ class ListingController extends Controller
 
     }
 
+    public function listingStore(Request $request, $id)
+    {
+        $purifiedData = Purify::clean($request->except('image', '_token', '_method', 'thumbnail', 'listing_image', 'seo_image', 'product_image'));
+        $purifiedData['thumbnail'] = $request->thumbnail ?? null;
+        $purifiedData['listing_image'] = $request->listing_image ?? null;
+        $purifiedData['product_image'] = $request->product_image ?? null;
+        $purifiedData['product_thumbnail'] = $request->product_thumbnail ?? null;
+
+        $rules = [
+            'title' => 'required|string|max:255',
+            'category_id' => 'required|array',
+            'category_id.*' => 'exists:listing_categories,id',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|numeric',
+            'description' => 'required|string',
+            'place_id' => 'required|exists:places,id',
+            'address' => 'required|string',
+            'lat' => 'required|between:-90,90',
+            'long' => 'required|between:-180,180',
+            'working_day.*' => 'nullable|string|max:20',
+            'social_url.*' => 'nullable|url|max:180',
+            'youtube_video_id' => 'nullable|string|max:20',
+            'thumbnail' => 'nullable|mimes:jpeg,png,jpg|max:51200',
+            'listing_image.*' => 'nullable|mimes:jpeg,png,jpg',
+            'amenity_id.*' => 'nullable|numeric|exists:amenities,id',
+            'product_title.*' => 'nullable|string|max:150',
+            'product_price.*' => 'nullable|numeric',
+            'product_description.*' => 'nullable|string',
+            'product_image.*.*' => 'nullable|mimes:jpeg,png,jpg',
+            'product_thumbnail.*' => 'nullable|mimes:jpeg,png,jpg',
+            'seo_image' => 'nullable|mimes:jpeg,png,jpg|max:51200',
+            'meta_title' => 'nullable|string|max:200',
+            'meta_keywords' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+        ];
+
+        $message = [
+            'thumbnail.mimes' => __('The thumbnail must be a file of type: jpg, jpeg, png.'),
+            'thumbnail.max' => __('The thumbnail may not be greater than 5 MB.'),
+            'category_id.required' => __('This category field is required.'),
+            'category_id.array' => __('The category must be an array.'),
+            'category_id.*.exists' => __('The selected category is invalid.'),
+            'listing_image.*.mimes' => __('This listing image must be a file of type: jpg, jpeg, png.'),
+            'working_day.*.string' => __('The working day must be a string.'),
+            'working_day.*.max' => __('The working day may not be greater than :max characters.'),
+            'social_url.*.url' => __('The social url should be a url.'),
+            'social_url.*.max' => __('The social url may not be greater than :max characters.'),
+            'product_title.*.string' => __('The product title must be a string.'),
+            'product_title.*.max' => __('The product title may not be greater than :max characters.'),
+            'product_price.*.numeric' => __('The product price should be numeric.'),
+            'product_description.*.string' => __('The product description must be a string.'),
+            'product_image.*.*.mimes' => __('This product image must be a file of type: jpg, jpeg, png.'),
+            'product_thumbnail.*.mimes' => __('This product thumbnail must be a file of type: jpg, jpeg, png.'),
+            'product_thumbnail.*.max' => __('The product thumbnail may not be greater than 5 MB.'),
+            'seo_image' => __('The seo image may not be greater than 5 MB.'),
+        ];
+
+        $validate = Validator::make($purifiedData, $rules, $message);
+
+        if ($validate->fails()) {
+            return back()->withInput()->withErrors($validate);
+        }
+
+        $purchase_package_info = PurchasePackage::where('user_id', 1)->where('status', 1)->findOrFail($id);
+
+        $user = $this->user;
+
+        if (!empty($purchase_package_info->no_of_listing) && $purchase_package_info->no_of_listing <= 0)
+            return back()->with('error', __("You don't have any quota to create listing for this package."));
+
+        $listing = new Listing();
+        if ($request->hasFile('thumbnail')) {
+            try {
+                $image = $this->fileUpload($request->thumbnail, config('location.listing_thumbnail.path'), $listing->driver, null);
+                if ($image) {
+                    $listing->thumbnail = $image['path'];
+                    $listing->driver = $image['driver'];
+                }
+            } catch (\Exception $exp) {
+                return back()->with('error', __('Thumbnail could not be uploaded.'));
+            }
+        }
+
+        $listing->user_id = $user->id;
+        $listing->purchase_package_id = $id;
+        $listing->title = $request->title;
+
+
+        $numberOfCategoriesPerListing = min(count($request->category_id), $purchase_package_info->no_of_categories_per_listing ?? 1);
+        $listing->category_id = array_slice($request->category_id, 0, $numberOfCategoriesPerListing);
+
+        $listing->phone = $request->phone;
+        $listing->email = $request->email;
+        $listing->description = $request->description;
+        $listing->place_id = $request->place_id;
+        $listing->address = $request->address;
+        $listing->lat = $request->lat;
+        $listing->long = $request->long;
+        $listing->status = 0;
+
+        if($purchase_package_info->is_whatsapp == 1 || $purchase_package_info->is_messenger == 1){
+            $listing->fb_app_id = $request->fb_app_id;
+            $listing->fb_page_id = $request->fb_page_id;
+            $listing->whatsapp_number = $request->whatsapp_number;
+            $listing->replies_text = $request->replies_text;
+            $listing->body_text = $request->body_text;
+        }
+
+        if ($request->youtube_video_id) {
+            $listing->youtube_video_id = $request->youtube_video_id;
+        }
+
+        $listing->save();
+
+        if ($purchase_package_info->is_business_hour && !empty($request->working_day)) {
+            $this->insertBusinessHours($request, $listing, $id);
+        }
+
+        if (!empty($request->social_icon)) {
+            $this->insertSocialAndWebsite($request, $listing, $id);
+        }
+
+        if ($purchase_package_info->is_image && !empty($request->listing_image)) {
+            $numberOfImgPerListing = min(count($request->listing_image), $purchase_package_info->no_of_img_per_listing ?? 500);
+            $this->uploadListingImages($numberOfImgPerListing, $request, $listing, $id);
+        }
+
+        if ($purchase_package_info->is_amenities && !empty($request->amenity_id)) {
+            $numberOfAmenitiesPerListing = min(count($request->amenity_id), $purchase_package_info->no_of_amenities_per_listing ?? 500);
+            $this->insertAmenitites($numberOfAmenitiesPerListing, $request, $listing, $id);
+        }
+
+        if ($purchase_package_info->is_product && !empty($request->product_title)) {
+            $numberOfProductsPerListing = min(count($request->product_title), $purchase_package_info->no_of_product ?? 500);
+            $this->uploadProducts($request, $listing, $numberOfProductsPerListing);
+        }
+
+        if ($purchase_package_info->seo && ($request->meta_title || $request->meta_description || $request->meta_keywords || $request->seo_image)) {
+            $this->insertSEO($listing, $request, $id);
+        }
+
+        if ($purchase_package_info->no_of_listing != null) {
+            $purchase_package_info->update([
+                'no_of_listing' => $purchase_package_info->no_of_listing - 1,
+            ]);
+        }
+
+        $userName = $this->user->firstname . ' ' . $this->user->lastname;
+        $msg = [
+            'from' => $userName ?? null,
+        ];
+
+        $action = [
+            "link" => route('admin.viewListings'),
+            "icon" => "fa fa-money-bill-alt text-white"
+        ];
+
+        $this->adminPushNotification('Create_Listing', $msg, $action);
+
+        $listingApproval = Configure::first();
+
+        if ($listingApproval->listing_approval == 1) {
+            return redirect()->route('admin.allListing')->with('success', __('Your listing has been created successfully! Admin approval is required to view the listing'));
+        } else {
+            Listing::findOrFail($listing->id)->update([
+                'status' => 1,
+            ]);
+            return back()->with('success', __('Your listing has been created successfully!'));
+        }
+    }
+
+    // end of listing logic
+
     public function listingCategoryList()
     {
         $data['listingCategory'] = ListingCategory::with('details')->latest()->get();

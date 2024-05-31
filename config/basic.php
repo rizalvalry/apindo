@@ -1,5 +1,5 @@
 <?php return array (
-  'site_title' => 'ListPlace',
+  'site_title' => 'Apindo',
   'base_color' => '#184af9',
   'time_zone' => 'Asia/Jakarta',
   'default_file_driver' => 'local',
