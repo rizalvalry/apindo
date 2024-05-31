@@ -20,18 +20,9 @@
 
     <link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet">
 
-    @stack('style')
+    <!-- @stack('style') -->
 
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    @include('partials.seo')
-
-    <title>@yield('title')</title>
-
+    <!-- milik users -->
     <!-- bootstrap 5 -->
     <link rel="stylesheet" href="{{ asset($themeTrue.'css/bootstrap5.min.css') }}"/>
 
@@ -64,8 +55,10 @@
     <link rel="stylesheet" href="{{ asset($themeTrue.'css/user-style.css') }}"/>
 
     @stack('css-lib')
-    <!----  Push your custom css  ----->
     @stack('style')
+    <!----  Push your custom css  ----->
+    <!-- users end -->
+
 
 </head>
 <body>
@@ -115,6 +108,40 @@
 </div>
 
 
+@stack('loadModal')
+
+@stack('extra-content')
+
+<!-- milik users -->
+<!-- bootstrap 5-->
+<script src="{{ asset('assets/global/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- jquery cdn -->
+<script src="{{asset('assets/global/js/jquery.min.js') }}"></script>
+<!-- jquery ui -->
+<script src="{{ asset($themeTrue.'js/jquery-ui.js') }}"></script>
+
+<!-- radial progress -->
+<script src="{{ asset($themeTrue.'js/radialprogress.js') }}"></script>
+
+<!-- select 2 -->
+<script src="{{ asset('assets/global/js/select2.min.js') }}"></script>
+
+<!-- leaflet -->
+<script src="{{ asset('assets/global/js/leaflet.js') }}"></script>
+<script src="{{ asset('assets/global/js/Control.FullScreen.js') }}"></script>
+<script src="{{ asset('assets/global/js/esri-leaflet.js') }}"></script>
+<script src="{{ asset('assets/global/js/leaflet-search.js') }}"></script>
+<script src="{{ asset('assets/global/js/esri-leaflet-geocoder.js') }}"></script>
+<script src="{{ asset($themeTrue.'js/bootstrap-geocoder.js') }}"></script>
+
+<script src="{{asset('assets/global/js/notiflix-aio-2.7.0.min.js')}}"></script>
+<script src="{{asset('assets/global/js/pusher.min.js')}}"></script>
+<script src="{{asset('assets/global/js/vue.min.js')}}"></script>
+<script src="{{asset('assets/global/js/axios.min.js')}}"></script>
+<script src="{{asset('assets/global/js/owl.carousel.min.js')}}"></script>
+<!-- custom script -->
+<!-- end users -->
 
 <script src="{{asset('assets/global/js/jquery.min.js') }}"></script>
 
@@ -122,7 +149,6 @@
 
 <script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
 
-@stack('js-lib')
 
 <script src="{{ asset('assets/admin/js/bootstrap4-toggle.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/app-style-switcher.js') }}"></script>
@@ -138,8 +164,12 @@
 <script src="{{ asset('assets/global/js/vue.min.js') }}"></script>
 <script src="{{ asset('assets/global/js/pusher.min.js') }}"></script>
 
-@stack('js')
-@stack('extra-script')
+@stack('extra-js')
+
+<script src="{{ asset('assets/themes/classic/js/user-script.js') }}"></script>
+
+
+@stack('script')
 
 <script>
     'use strict';
@@ -202,5 +232,8 @@
         }
     });
 </script>
+@include($theme.'partials.notification')
+@include('plugins')
+
 </body>
 </html>

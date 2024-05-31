@@ -1,4 +1,4 @@
-@extends($theme.'layouts.user')
+@extends('admin.layouts.app')
 @section('title',trans('Add Listing'))
 @push('css-lib')
     <link rel="stylesheet" href="{{ asset('assets/global/css/tagsinput.css') }}"/>
@@ -10,6 +10,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="switcher navigator">
+        <nav class="navbar navbar-dark bg-custom">
             <button tab-id="tab1" class="tab active">
                 @lang('Basic Info')
 
@@ -179,7 +180,7 @@
                     @endif
                 </button>
             @endif
-
+        </nav>
         </div>
 
 
@@ -200,16 +201,25 @@
                                 <div class="row g-3">
                                     <div class="input-box col-md-6">
                                         <input class="form-control @error('title') is-invalid @enderror" type="text"
-                                               name="title" value="{{ old('title') }}" placeholder="@lang('Title')"/>
+                                               name="title" value="{{ old('title') }}" placeholder="@lang('Nama Perusahaan')"/>
                                         <div class="invalid-feedback">
                                             @error('title') @lang($message) @enderror
                                         </div>
                                     </div>
                                     <div class="input-box col-md-6">
-                                        <select
+                                        <!-- <select
                                             class="listing__category__select2 form-control @error('category_id') is-invalid @enderror"
                                             name="category_id[]" multiple data-categories="{{ $single_package_infos->no_of_categories_per_listing }}">
                                             <option disabled> @lang('Select Category')</option>
+                                            @foreach ($all_listings_category as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{ old('category_id') == $item->id ? 'selected' : '' }}>@lang(optional($item->details)->name) </option>
+                                            @endforeach
+                                        </select> -->
+                                        <select
+                                            class="listing__category__select2 form-control @error('category_id') is-invalid @enderror"
+                                            name="category_id[]">
+                                            <option disabled selected>@lang('Jenis Usaha')</option>
                                             @foreach ($all_listings_category as $item)
                                                 <option
                                                     value="{{ $item->id }}" {{ old('category_id') == $item->id ? 'selected' : '' }}>@lang(optional($item->details)->name) </option>
@@ -235,6 +245,8 @@
                                             @error('phone') @lang($message) @enderror
                                         </div>
                                     </div>
+
+                                    
 
                                     <div class="input-box col-12 bg-white p-0">
                                         <textarea class="form-control summernote @error('description') is-invalid @enderror" name="description" id="summernote" rows="15" value="{{ old('description') }}" placeholder="@lang('Description')">{{ old('description') }}</textarea>
@@ -299,6 +311,16 @@
                                                     @error('long') @lang($message) @enderror
                                                 </div>
                                             </div>
+
+                                            <div class="input-box col-md-12">
+                                                <textarea type="url" name="social_url[]" value="{{ old('social_url.0') }}"
+                                                    class="form-control @error('social_url.0') is-invalid @enderror"
+                                                    placeholder="@lang('Alamat Lengkap')"></textarea>
+                                                @error('social_url.0')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -361,7 +383,7 @@
                                         </div>
 
                                         <div class="input-box my-1 me-1">
-                                            <button class="btn-custom add-new" type="button" id="add_business_hour">
+                                            <button class="btn btn-lg btn-outline-primary add-new" type="button" id="add_business_hour">
                                                 <i class="fal fa-plus"></i>
                                             </button>
                                         </div>
@@ -437,30 +459,23 @@
                     @endif
 
                     <div class="col-xl-6">
-                        <h3 class="mb-3">@lang('Websites And Social Links')</h3>
+                        <h3 class="mb-3">@lang('Additional Email')</h3>
                         <div class="form website_social_links">
                             <div class="d-flex justify-content-between">
                                 <div class="input-group mt-1">
                                     <input type="text" name="social_icon[]"
-                                           class="form-control demo__icon__picker iconpicker1 @error('social_icon.0') is-invalid @enderror"
-                                           placeholder="Pick a icon" aria-label="Pick a icon"
-                                           aria-describedby="basic-addon1" readonly>
+                                           class="form-control"
+                                           placeholder="Email" aria-label="Pick a icon"
+                                           aria-describedby="basic-addon1">
                                     <div class="invalid-feedback">
                                         @error('social_icon.0') @lang($message) @enderror
                                     </div>
                                 </div>
 
-                                <div class="input-box w-100 my-1 me-1">
-                                    <input type="url" name="social_url[]" value="{{ old('social_url.0') }}"
-                                           class="form-control @error('social_url.0') is-invalid @enderror"
-                                           placeholder="@lang('URL')"/>
-                                    @error('social_url.0')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                
 
-                                <div class="my-1 me-1">
-                                    <button class="btn-custom add-new" type="button" id="add_social_links">
+                                <div class="my-1 me-1 m-2">
+                                    <button class="btn btn-lg btn-outline-primary add-new" type="button" id="add_social_links">
                                         <i class="fal fa-plus"></i>
                                     </button>
                                 </div>
@@ -921,8 +936,8 @@
                 </div>
             @endif
 
-            <div class="col-12 mb-3 justify-content-strat d-flex mt-4 mb-4">
-                <button type="submit" class="btn-custom">
+            <div class="col-12 mb-3 justify-content-strat d-flex mt-12 mb-12">
+                <button type="submit" class="btn btn-primary">
                     <i class="fal fa-check-circle" aria-hidden="true"></i>@lang('Submit changes')
                 </button>
             </div>
@@ -1219,15 +1234,18 @@
             $("#add_social_links").on('click', function () {
                 let newSocialForm = $('.append_new_social_form').length + 2;
 
+                // in block textscript
+                // <div class="input-box w-100 my-1 me-1">
+                //                     <input type="url" name="social_url[]" class="form-control" placeholder="@lang('URL')"/>
+                //                 </div>
+
                 var form = `<div class="d-flex justify-content-between append_new_social_form removeSocialLinksInput">
                                 <div class="input-group mt-1">
-                                    <input type="text" name="social_icon[]" class="form-control demo__icon__picker iconpicker${newSocialForm}" placeholder="Pick a icon" aria-label="Pick a icon"
-                                           aria-describedby="basic-addon1" readonly>
+                                    <input type="text" name="social_icon[]" class="form-control" placeholder="Email" aria-label="Pick a icon"
+                                           aria-describedby="basic-addon1">
                                 </div>
 
-                                <div class="input-box w-100 my-1 me-1">
-                                    <input type="url" name="social_url[]" class="form-control" placeholder="@lang('URL')"/>
-                                </div>
+                               
                                 <div class="my-1 me-1">
                                     <button class="btn-custom add-new btn-custom-danger remove_social_link_input_field" type="button">
                                         <i class="fa fa-times"></i>

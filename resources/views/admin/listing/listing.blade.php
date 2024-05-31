@@ -1,4 +1,4 @@
-@extends($theme.'layouts.user')
+@extends('admin.layouts.app')
 @section('title',trans('All Listing'))
 
 @section('content')
@@ -6,10 +6,10 @@
         <div class="main row">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="mb-0">@lang('Listings')</h3>
+                    <h3 class="mb-0">@lang('Data Anggota')</h3>
                 </div>
 
-                <div class="switcher">
+                <!-- <div class="switcher">
                     <a href="{{ route('user.allListing') }}">
                         <button class="@if(lastUriSegment() == 'listings') active @endif">@lang('Listings')</button>
                     </a>
@@ -22,7 +22,7 @@
                     <a href="{{ route('user.allListing', 'rejected') }}">
                         <button class="{{(lastUriSegment() == 'rejected') ? 'active' : ''}}">@lang('Rejected')</button>
                     </a>
-                </div>
+                </div> -->
 
                 <!-- search area -->
                 <div class="search-bar" id="listing-search-bar">
@@ -30,13 +30,13 @@
                         <div class="row g-3">
                             <div class="col-lg-3 col-md-3 col-sm-12">
                                 <div class="input-box input-group">
-                                    <input type="text" name="name" class="form-control" placeholder="@lang('Search listing')" value="{{ old('name',request()->name) }}"/>
+                                    <input type="text" name="name" class="form-control" placeholder="@lang('Search Anggota')" value="{{ old('name',request()->name) }}"/>
                                 </div>
                             </div>
 
                             <div class="input-box col-lg-2 col-md-2 col-sm-12">
                                 <select class="js-example-basic-single form-control" name="package">
-                                    <option value="" selected disabled>@lang('Select Package')</option>
+                                    <option value="" selected disabled>@lang('Pilih Jenis')</option>
                                     @foreach($packages as $package)
                                         <option value="{{ $package->id }}" {{  request()->package == $package->id ? 'selected' : '' }}>@lang(optional($package->details)->title)</option>
                                     @endforeach
@@ -44,7 +44,8 @@
                             </div>
 
                             <div class="input-box col-lg-2 col-md-2 col-sm-12">
-                                <select class="listing__category__select2 form-control" name="category[]" multiple>
+                                <!-- <select class="listing__category__select2 form-control" name="category[]" multiple> -->
+                                <select class="listing__category__select2 form-control" name="category[]">
                                     <option value="all"
                                             @if(request()->category && in_array('all', request()->category))
                                                 selected
@@ -70,14 +71,14 @@
                             </div>
 
                             <div class="col-lg-2 col-md-2 col-sm-12">
-                                <button class="btn-custom" type="submit">@lang('search')</button>
+                                <button class="btn btn-sm btn-primary mr-2" type="submit">@lang('search')</button>
                             </div>
                         </div>
                     </form>
                 </div>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-end">
-                    <button type="button" class="btn-custom add-listing-button-custom notiflix-confirm" data-bs-toggle="modal" data-bs-target="#addListingmodal">
+                    <button type="button" class="btn btn-sm btn-secondary mr-2 add-listing-button-custom notiflix-confirm" data-bs-toggle="modal" data-bs-target="#addListingmodal">
                         <i class="fal fa-plus" aria-hidden="true"></i> @lang('Add Listing')
                     </button>
                 </div>
@@ -87,9 +88,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th scope="col">@lang('Package')</th>
-                            <th scope="col">@lang('Category')</th>
-                            <th scope="col">@lang('Listing')</th>
+                            <th scope="col">@lang('Unit')</th>
+                            <th scope="col">@lang('Jenis Usaha')</th>
+                            <th scope="col">@lang('Judul')</th>
                             <th scope="col">@lang('Location')</th>
                             <th scope="col">@lang('Stage')</th>
                             <th scope="col">@lang('Status')</th>
@@ -246,6 +247,8 @@
                                     @foreach($my_packages as $key => $package)
                                         @php
                                             $fundInfo = \App\Models\Fund::where('purchase_package_id', $package->id)->latest()->first();
+
+                                            print($fundInfo);
                                         @endphp
                                         @if(($package->no_of_listing > 0 || $package->no_of_listing == null) && ($package->expire_date == null ||  \Carbon\Carbon::now() <= \Carbon\Carbon::parse($package->expire_date)) && ($package->status == 1))
                                             <option value="{{ $package->id }}" data-listing="{{ $package->no_of_listing }}" data-route="{{ route('admin.addListing', $package->id) }}" class="total_listing{{$package->id}}">@lang(optional($package->get_package)->title)</option>
@@ -272,7 +275,7 @@
         </div>
     @endpush
 
-@endsection
+    @endsection
 
 @push('script')
 
@@ -291,9 +294,11 @@
             })
 
             $('#package').on('change', function () {
+                console.log('test');
                 $('#noOfListing').removeClass('d-none');
                 let package_id = $(this).val();
                 let no_of_listing = $('.total_listing' + package_id).data('listing');
+                console.log(no_of_listing);
                 if (no_of_listing) {
                     $('.total_no_of_listing_field').val(no_of_listing);
                 } else {
@@ -301,7 +306,6 @@
                 }
 
                 let route = $('.total_listing' + package_id).data('route');
-                console.log(route);
                 $('.addCreateListingRoute').attr('href', route)
 
             });

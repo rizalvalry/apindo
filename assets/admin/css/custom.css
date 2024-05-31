@@ -1297,8 +1297,10 @@ h2.text-dark.mb-1.font-weight-medium {
     font-weight: 700;
 }
 .switcher button.active {
-    background: var(--white);
-    color: var(--primary);
+    background: #2677be;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
     -webkit-box-shadow: 0 1px 2px rgb(0 0 0 / 20%) !important;
     box-shadow: 0 1px 2px rgb(0 0 0 / 20%) !important;
     border: none;
@@ -1591,13 +1593,13 @@ button:focus:not(:focus-visible) {
     border:none;
 }
 #add_business_hour{
-    border:none !important;
+    border:1px solid !important;
 }
 
 #add_business_hour i{
-    position: relative;
+    /* position: relative;
     top: 6px;
-    right: 8px;
+    right: 8px; */
 }
 .remove_business_hour_input_field_block i{
     position: relative;
@@ -1605,9 +1607,9 @@ button:focus:not(:focus-visible) {
     right: 6px;
 }
 #add_social_links i{
-    position: relative;
+    /* position: relative;
     top: 7px;
-    right: 7px;
+    right: 7px; */
 }
 .remove_social_link_input_field i{
     position: relative;

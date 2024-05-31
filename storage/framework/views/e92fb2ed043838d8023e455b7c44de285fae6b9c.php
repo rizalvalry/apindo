@@ -20,18 +20,9 @@
 
     <link href="<?php echo e(asset('assets/admin/css/custom.css')); ?>" rel="stylesheet">
 
-    <?php echo $__env->yieldPushContent('style'); ?>
+    <!-- <?php echo $__env->yieldPushContent('style'); ?> -->
 
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-
-    <?php echo $__env->make('partials.seo', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-    <title><?php echo $__env->yieldContent('title'); ?></title>
-
+    <!-- milik users -->
     <!-- bootstrap 5 -->
     <link rel="stylesheet" href="<?php echo e(asset($themeTrue.'css/bootstrap5.min.css')); ?>"/>
 
@@ -64,8 +55,10 @@
     <link rel="stylesheet" href="<?php echo e(asset($themeTrue.'css/user-style.css')); ?>"/>
 
     <?php echo $__env->yieldPushContent('css-lib'); ?>
-    <!----  Push your custom css  ----->
     <?php echo $__env->yieldPushContent('style'); ?>
+    <!----  Push your custom css  ----->
+    <!-- users end -->
+
 
 </head>
 <body>
@@ -115,6 +108,40 @@
 </div>
 
 
+<?php echo $__env->yieldPushContent('loadModal'); ?>
+
+<?php echo $__env->yieldPushContent('extra-content'); ?>
+
+<!-- milik users -->
+<!-- bootstrap 5-->
+<script src="<?php echo e(asset('assets/global/js/bootstrap.bundle.min.js')); ?>"></script>
+
+<!-- jquery cdn -->
+<script src="<?php echo e(asset('assets/global/js/jquery.min.js')); ?>"></script>
+<!-- jquery ui -->
+<script src="<?php echo e(asset($themeTrue.'js/jquery-ui.js')); ?>"></script>
+
+<!-- radial progress -->
+<script src="<?php echo e(asset($themeTrue.'js/radialprogress.js')); ?>"></script>
+
+<!-- select 2 -->
+<script src="<?php echo e(asset('assets/global/js/select2.min.js')); ?>"></script>
+
+<!-- leaflet -->
+<script src="<?php echo e(asset('assets/global/js/leaflet.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/global/js/Control.FullScreen.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/global/js/esri-leaflet.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/global/js/leaflet-search.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/global/js/esri-leaflet-geocoder.js')); ?>"></script>
+<script src="<?php echo e(asset($themeTrue.'js/bootstrap-geocoder.js')); ?>"></script>
+
+<script src="<?php echo e(asset('assets/global/js/notiflix-aio-2.7.0.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/global/js/pusher.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/global/js/vue.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/global/js/axios.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/global/js/owl.carousel.min.js')); ?>"></script>
+<!-- custom script -->
+<!-- end users -->
 
 <script src="<?php echo e(asset('assets/global/js/jquery.min.js')); ?>"></script>
 
@@ -122,7 +149,6 @@
 
 <script src="<?php echo e(asset('assets/admin/js/bootstrap.min.js')); ?>"></script>
 
-<?php echo $__env->yieldPushContent('js-lib'); ?>
 
 <script src="<?php echo e(asset('assets/admin/js/bootstrap4-toggle.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/admin/js/app-style-switcher.js')); ?>"></script>
@@ -138,8 +164,12 @@
 <script src="<?php echo e(asset('assets/global/js/vue.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/global/js/pusher.min.js')); ?>"></script>
 
-<?php echo $__env->yieldPushContent('js'); ?>
-<?php echo $__env->yieldPushContent('extra-script'); ?>
+<?php echo $__env->yieldPushContent('extra-js'); ?>
+
+<script src="<?php echo e(asset('assets/themes/classic/js/user-script.js')); ?>"></script>
+
+
+<?php echo $__env->yieldPushContent('script'); ?>
 
 <script>
     'use strict';
@@ -202,6 +232,9 @@
         }
     });
 </script>
+<?php echo $__env->make($theme.'partials.notification', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('plugins', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 </body>
 </html>
 <?php /**PATH C:\xampp\htdocs\apindo\resources\views/admin/layouts/app.blade.php ENDPATH**/ ?>

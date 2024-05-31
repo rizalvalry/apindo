@@ -19,8 +19,8 @@
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">@lang('SL No.')</th>
-                        <th scope="col">@lang('Package Name')</th>
-                        <th scope="col">@lang('Price')</th>
+                        <th scope="col">@lang('Unit Name')</th>
+                        <!-- <th scope="col">@lang('Price')</th> -->
                         <th scope="col">@lang('Expiry Time')</th>
                         <th scope="col">@lang('Status')</th>
                         @if(adminAccessRoute(config('role.manage_package.access.edit')) == true || adminAccessRoute(config('role.manage_package.access.delete')) == true)
@@ -36,13 +36,13 @@
                                 @lang(optional($item->details)->title)
                             </td>
 
-                            <td data-label="@lang('Price')">
+                            <!-- <td data-label="@lang('Price')">
                                 @if($item->price == null)
                                     {{ $basic->currency_symbol ?? 'USD' }}0
                                 @else
                                     {{ $basic->currency_symbol ?? 'USD' }}{{ $item->price }}
                                 @endif
-                            </td>
+                            </td> -->
 
                             <td data-label="@lang('Expiry Time')">
                                 @if ($item->expiry_time == Null)
