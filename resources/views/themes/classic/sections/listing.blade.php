@@ -1,4 +1,4 @@
-<!-- popular listings -->
+<!-- popular listings
 @if(count($popularListings) > 0)
     <section class="popular-listings">
         <div class="overlay">
@@ -153,4 +153,4 @@
 @endpush
 
 
-
+ -->

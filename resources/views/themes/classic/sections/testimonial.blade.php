@@ -1,6 +1,6 @@
-@if(isset($templates['testimonial'][0]) && $testimonial = $templates['testimonial'][0])
+<!-- @if(isset($templates['testimonial'][0]) && $testimonial = $templates['testimonial'][0]) -->
     <!-- testimonial section -->
-    <section class="testimonial-section">
+    <!-- <section class="testimonial-section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -41,4 +41,4 @@
             </div>
         </div>
     </section>
-@endif
+@endif -->

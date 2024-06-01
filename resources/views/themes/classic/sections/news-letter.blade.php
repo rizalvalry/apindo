@@ -1,4 +1,4 @@
-@if(isset($templates['news-letter'][0]) && $news_letter = $templates['news-letter'][0])
+<!-- @if(isset($templates['news-letter'][0]) && $news_letter = $templates['news-letter'][0])
     <section class="newsletter-section" id="subscribe">
         <div class="overlay">
             <div class="container">
@@ -20,4 +20,4 @@
             </div>
         </div>
     </section>
-@endif
+@endif -->

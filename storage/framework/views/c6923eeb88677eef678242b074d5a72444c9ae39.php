@@ -1,4 +1,4 @@
-<?php if(isset($templates['news-letter'][0]) && $news_letter = $templates['news-letter'][0]): ?>
+<!-- <?php if(isset($templates['news-letter'][0]) && $news_letter = $templates['news-letter'][0]): ?>
     <section class="newsletter-section" id="subscribe">
         <div class="overlay">
             <div class="container">
@@ -20,5 +20,5 @@
             </div>
         </div>
     </section>
-<?php endif; ?>
+<?php endif; ?> -->
 <?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/news-letter.blade.php ENDPATH**/ ?>

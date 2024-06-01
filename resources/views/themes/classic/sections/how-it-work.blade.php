@@ -1,13 +1,13 @@
-@if(isset($templates['how-it-work'][0]) && $howItWork = $templates['how-it-work'][0])
+<!-- @if(isset($templates['how-it-work'][0]) && $howItWork = $templates['how-it-work'][0])
     @push('style')
         <style>
             #banner-wrap::before {
                 background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), url({{getFile(config('location.content.path').optional($howItWork->templateMedia())->image)}});
             }
         </style>
-    @endpush
+    @endpush -->
     <!-- how it works section -->
-    @if(isset($contentDetails['how-it-work']))
+    <!-- @if(isset($contentDetails['how-it-work']))
         <section class="how-it-works">
             <div class="container">
                 <div class="row">
@@ -39,5 +39,5 @@
             </div>
         </section>
     @endif
-@endif
+@endif -->
 

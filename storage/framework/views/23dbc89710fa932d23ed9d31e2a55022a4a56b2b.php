@@ -1,13 +1,13 @@
-<?php if(isset($templates['how-it-work'][0]) && $howItWork = $templates['how-it-work'][0]): ?>
+<!-- <?php if(isset($templates['how-it-work'][0]) && $howItWork = $templates['how-it-work'][0]): ?>
     <?php $__env->startPush('style'); ?>
         <style>
             #banner-wrap::before {
                 background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), url(<?php echo e(getFile(config('location.content.path').optional($howItWork->templateMedia())->image)); ?>);
             }
         </style>
-    <?php $__env->stopPush(); ?>
+    <?php $__env->stopPush(); ?> -->
     <!-- how it works section -->
-    <?php if(isset($contentDetails['how-it-work'])): ?>
+    <!-- <?php if(isset($contentDetails['how-it-work'])): ?>
         <section class="how-it-works">
             <div class="container">
                 <div class="row">
@@ -39,6 +39,6 @@
             </div>
         </section>
     <?php endif; ?>
-<?php endif; ?>
+<?php endif; ?> -->
 
 <?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/how-it-work.blade.php ENDPATH**/ ?>

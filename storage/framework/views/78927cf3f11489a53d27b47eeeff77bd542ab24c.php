@@ -1,6 +1,6 @@
-<?php if(isset($templates['testimonial'][0]) && $testimonial = $templates['testimonial'][0]): ?>
+<!-- <?php if(isset($templates['testimonial'][0]) && $testimonial = $templates['testimonial'][0]): ?> -->
     <!-- testimonial section -->
-    <section class="testimonial-section">
+    <!-- <section class="testimonial-section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -41,5 +41,5 @@
             </div>
         </div>
     </section>
-<?php endif; ?>
+<?php endif; ?> -->
 <?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/testimonial.blade.php ENDPATH**/ ?>

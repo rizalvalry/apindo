@@ -1,4 +1,4 @@
-<!-- popular listings -->
+<!-- popular listings
 <?php if(count($popularListings) > 0): ?>
     <section class="popular-listings">
         <div class="overlay">
@@ -154,5 +154,5 @@
 <?php $__env->stopPush(); ?>
 
 
-
+ -->
 <?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/listing.blade.php ENDPATH**/ ?>

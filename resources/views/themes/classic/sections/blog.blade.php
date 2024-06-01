@@ -1,5 +1,5 @@
 <!-- blog section -->
-@if (count($popularBlogs) > 0)
+<!-- @if (count($popularBlogs) > 0)
     <section class="blog-section">
         <div class="container">
             @if(isset($templates['blog'][0]) && $blog = $templates['blog'][0])
@@ -46,4 +46,4 @@
             </div>
         </div>
     </section>
-@endif
+@endif -->

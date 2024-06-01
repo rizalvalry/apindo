@@ -1,5 +1,5 @@
 <!-- blog section -->
-<?php if(count($popularBlogs) > 0): ?>
+<!-- <?php if(count($popularBlogs) > 0): ?>
     <section class="blog-section">
         <div class="container">
             <?php if(isset($templates['blog'][0]) && $blog = $templates['blog'][0]): ?>
@@ -47,5 +47,5 @@
             </div>
         </div>
     </section>
-<?php endif; ?>
+<?php endif; ?> -->
 <?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/blog.blade.php ENDPATH**/ ?>
