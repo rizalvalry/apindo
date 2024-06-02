@@ -1,4 +1,4 @@
-<?php if(count($all_categories) > 0): ?>
+<!-- <?php if(count($all_categories) > 0): ?>
     <section class="category-section">
         <div class="container">
             <div class="row g-3 g-lg-4">
@@ -27,5 +27,5 @@
             </div>
         </div>
     </section>
-<?php endif; ?>
+<?php endif; ?> -->
 <?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/category.blade.php ENDPATH**/ ?>

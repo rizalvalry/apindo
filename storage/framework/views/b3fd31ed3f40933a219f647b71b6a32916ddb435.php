@@ -6,6 +6,9 @@
 
      <!-- categroy section -->
      <?php echo $__env->make($theme.'sections.category', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+     
+     <!-- Maps section -->
+     <?php echo $__env->make($theme.'sections.maps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
      <!-- popular listings -->
      <?php echo $__env->make($theme.'sections.listing', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

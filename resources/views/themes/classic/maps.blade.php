@@ -132,14 +132,14 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data) {
-                            const url = `${baseURL}/listing?name=&location=${data.id}`;
+                            const url = `${baseURL}/category/${provinceName}`;
                             if (confirm(`You clicked on ${provinceName}`)) {
-                    window.location.href = url;
-                }
-            } else {
-                alert(`No details found for ${provinceName}`);
-            }
-        })
+                                window.location.href = url;
+                            }
+                        } else {
+                            alert(`No details found for ${provinceName}`);
+                        }
+                    })
                     .catch(error => {
                         console.error('Error fetching place details:', error);
                         alert('An error occurred while fetching place details.');

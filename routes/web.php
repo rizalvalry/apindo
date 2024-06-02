@@ -458,6 +458,7 @@ Route::group(['middleware' => ['Maintenance']], function () {
     Route::get('/pricing', 'FrontendController@pricing')->name('pricing');
     Route::get('/purchasePlan', 'FrontendController@purchasePlan')->name('purchasePlan');
     Route::get('/place-details/{provinceName}', 'FrontendController@getPlaceDetails');
+    Route::get('/category/{provinceName}', 'FrontendController@categoryController')->name('category');
 
 
 
@@ -466,7 +467,7 @@ Route::group(['middleware' => ['Maintenance']], function () {
     Route::get('/listingReviews/{id?}', 'FrontendController@getReview')->name('listingReviews');
     Route::get('/profile/{name?}/{user_id?}', 'FrontendController@profile')->name('profile');
 
-    Route::get('/category', 'FrontendController@category')->name('category');
+    // Route::get('/category', 'FrontendController@category')->name('category');
     Route::get('/blog', 'FrontendController@blog')->name('blog');
     Route::get('/blog-details/{slug}/{id}', 'FrontendController@blogDetails')->name('blogDetails');
     Route::get('category-wise-blog/{slug}/{id}', 'FrontendController@CategoryWiseBlog')->name('CategoryWiseBlog');

@@ -45,9 +45,11 @@ class FrontendController extends Controller
     public function index(Request $request)
     {
 
-        $templateSection = ['banner-heading', 'popular-listing', 'hero', 'about-us', 'why-chose-us', 'how-it-work', 'how-we-work', 'know-more-us', 'deposit-withdraw', 'news-letter', 'news-letter-referral', 'testimonial', 'request-a-call', 'investor', 'blog', 'faq', 'we-accept', 'investment'];
+        $data['base_url'] = config('app.url');
+        $templateSection = ['banner-heading', 'popular-listing', 'hero', 'about-us', 'why-chose-us', 'how-it-work', 'how-we-work', 'know-more-us', 'deposit-withdraw', 'news-letter', 'news-letter-referral', 'testimonial', 'request-a-call', 'investor', 'blog', 'faq', 'we-accept', 'investment', 'maps'];
         $data['templates'] = Template::templateMedia()->whereIn('section_name', $templateSection)->get()->groupBy('section_name');
-        $contentSection = ['team-member', 'feature', 'why-chose-us', 'how-it-work', 'how-we-work', 'know-more-us', 'testimonial', 'investor', 'blog', 'faq'];
+        $contentSection = ['team-member', 'feature', 'why-chose-us', 'how-it-work', 'how-we-work', 'know-more-us', 'testimonial', 'investor', 'blog', 'faq', 'maps'];
+
 
         $data['contentDetails'] = ContentDetails::select('id', 'content_id', 'description', 'created_at')
             ->whereHas('content', function ($query) use ($contentSection) {
@@ -112,13 +114,13 @@ class FrontendController extends Controller
     }
 
     public function getPlaceDetails($provinceName)
-{
-    $placeDetail = DB::table('place_details')
-                    ->where('place', 'LIKE', '%' . $provinceName . '%')
-                    ->first();
+    {
+        $placeDetail = DB::table('place_details')
+                        ->where('place', 'LIKE', '%' . $provinceName . '%')
+                        ->first();
 
-    return response()->json($placeDetail);
-}
+        return response()->json($placeDetail);
+    }
 
 
     public function about()
@@ -222,6 +224,42 @@ class FrontendController extends Controller
         $data['listingCategory'] = ListingCategory::with('details')->where('status', 1)->latest()->get();
         return view($this->theme . 'category', $data);
     }
+
+    public function categoryController($provinceName)
+    {
+
+        // Ambil detail tempat berdasarkan nama provinsi
+        $placeDetail = DB::table('place_details')
+        ->where('place', 'LIKE', '%' . $provinceName . '%')
+        ->first();
+        
+        if (!$placeDetail) {
+            return redirect()->back()->with('error', 'No details found for the selected province');
+        }
+        
+        // Ambil listings yang sesuai dengan place_id
+        $listings = DB::table('listings')
+                ->where('place_id', $placeDetail->id)
+                ->get();
+
+        // Ambil kategori yang berkaitan dengan listings dan uraikan JSON
+        $categoryIds = $listings->pluck('category_id')->map(function($categoryId) {
+            return json_decode($categoryId, true);
+        })->flatten()->unique();
+
+        // Ambil data kategori yang sesuai
+        // Contoh jika menggunakan Eloquent dan relasi "details"
+        $allListingsAndCategory = ListingCategory::with('details')
+        ->whereIn('id', $categoryIds)
+        ->get();
+
+
+                                    // dd($allListingsAndCategory);
+
+        return view($this->theme . 'category', compact('allListingsAndCategory'));
+
+    }
+
 
     public function listing_details($title = null, $id = null)
     {

@@ -7,6 +7,9 @@
 
      <!-- categroy section -->
      @include($theme.'sections.category')
+     
+     <!-- Maps section -->
+     @include($theme.'sections.maps')
 
      <!-- popular listings -->
      @include($theme.'sections.listing')

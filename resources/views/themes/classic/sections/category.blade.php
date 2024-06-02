@@ -1,4 +1,4 @@
-@if(count($all_categories) > 0)
+<!-- @if(count($all_categories) > 0)
     <section class="category-section">
         <div class="container">
             <div class="row g-3 g-lg-4">
@@ -27,4 +27,4 @@
             </div>
         </div>
     </section>
-@endif
+@endif -->

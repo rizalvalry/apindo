@@ -5,7 +5,7 @@
             <div class="navbar-upper__wrapper">
                 <div class="navbar-upper__logo">
                     <a href="{{ route('home') }}" class="navbar-upper__image-container">
-                        <img src="{{ getFile(config('basic.default_file_driver'),config('basic.logo_image')) }}"
+                        <img src="{{asset('assets/admin/images/apindo-logo.png')}}"
                             class="navbar-upper__image" alt="{{config('basic.site_title')}}">
                     </a>
                     <span class="navbar-upper__company-name">Asosiasi<br>Pengusaha<br>Indonesia<br></span>
