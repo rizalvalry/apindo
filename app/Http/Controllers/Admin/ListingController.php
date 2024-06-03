@@ -39,27 +39,18 @@ class ListingController extends Controller
     use Upload, Notify, ListingTrait;
 
     public function __construct()
-    {
-        // $this->middleware(['auth']);
-        // $this->middleware(function ($request, $next) {
-        //     $this->user = auth()->user();
-        //     return $next($request);
-        // });
-        $this->theme = template();
+    { 
+        $this->user = DB::table('users')
+        ->where('id', 1)
+        ->first();
     }
 
     public function listings(Request $request, $type = null)
     {
-        $listing = Listing::with('get_user')->findOrFail(1);
-        $listing->status = 1;
-        $listing->save();
-
-    
-        $user = $listing->get_user;
 
         $types = ['pending', 'approved', 'rejected'];
         abort_if(isset($type) && !in_array($type, $types), 404);
-        $current_user = $user;
+        $current_user = $this->user;
         $data['packages'] = Package::with('details')->where('status', 1)->latest()->get();
         $data['listingCategories'] = ListingCategory::with('details')->where('status', 1)->latest()->get();
         $data['allAddresses'] = Place::with('details')->where('status', 1)->latest()->get();
@@ -68,7 +59,7 @@ class ListingController extends Controller
 
         $search = $request->all();
         $categoryIds = $request->category;
-       
+
         $data['user_listings'] = Listing::with(['get_package.get_package', 'get_place.details'])->latest()
             ->when(isset($categoryIds), function ($query) use ($categoryIds) {
                 if (implode('',$categoryIds) == 'all'){
@@ -101,11 +92,8 @@ class ListingController extends Controller
             ->when($type == 'rejected', function ($query) {
                 return $query->where('status', '2');
             })
-            ->where('user_id', 1)
+            ->where('user_id', $current_user->id)
             ->paginate(config('basic.paginate'));
-
-            // dd($data);
-            // return view($this->theme . 'admin.listing.listing', $data);
 
         return view('admin.listing.listing', $data);
     }
@@ -124,12 +112,13 @@ class ListingController extends Controller
 
     public function listingStore(Request $request, $id)
     {
+
         $purifiedData = Purify::clean($request->except('image', '_token', '_method', 'thumbnail', 'listing_image', 'seo_image', 'product_image'));
         $purifiedData['thumbnail'] = $request->thumbnail ?? null;
         $purifiedData['listing_image'] = $request->listing_image ?? null;
         $purifiedData['product_image'] = $request->product_image ?? null;
         $purifiedData['product_thumbnail'] = $request->product_thumbnail ?? null;
-
+        
         $rules = [
             'title' => 'required|string|max:255',
             'category_id' => 'required|array',
@@ -142,7 +131,6 @@ class ListingController extends Controller
             'lat' => 'required|between:-90,90',
             'long' => 'required|between:-180,180',
             'working_day.*' => 'nullable|string|max:20',
-            'social_url.*' => 'nullable|url|max:180',
             'youtube_video_id' => 'nullable|string|max:20',
             'thumbnail' => 'nullable|mimes:jpeg,png,jpg|max:51200',
             'listing_image.*' => 'nullable|mimes:jpeg,png,jpg',
@@ -167,8 +155,6 @@ class ListingController extends Controller
             'listing_image.*.mimes' => __('This listing image must be a file of type: jpg, jpeg, png.'),
             'working_day.*.string' => __('The working day must be a string.'),
             'working_day.*.max' => __('The working day may not be greater than :max characters.'),
-            'social_url.*.url' => __('The social url should be a url.'),
-            'social_url.*.max' => __('The social url may not be greater than :max characters.'),
             'product_title.*.string' => __('The product title must be a string.'),
             'product_title.*.max' => __('The product title may not be greater than :max characters.'),
             'product_price.*.numeric' => __('The product price should be numeric.'),
@@ -181,13 +167,18 @@ class ListingController extends Controller
 
         $validate = Validator::make($purifiedData, $rules, $message);
 
+        
+        
         if ($validate->fails()) {
+            // dd($validate->fails());
             return back()->withInput()->withErrors($validate);
         }
 
         $purchase_package_info = PurchasePackage::where('user_id', 1)->where('status', 1)->findOrFail($id);
 
-        $user = $this->user;
+        // dd($purchase_package_info);
+
+        $user = 1;
 
         if (!empty($purchase_package_info->no_of_listing) && $purchase_package_info->no_of_listing <= 0)
             return back()->with('error', __("You don't have any quota to create listing for this package."));
@@ -205,7 +196,7 @@ class ListingController extends Controller
             }
         }
 
-        $listing->user_id = $user->id;
+        $listing->user_id = $user;
         $listing->purchase_package_id = $id;
         $listing->title = $request->title;
 
@@ -220,7 +211,7 @@ class ListingController extends Controller
         $listing->address = $request->address;
         $listing->lat = $request->lat;
         $listing->long = $request->long;
-        $listing->status = 0;
+        $listing->status = 1;
 
         if($purchase_package_info->is_whatsapp == 1 || $purchase_package_info->is_messenger == 1){
             $listing->fb_app_id = $request->fb_app_id;
@@ -269,13 +260,16 @@ class ListingController extends Controller
             ]);
         }
 
+
+        
         $userName = $this->user->firstname . ' ' . $this->user->lastname;
+        // dd($userName);
         $msg = [
             'from' => $userName ?? null,
         ];
 
         $action = [
-            "link" => route('admin.viewListings'),
+            "link" => route('admin.listingviews'),
             "icon" => "fa fa-money-bill-alt text-white"
         ];
 
@@ -284,12 +278,13 @@ class ListingController extends Controller
         $listingApproval = Configure::first();
 
         if ($listingApproval->listing_approval == 1) {
-            return redirect()->route('admin.allListing')->with('success', __('Your listing has been created successfully! Admin approval is required to view the listing'));
+            return redirect()->route('admin.listingviews')->with('success', __('Your listing has been created successfully!'));
         } else {
             Listing::findOrFail($listing->id)->update([
                 'status' => 1,
             ]);
-            return back()->with('success', __('Your listing has been created successfully!'));
+            return redirect()->route('admin.listingviews')->with('success', __('Your listing has been created successfully!'));
+            
         }
     }
 

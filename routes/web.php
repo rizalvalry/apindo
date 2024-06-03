@@ -193,6 +193,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 
 
+
         Route::get('/role-permission', 'Admin\ManageRolePermissionController@staff')->name('staff');
         Route::post('/role-permission', 'Admin\ManageRolePermissionController@storeStaff')->name('storeStaff');
         Route::put('/role-permission/{id}', 'Admin\ManageRolePermissionController@updateStaff')->name('updateStaff');

@@ -53,7 +53,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="filter-box">
+                            <!-- <div class="filter-box">
                                 <h5><?php echo app('translator')->get('Filter by User'); ?></h5>
                                 <div class="input-group mb-3">
                                     <select class="js-example-basic-single form-control" name="user">
@@ -64,8 +64,8 @@
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="filter-box">
+                            </div> -->
+                            <!-- <div class="filter-box">
                                 <h5><?php echo app('translator')->get('Filter by Ratings'); ?></h5>
                                 <div class="check-box">
                                     <?php for($i = 5; $i >= 1; $i--): ?>
@@ -83,7 +83,7 @@
                                         </div>
                                     <?php endfor; ?>
                                 </div>
-                            </div>
+                            </div> -->
                             <button class="btn-custom w-100" type="submit"><?php echo app('translator')->get('submit'); ?></button>
                         </div>
                     </form>
@@ -107,7 +107,7 @@
                                                 <!-- <span>(<?php echo app('translator')->get($total . ' reviews'); ?>)</span> -->
                                             </div>
 
-                                            <h5 class="title"><?php echo app('translator')->get(Str::limit($listing->title, 30)); ?></h5>
+                                            <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>" ><h5 class="title"><?php echo app('translator')->get(Str::limit($listing->title, 30)); ?></h5></a>
                                             <a class="author" href="<?php echo e(route('profile', [slug(optional($listing->get_user)->firstname), optional($listing->get_user)->id])); ?>">
                                                 <?php echo app('translator')->get(optional($listing->get_user)->firstname); ?> <?php echo app('translator')->get(optional($listing->get_user)->lastname); ?>
                                             </a>

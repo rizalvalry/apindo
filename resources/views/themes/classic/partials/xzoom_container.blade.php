@@ -32,7 +32,7 @@
         </div>
     @endif
 
-    <div class="col-4">
+    <!-- <div class="col-4">
         <div class="d-flex justify-content-end">
 
             <button class="share">
@@ -43,7 +43,7 @@
                 <i class="far fa-eye"></i><span class="badge text-white">{{ $total_listing_view }}</span>
             </button>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div class="info-box mb-5">

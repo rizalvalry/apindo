@@ -25,5 +25,11 @@
 
      <!-- newsletter -->
      @include($theme.'sections.news-letter')
+     
+     <!-- ads -->
+     @include($theme.'sections.ads')
+
+
+
 
 @endsection

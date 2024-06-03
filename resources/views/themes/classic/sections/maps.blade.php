@@ -1,19 +1,18 @@
 @if(isset($templates['maps'][0]) && $maps = $templates['maps'][0]) 
-<section class="testimonial-section">
+<section class="maps-section">
        
 <script src="{{ asset('assets/global/js/maps.js') }}"></script>
 
 <style>
     #map-container {
         width: 100%;
-        max-width: 960px;
-        margin: 50px auto;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
     }
     #map {
         width: 100%;
-        height: 60vh;
+        height: 100vh;
         position: relative;
     }
     #loading {
@@ -26,16 +25,24 @@
     }
     @media (min-width: 768px) {
         #map {
-            height: 70vh;
+            height: 100vh;
         }
+    }
+    .tooltip {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-size: 12px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s;
     }
 </style>
 
-<div class="container">
-    <div id="map-container">
-        <div id="loading">Loading map...</div>
-        <div id="map"></div>
-    </div>
+<div id="map-container">
+    <div id="loading">Loading map...</div>
+    <div id="map"></div>
 </div>
 
 <script>
@@ -88,8 +95,8 @@
         .attr("height", height);
 
     const projection = d3.geoMercator()
-        .center([120, -2])
-        .scale(1000)
+        .center([118, -2])
+        .scale(1600)
         .translate([width / 2, height / 2]);
 
     const path = d3.geoPath().projection(projection);
@@ -103,6 +110,10 @@
         loadingIndicator.style("display", "none");
     });
 
+    const tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltip");
+
     const displayMap = data => {
         const features = data.features;
 
@@ -113,25 +124,49 @@
             .attr("fill", (d, i) => stateSpecific[i] ? stateSpecific[i].color : "#ccc")
             .attr("stroke", "#fff")
             .attr("stroke-width", 1)
+            .style("cursor", "pointer")
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("fill", "#FF5733");
+                const index = features.findIndex(feature => feature === d);
+                const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
+
+               
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html(`<strong>${provinceName}</strong><br/>Loading...`);
+
+ 
+                fetchData(provinceName, tooltip);
+
+          
+                tooltip.style("left", (event.pageX + 10) + "px")
+                       .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mousemove", function(event, d) {
+                
+                tooltip.style("left", (event.pageX + 10) + "px")
+                       .style("top", (event.pageY - 28) + "px");
             })
             .on("mouseout", function(event, d) {
                 const index = features.findIndex(feature => feature === d);
                 d3.select(this).attr("fill", stateSpecific[index] ? stateSpecific[index].color : "#ccc");
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
             })
             .on("click", function(event, d) {
                 const index = features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
+                alert(`You clicked on ${provinceName}`);
                 
-                fetch(`/apindo/place-details/${provinceName}`)
+                // Perform other actions after click if needed
+                fetch(`${baseURL}/place-details/${provinceName}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data) {
                             const url = `${baseURL}/category/${provinceName}`;
-                            if (confirm(`You clicked on ${provinceName}`)) {
-                                window.location.href = url;
-                            }
+                            window.location.href = url;
                         } else {
                             alert(`No details found for ${provinceName}`);
                         }
@@ -144,21 +179,82 @@
             .append("title")
             .text((d, i) => stateSpecific[i] ? stateSpecific[i].name : "Unknown");
 
-        svg.selectAll("text")
+        svg.selectAll("foreignObject")
             .data(features)
-            .enter().append("text")
-            .attr("x", d => path.centroid(d)[0])
-            .attr("y", d => path.centroid(d)[1])
-            .attr("dy", ".35em")
+            .enter().append("foreignObject")
+            .attr("x", d => path.centroid(d)[0] - 50)
+            .attr("y", d => path.centroid(d)[1] - 10)
+            .attr("width", 100)
+            .attr("height", 20)
             .attr("class", "province-label")
-            .style("text-anchor", "middle")
-            .style("font-size", "10px")
-            .style("fill", "#000")
-            .text((d, i) => stateSpecific[i] ? stateSpecific[i].name : "");
+            .style("cursor", "pointer")
+            .html((d, i) => `<div style="font-size:10px;">
+                                <span>${stateSpecific[i].name}</span>
+                            </div>`)
+            .on("mouseover", function(event, d) {
+                const index = features.findIndex(feature => feature === d);
+                const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
+            
+                
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html(`<strong>${provinceName}</strong><br/>Loading...`);
+
+                fetchData(provinceName, tooltip);
+
+                tooltip.style("left", (event.pageX + 10) + "px")
+                       .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mousemove", function(event, d) {
+               
+                tooltip.style("left", (event.pageX + 10) + "px")
+                       .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            })
+            .on("click", function(event, d) {
+                const index = features.findIndex(feature => feature === d);
+                const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
+                
+                fetch(`${baseURL}/place-details/${provinceName}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            const url = `${baseURL}/category/${provinceName}`;
+                            window.location.href = url;
+                        } else {
+                            alert(`No details found for ${provinceName}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching place details:', error);
+                        alert('An error occurred while fetching place details.');
+                    });
+            });
 
         loadingIndicator.style("display", "none");
     };
 
+    const fetchData = (provinceName, tooltip) => {
+        fetch(`${baseURL}/place-details/${provinceName}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    const listingsCount = data.listings_count || 0;
+                    tooltip.html(`<strong>${provinceName}</strong><br/>Listings: ${listingsCount}`);
+                } else {
+                    tooltip.html(`<strong>${provinceName}</strong><br/>No details found`);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching place details:', error);
+                tooltip.html(`<strong>${provinceName}</strong><br/>Error fetching details`);
+            });
+    };
 </script>
 
 </section>

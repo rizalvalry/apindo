@@ -114,13 +114,25 @@ class FrontendController extends Controller
     }
 
     public function getPlaceDetails($provinceName)
-    {
-        $placeDetail = DB::table('place_details')
-                        ->where('place', 'LIKE', '%' . $provinceName . '%')
-                        ->first();
+{
+    $placeDetail = DB::table('place_details')
+                    ->where('place', 'LIKE', '%' . $provinceName . '%')
+                    ->first();
 
-        return response()->json($placeDetail);
+    if (!$placeDetail) {
+        return response()->json(['error' => 'No details found for the selected province'], 404);
     }
+
+    // Contoh mengambil jumlah listings yang sesuai
+    $listingsCount = DB::table('listings')
+                    ->where('place_id', $placeDetail->id)
+                    ->count();
+
+    $placeDetail->listings_count = $listingsCount; // Menambahkan listings_count ke dalam objek $placeDetail
+
+    return response()->json($placeDetail);
+}
+
 
 
     public function about()

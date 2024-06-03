@@ -54,7 +54,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="filter-box">
+                            <!-- <div class="filter-box">
                                 <h5>@lang('Filter by User')</h5>
                                 <div class="input-group mb-3">
                                     <select class="js-example-basic-single form-control" name="user">
@@ -65,8 +65,8 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div class="filter-box">
+                            </div> -->
+                            <!-- <div class="filter-box">
                                 <h5>@lang('Filter by Ratings')</h5>
                                 <div class="check-box">
                                     @for($i = 5; $i >= 1; $i--)
@@ -84,7 +84,7 @@
                                         </div>
                                     @endfor
                                 </div>
-                            </div>
+                            </div> -->
                             <button class="btn-custom w-100" type="submit">@lang('submit')</button>
                         </div>
                     </form>
@@ -108,7 +108,7 @@
                                                 <!-- <span>(@lang($total . ' reviews'))</span> -->
                                             </div>
 
-                                            <h5 class="title">@lang(Str::limit($listing->title, 30))</h5>
+                                            <a href="{{ route('listing-details', [slug($listing->title), $listing->id]) }}" ><h5 class="title">@lang(Str::limit($listing->title, 30))</h5></a>
                                             <a class="author" href="{{ route('profile', [slug(optional($listing->get_user)->firstname), optional($listing->get_user)->id]) }}">
                                                 @lang(optional($listing->get_user)->firstname) @lang(optional($listing->get_user)->lastname)
                                             </a>

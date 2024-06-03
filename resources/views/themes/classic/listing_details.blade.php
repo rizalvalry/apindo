@@ -612,7 +612,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <!-- <div class="col-lg-4">
                         <div class="side-bar">
                             <div class="side-box">
                                 <h5>@lang('Created By')</h5>
@@ -755,7 +755,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

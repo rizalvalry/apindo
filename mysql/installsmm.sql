@@ -42,7 +42,7 @@ CREATE TABLE `admins` (
 /*Data for the table `admins` */
 
 insert  into `admins`(`id`,`name`,`username`,`email`,`password`,`image`,`driver`,`phone`,`address`,`admin_access`,`last_login`,`status`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'admin','admin','admin@gmail.com','$2y$10$MjIGHeJr/lPkyrQrHhPK8usJwoFVYdpmpVG807ZhBWxGtDslyCtbC','adminProfile/YiKSqPeNWPDIgCBI5l7wsqM0RyIw3Cg1vJzYukl9.jpg','local','+5641 455646','TX, USA','[\"admin.dashboard\",\"admin.staff\",\"admin.storeStaff\",\"admin.updateStaff\",\"admin.identify-form\",\"admin.identify-form.store\",\"admin.identify-form.action\",\"admin.users\",\"admin.user-multiple-active\",\"admin.user-multiple-inactive\",\"admin.user-edit\",\"admin.email-send\",\"admin.kyc.users.pending\",\"admin.kyc.kyc.users\",\"admin.email-send.store\",\"admin.user-update\",\"admin.userPasswordUpdate\",\"admin.userKycHistory\",\"admin.send-email\",\"admin.login-as-user\",\"admin.users.Kyc.action\",\"admin.package\",\"admin.purchasePackageList\",\"admin.packageCreate\",\"admin.packageEdit\",\"admin.packageDelete\",\"admin.userPurchasePackageDelete\",\"admin.listingCategory\",\"admin.viewListings\",\"admin.listingSettings\",\"admin.wishList\",\"admin.productEnquiry\",\"admin.listingAnalytics\",\"admin.showListingAnalytics\",\"admin.listingReview\",\"admin.listingCategoryCreate\",\"admin.listingCategoryEdit\",\"admin.editListing\",\"admin.listingCategoryDelete\",\"admin.viewListingDelete\",\"admin.wishListDelete\",\"admin.listingReviewDelete\",\"admin.listingAnalyticsDelete\",\"admin.amenities\",\"admin.amenitiesCreate\",\"admin.amenitiesEdit\",\"admin.amenitiesDelete\",\"admin.place\",\"admin.placeCreate\",\"admin.placeEdit\",\"admin.placeDelete\",\"admin.claimBusiness\",\"admin.claimMessageDelete\",\"admin.contactMessage\",\"admin.contactMessageDelete\",\"admin.transaction\",\"admin.transaction.search\",\"admin.subscriber.index\",\"admin.subscriber.sendEmail\",\"admin.subscriber.remove\",\"admin.payment.methods\",\"admin.deposit.manual.index\",\"admin.deposit.manual.create\",\"admin.edit.payment.methods\",\"admin.deposit.manual.edit\",\"admin.payment.pending\",\"admin.payment.log\",\"admin.payment.search\",\"admin.payment.action\",\"admin.ticket\",\"admin.ticket.view\",\"admin.ticket.reply\",\"admin.ticket.delete\",\"admin.basic-controls\",\"admin.email-controls\",\"admin.email-template.show\",\"admin.sms.config\",\"admin.sms-template\",\"admin.notify-config\",\"admin.notify-template.show\",\"admin.notify-template.edit\",\"admin.basic-controls.update\",\"admin.email-controls.update\",\"admin.email-template.edit\",\"admin.sms-template.edit\",\"admin.notify-config.update\",\"admin.notify-template.update\",\"admin.language.index\",\"admin.language.create\",\"admin.language.edit\",\"admin.language.keywordEdit\",\"admin.language.delete\",\"admin.manage.theme\",\"admin.logo-seo\",\"admin.breadcrumb\",\"admin.template.show\",\"admin.content.index\",\"admin.content.create\",\"admin.logoUpdate\",\"admin.seoUpdate\",\"admin.breadcrumbUpdate\",\"admin.content.show\",\"admin.content.delete\",\"admin.blogCategory\",\"admin.blogList\",\"admin.blogCategoryCreate\",\"admin.blogCreate\",\"admin.blogCategoryEdit\",\"admin.blogEdit\",\"admin.blogCategoryDelete\",\"admin.blogDelete\"]','2024-06-01 04:00:37',1,'mSTT5Hxb18mRckMPU9by93ryOAUSoVOkMslGOs078nAX0Ui6e3MaA72Cfj3t','2021-12-17 11:00:01','2024-06-01 04:00:37'),
+(1,'admin','admin','admin@gmail.com','$2y$10$MjIGHeJr/lPkyrQrHhPK8usJwoFVYdpmpVG807ZhBWxGtDslyCtbC','adminProfile/YiKSqPeNWPDIgCBI5l7wsqM0RyIw3Cg1vJzYukl9.jpg','local','+5641 455646','TX, USA','[\"admin.dashboard\",\"admin.staff\",\"admin.storeStaff\",\"admin.updateStaff\",\"admin.identify-form\",\"admin.identify-form.store\",\"admin.identify-form.action\",\"admin.users\",\"admin.user-multiple-active\",\"admin.user-multiple-inactive\",\"admin.user-edit\",\"admin.email-send\",\"admin.kyc.users.pending\",\"admin.kyc.kyc.users\",\"admin.email-send.store\",\"admin.user-update\",\"admin.userPasswordUpdate\",\"admin.userKycHistory\",\"admin.send-email\",\"admin.login-as-user\",\"admin.users.Kyc.action\",\"admin.package\",\"admin.purchasePackageList\",\"admin.packageCreate\",\"admin.packageEdit\",\"admin.packageDelete\",\"admin.userPurchasePackageDelete\",\"admin.listingCategory\",\"admin.viewListings\",\"admin.listingSettings\",\"admin.wishList\",\"admin.productEnquiry\",\"admin.listingAnalytics\",\"admin.showListingAnalytics\",\"admin.listingReview\",\"admin.listingCategoryCreate\",\"admin.listingCategoryEdit\",\"admin.editListing\",\"admin.listingCategoryDelete\",\"admin.viewListingDelete\",\"admin.wishListDelete\",\"admin.listingReviewDelete\",\"admin.listingAnalyticsDelete\",\"admin.amenities\",\"admin.amenitiesCreate\",\"admin.amenitiesEdit\",\"admin.amenitiesDelete\",\"admin.place\",\"admin.placeCreate\",\"admin.placeEdit\",\"admin.placeDelete\",\"admin.claimBusiness\",\"admin.claimMessageDelete\",\"admin.contactMessage\",\"admin.contactMessageDelete\",\"admin.transaction\",\"admin.transaction.search\",\"admin.subscriber.index\",\"admin.subscriber.sendEmail\",\"admin.subscriber.remove\",\"admin.payment.methods\",\"admin.deposit.manual.index\",\"admin.deposit.manual.create\",\"admin.edit.payment.methods\",\"admin.deposit.manual.edit\",\"admin.payment.pending\",\"admin.payment.log\",\"admin.payment.search\",\"admin.payment.action\",\"admin.ticket\",\"admin.ticket.view\",\"admin.ticket.reply\",\"admin.ticket.delete\",\"admin.basic-controls\",\"admin.email-controls\",\"admin.email-template.show\",\"admin.sms.config\",\"admin.sms-template\",\"admin.notify-config\",\"admin.notify-template.show\",\"admin.notify-template.edit\",\"admin.basic-controls.update\",\"admin.email-controls.update\",\"admin.email-template.edit\",\"admin.sms-template.edit\",\"admin.notify-config.update\",\"admin.notify-template.update\",\"admin.language.index\",\"admin.language.create\",\"admin.language.edit\",\"admin.language.keywordEdit\",\"admin.language.delete\",\"admin.manage.theme\",\"admin.logo-seo\",\"admin.breadcrumb\",\"admin.template.show\",\"admin.content.index\",\"admin.content.create\",\"admin.logoUpdate\",\"admin.seoUpdate\",\"admin.breadcrumbUpdate\",\"admin.content.show\",\"admin.content.delete\",\"admin.blogCategory\",\"admin.blogList\",\"admin.blogCategoryCreate\",\"admin.blogCreate\",\"admin.blogCategoryEdit\",\"admin.blogEdit\",\"admin.blogCategoryDelete\",\"admin.blogDelete\"]','2024-06-02 16:20:12',1,'mSTT5Hxb18mRckMPU9by93ryOAUSoVOkMslGOs078nAX0Ui6e3MaA72Cfj3t','2021-12-17 11:00:01','2024-06-02 16:20:12'),
 (2,'Staff','staff','staff@staff.com','$2y$10$wnKJKURjEzNQ90OEvNleG.jbM5h9mFd5ZuuMfj.Mzr/DU8fM5.PPm',NULL,NULL,'+9454 4541541',NULL,'[\"admin.dashboard\",\"admin.staff\",\"admin.storeStaff\",\"admin.updateStaff\",\"admin.identify-form\",\"admin.identify-form.store\",\"admin.identify-form.action\",\"admin.users\",\"admin.user-multiple-active\",\"admin.user-multiple-inactive\",\"admin.user-edit\",\"admin.email-send\",\"admin.kyc.users.pending\",\"admin.kyc.kyc.users\",\"admin.email-send.store\",\"admin.user-update\",\"admin.userPasswordUpdate\",\"admin.userKycHistory\",\"admin.send-email\",\"admin.login-as-user\",\"admin.users.Kyc.action\",\"admin.package\",\"admin.purchasePackageList\",\"admin.packageCreate\",\"admin.packageEdit\",\"admin.packageDelete\",\"admin.userPurchasePackageDelete\",\"admin.listingCategory\",\"admin.viewListings\",\"admin.listingSettings\",\"admin.wishList\",\"admin.productEnquiry\",\"admin.listingAnalytics\",\"admin.showListingAnalytics\",\"admin.listingReview\",\"admin.listingCategoryCreate\",\"admin.listingCategoryEdit\",\"admin.editListing\",\"admin.listingCategoryDelete\",\"admin.viewListingDelete\",\"admin.wishListDelete\",\"admin.listingReviewDelete\",\"admin.listingAnalyticsDelete\",\"admin.amenities\",\"admin.amenitiesCreate\",\"admin.amenitiesEdit\",\"admin.amenitiesDelete\",\"admin.place\",\"admin.placeCreate\",\"admin.placeEdit\",\"admin.placeDelete\",\"admin.claimBusiness\",\"admin.claimMessageDelete\",\"admin.contactMessage\",\"admin.contactMessageDelete\",\"admin.transaction\",\"admin.transaction.search\",\"admin.subscriber.index\",\"admin.subscriber.sendEmail\",\"admin.subscriber.remove\",\"admin.payment.methods\",\"admin.deposit.manual.index\",\"admin.deposit.manual.create\",\"admin.edit.payment.methods\",\"admin.deposit.manual.edit\",\"admin.payment.pending\",\"admin.payment.log\",\"admin.payment.search\",\"admin.payment.action\",\"admin.ticket\",\"admin.ticket.view\",\"admin.ticket.reply\",\"admin.ticket.delete\",\"admin.basic-controls\",\"admin.email-controls\",\"admin.email-template.show\",\"admin.sms.config\",\"admin.sms-template\",\"admin.notify-config\",\"admin.notify-template.show\",\"admin.notify-template.edit\",\"admin.basic-controls.update\",\"admin.email-controls.update\",\"admin.email-template.edit\",\"admin.sms-template.edit\",\"admin.notify-config.update\",\"admin.notify-template.update\",\"admin.language.index\",\"admin.language.create\",\"admin.language.edit\",\"admin.language.keywordEdit\",\"admin.language.delete\",\"admin.manage.theme\",\"admin.logo-seo\",\"admin.breadcrumb\",\"admin.template.show\",\"admin.content.index\",\"admin.content.create\",\"admin.logoUpdate\",\"admin.seoUpdate\",\"admin.breadcrumbUpdate\",\"admin.content.show\",\"admin.content.delete\",\"admin.blogCategory\",\"admin.blogList\",\"admin.blogCategoryCreate\",\"admin.blogCreate\",\"admin.blogCategoryEdit\",\"admin.blogEdit\",\"admin.blogCategoryDelete\",\"admin.blogDelete\"]','2024-05-28 04:27:59',1,NULL,'2022-05-25 22:29:03','2024-05-28 04:27:59');
 
 /*Table structure for table `amenities` */
@@ -106,14 +106,23 @@ CREATE TABLE `analytics` (
   PRIMARY KEY (`id`),
   KEY `analytics_listing_owner_id_index` (`listing_owner_id`),
   KEY `analytics_listing_id_index` (`listing_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `analytics` */
 
 insert  into `analytics`(`id`,`listing_owner_id`,`listing_id`,`visitor_ip`,`country`,`city`,`code`,`lat`,`long`,`os_platform`,`browser`,`created_at`,`updated_at`) values 
-(1,1,2,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2023-05-27 16:31:56','2023-05-27 16:31:56'),
 (2,1,1,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-05-28 12:34:18','2024-05-28 12:34:18'),
-(3,1,1,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-05-28 05:37:43','2024-05-28 05:37:43');
+(3,1,1,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-05-28 05:37:43','2024-05-28 05:37:43'),
+(4,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:37:53','2024-06-02 18:37:53'),
+(5,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:39:13','2024-06-02 18:39:13'),
+(6,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:42:33','2024-06-02 18:42:33'),
+(7,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:43:09','2024-06-02 18:43:09'),
+(8,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:44:01','2024-06-02 18:44:01'),
+(9,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:45:17','2024-06-02 18:45:17'),
+(10,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:45:31','2024-06-02 18:45:31'),
+(11,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:45:42','2024-06-02 18:45:42'),
+(12,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:52:54','2024-06-02 18:52:54'),
+(13,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-02 18:55:28','2024-06-02 18:55:28');
 
 /*Table structure for table `blog_categories` */
 
@@ -199,12 +208,19 @@ CREATE TABLE `business_hours` (
   PRIMARY KEY (`id`),
   KEY `business_hours_listing_id_index` (`listing_id`),
   KEY `business_hours_purchase_package_id_index` (`purchase_package_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `business_hours` */
 
 insert  into `business_hours`(`id`,`listing_id`,`purchase_package_id`,`working_day`,`start_time`,`end_time`,`created_at`,`updated_at`) values 
-(3,1,2,'Monday',NULL,NULL,'2024-05-28 12:39:10','2024-05-28 12:39:10');
+(3,1,2,'Monday',NULL,NULL,'2024-05-28 12:39:10','2024-05-28 12:39:10'),
+(11,9,2,'Monday','05:35:00','17:35:00','2024-06-02 17:35:59','2024-06-02 17:35:59'),
+(13,11,2,'Monday','05:39:00','17:39:00','2024-06-02 17:39:59','2024-06-02 17:39:59'),
+(14,12,2,'Monday','05:41:00','17:41:00','2024-06-02 17:42:06','2024-06-02 17:42:06'),
+(15,13,2,'Monday','05:50:00','17:50:00','2024-06-02 17:50:52','2024-06-02 17:50:52'),
+(17,15,2,'Monday','05:54:00','17:54:00','2024-06-02 17:55:09','2024-06-02 17:55:09'),
+(18,16,2,'Monday','06:09:00','18:09:00','2024-06-02 18:09:28','2024-06-02 18:09:28'),
+(19,17,2,'Monday','06:12:00','18:12:00','2024-06-02 18:12:38','2024-06-02 18:12:38');
 
 /*Table structure for table `claim_businesses` */
 
@@ -925,12 +941,19 @@ CREATE TABLE `listings` (
   KEY `listings_category_id_index` (`category_id`(768)),
   KEY `listings_purchase_package_id_index` (`purchase_package_id`),
   KEY `listings_place_id_index` (`place_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `listings` */
 
 insert  into `listings`(`id`,`user_id`,`category_id`,`purchase_package_id`,`place_id`,`title`,`email`,`phone`,`description`,`address`,`lat`,`long`,`youtube_video_id`,`thumbnail`,`driver`,`status`,`is_active`,`rejected_reason`,`deactive_reason`,`created_at`,`fb_app_id`,`fb_page_id`,`whatsapp_number`,`replies_text`,`body_text`,`updated_at`,`deleted_at`) values 
-(1,1,'[\"5\"]',2,1,'Next Level Electronics','cawangbsi@gmail.com',2147483647,'<p>This is the Electronics Component Item</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,'listingsThumbnail/e5ldQwWvhKuLJmI8TgVOpt8QK3jZYhZMmrmmON8S.jpg','local',1,1,NULL,NULL,'2024-05-28 05:22:19',NULL,NULL,NULL,NULL,'Hi there ? <br> <br> How can i help you?','2024-05-28 12:39:10',NULL);
+(1,1,'[\"5\"]',2,1,'Next Level Electronics','cawangbsi@gmail.com',2147483647,'<p>This is the Electronics Component Item</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,'listingsThumbnail/e5ldQwWvhKuLJmI8TgVOpt8QK3jZYhZMmrmmON8S.jpg','local',1,1,NULL,NULL,'2024-05-28 05:22:19',NULL,NULL,NULL,NULL,'Hi there ? <br> <br> How can i help you?','2024-05-28 12:39:10',NULL),
+(9,1,'[\"11\"]',2,2,'PT. Panatrade','rizal@anugerahvataabadi.com',2147483647,'<p>Terdapat Item pada perusahaan berikut</p>','Aceh, IDN','4.226376059822','96.91037490012',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 17:35:59',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 17:35:59',NULL),
+(11,1,'[\"7\"]',2,1,'PT. Boga Sari','rizal@anugerahvataabadi.com',2147483647,'<p>Bisnis Makanan</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 17:39:59',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 17:39:59',NULL),
+(12,1,'[\"2\"]',2,2,'PT. Aceh Trade Mark','aceh@gmail.com',2147483647,'<p>Aceh Trade Mark Bisnis</p>','Aceh, IDN','4.226376059822','96.91037490012',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 17:42:06',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 17:42:06',NULL),
+(13,1,'[\"9\"]',2,1,'PT. Senayan','sport@gmail.com',2147483647,'<p>Fisik Sport</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 17:50:52',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 17:50:52',NULL),
+(15,1,'[\"6\"]',2,1,'PT. Loka Mada','loka@gmail.com',2147483647,'<p>Properti Perusahaan</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 17:55:09',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 17:55:09',NULL),
+(16,1,'[\"7\"]',2,1,'PT. Gomen Naka','goen@gmail.com',2147483647,'<p>gomen naka</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 18:09:28',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 18:09:28',NULL),
+(17,1,'[\"5\"]',2,1,'PT. Koayaba','m.rheza@anugerahvataabadi.com',2147483647,'<p>Kolam angka</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 18:12:38',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 18:12:38',NULL);
 
 /*Table structure for table `migrations` */
 
@@ -1289,12 +1312,19 @@ CREATE TABLE `products` (
   KEY `products_listing_id_index` (`listing_id`),
   KEY `products_purchase_package_id_index` (`purchase_package_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `products` */
 
 insert  into `products`(`id`,`user_id`,`listing_id`,`purchase_package_id`,`product_title`,`product_price`,`product_description`,`product_thumbnail`,`driver`,`created_at`,`updated_at`) values 
-(1,1,1,2,NULL,NULL,NULL,NULL,NULL,'2024-05-28 05:22:19','2024-05-28 05:22:19');
+(1,1,1,2,NULL,NULL,NULL,NULL,NULL,'2024-05-28 05:22:19','2024-05-28 05:22:19'),
+(9,1,9,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 17:35:59','2024-06-02 17:35:59'),
+(11,1,11,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 17:39:59','2024-06-02 17:39:59'),
+(12,1,12,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 17:42:06','2024-06-02 17:42:06'),
+(13,1,13,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 17:50:52','2024-06-02 17:50:52'),
+(15,1,15,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 17:55:09','2024-06-02 17:55:09'),
+(16,1,16,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 18:09:28','2024-06-02 18:09:28'),
+(17,1,17,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 18:12:38','2024-06-02 18:12:38');
 
 /*Table structure for table `purchase_packages` */
 
@@ -1673,7 +1703,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`firstname`,`lastname`,`username`,`website`,`referral_id`,`language_id`,`email`,`country_code`,`phone_code`,`phone`,`balance`,`image`,`driver`,`cover_photo`,`cover_driver`,`address`,`bio`,`provider`,`provider_id`,`status`,`identity_verify`,`address_verify`,`two_fa`,`two_fa_verify`,`two_fa_code`,`email_verification`,`sms_verification`,`verify_code`,`sent_at`,`last_login`,`password`,`email_verified_at`,`remember_token`,`created_at`,`updated_at`,`last_seen`) values 
-(1,'rizalvalry','valry','valry',NULL,NULL,NULL,'cawangbsi@gmail.com',NULL,'+62','+6285781571742',0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,0,0,1,NULL,1,1,NULL,NULL,'2024-05-31 17:28:04','$2y$10$WNtC6cDrOmJ/WzJhNm88.ObPeBECm4kAD7DW81Fe/ole8.jVocAMe',NULL,NULL,'2024-05-28 03:36:05','2024-05-31 19:29:10','2024-05-31 19:29:10');
+(1,'rizalvalry','valry','valry',NULL,NULL,NULL,'cawangbsi@gmail.com',NULL,'+62','+6285781571742',0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,0,0,1,NULL,1,1,NULL,NULL,'2024-06-02 17:05:11','$2y$10$WNtC6cDrOmJ/WzJhNm88.ObPeBECm4kAD7DW81Fe/ole8.jVocAMe',NULL,NULL,'2024-05-28 03:36:05','2024-06-02 19:02:23','2024-06-02 19:02:23');
 
 /*Table structure for table `viewers` */
 
@@ -1689,14 +1719,23 @@ CREATE TABLE `viewers` (
   PRIMARY KEY (`id`),
   KEY `viewers_user_id_index` (`user_id`),
   KEY `viewers_listing_id_index` (`listing_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `viewers` */
 
 insert  into `viewers`(`id`,`user_id`,`listing_id`,`viewer_ip`,`created_at`,`updated_at`) values 
-(1,1,2,'::1','2023-05-27 16:31:56','2023-05-27 16:31:56'),
 (2,1,1,'::1','2024-05-28 12:34:17','2024-05-28 12:34:17'),
-(3,1,1,'::1','2024-05-28 05:37:42','2024-05-28 05:37:42');
+(3,1,1,'::1','2024-05-28 05:37:42','2024-05-28 05:37:42'),
+(4,1,17,'::1','2024-06-02 18:37:51','2024-06-02 18:37:51'),
+(5,1,17,'::1','2024-06-02 18:39:12','2024-06-02 18:39:12'),
+(6,1,17,'::1','2024-06-02 18:42:31','2024-06-02 18:42:31'),
+(7,1,17,'::1','2024-06-02 18:43:08','2024-06-02 18:43:08'),
+(8,1,17,'::1','2024-06-02 18:44:00','2024-06-02 18:44:00'),
+(9,1,17,'::1','2024-06-02 18:45:16','2024-06-02 18:45:16'),
+(10,1,17,'::1','2024-06-02 18:45:30','2024-06-02 18:45:30'),
+(11,1,17,'::1','2024-06-02 18:45:41','2024-06-02 18:45:41'),
+(12,1,17,'::1','2024-06-02 18:52:53','2024-06-02 18:52:53'),
+(13,1,17,'::1','2024-06-02 18:55:27','2024-06-02 18:55:27');
 
 /*Table structure for table `website_and_socials` */
 
@@ -1707,18 +1746,25 @@ CREATE TABLE `website_and_socials` (
   `listing_id` bigint(20) unsigned DEFAULT NULL,
   `purchase_package_id` bigint(20) unsigned DEFAULT NULL,
   `social_icon` varchar(191) DEFAULT NULL,
-  `social_url` varchar(255) DEFAULT NULL,
+  `social_url` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `website_and_socials_listing_id_index` (`listing_id`),
   KEY `website_and_socials_purchase_package_id_index` (`purchase_package_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `website_and_socials` */
 
 insert  into `website_and_socials`(`id`,`listing_id`,`purchase_package_id`,`social_icon`,`social_url`,`created_at`,`updated_at`) values 
-(3,1,2,'bi bi-whatsapp','https://wa.me','2024-05-28 12:39:10','2024-05-28 12:39:10');
+(3,1,2,'bi bi-whatsapp','https://wa.me','2024-05-28 12:39:10','2024-05-28 12:39:10'),
+(11,9,2,'cawa@gmail.com','jl aceh jaya','2024-06-02 17:35:59','2024-06-02 17:35:59'),
+(13,11,2,'boga@gmail.com','Jl Pancoran Selatan','2024-06-02 17:39:59','2024-06-02 17:39:59'),
+(14,12,2,'acehtm@gmail.com','Jl Aceh Utara','2024-06-02 17:42:06','2024-06-02 17:42:06'),
+(15,13,2,'gelora@gmail.com','Jl Gelora Raya','2024-06-02 17:50:52','2024-06-02 17:50:52'),
+(17,15,2,'properti@gmail.com','Jl Sudirman','2024-06-02 17:55:09','2024-06-02 17:55:09'),
+(18,16,2,'naka@gmail.com','Jl Gambir 2','2024-06-02 18:09:28','2024-06-02 18:09:28'),
+(19,17,2,'salemba@gmail.com','Jl Salemba','2024-06-02 18:12:38','2024-06-02 18:12:38');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

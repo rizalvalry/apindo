@@ -313,10 +313,10 @@
                                             </div>
 
                                             <div class="input-box col-md-12">
-                                                <textarea type="url" name="social_url[]" value="{{ old('social_url.0') }}"
-                                                    class="form-control @error('social_url.0') is-invalid @enderror"
+                                                <textarea type="url" name="social_url[]" value="{{ old('social_url') }}"
+                                                    class="form-control @error('social_url') is-invalid @enderror"
                                                     placeholder="@lang('Alamat Lengkap')"></textarea>
-                                                @error('social_url.0')
+                                                @error('social_url')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -922,7 +922,7 @@
                                             </div>
 
                                             <div class="input-box col-md-12 bg-white p-0">
-                                                <textarea class="form-control summernote @error('body_text') is-invalid @enderror" name="body_text" id="summernote" rows="15">@lang('Hi there 👋 <br> <br> How can i help you?')</textarea>
+                                                <textarea class="form-control summernote @error('body_text') is-invalid @enderror" name="body_text" id="summernote" rows="15">@lang(' How can i help you?')</textarea>
                                                 <div class="invalid-feedback">
                                                     @error('body_text') @lang($message) @enderror
                                                 </div>

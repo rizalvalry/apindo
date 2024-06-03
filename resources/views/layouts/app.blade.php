@@ -78,6 +78,36 @@
 
 </header>
 
+<div id="popupModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="popupModal" aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header modal-colored-header bg-primary">
+                   <h4 class="modal-title" id="popupModal">@lang('Delete Confirmation')
+                   </h4>
+                   <button type="button" class="close" data-dismiss="modal"
+                           aria-hidden="true">×
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <p>@lang('Are you sure to delete this?')</p>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-light"
+                           data-dismiss="modal">@lang('Close')</button>
+                   <form action="" method="post" class="deleteRoute">
+                       @csrf
+                       @method('delete')
+                       <button type="submit" class="btn btn-primary">@lang('Yes')</button>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+
+
+
+
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
@@ -141,6 +171,13 @@
 <script src="{{ asset('assets/admin/js/toastr.min.js')}}"></script>
 @stack('js')
 @include('admin.layouts.notification')
+
+<script>
+      $(document).ready(function() {
+      // $('#popupModal').modal('show');
+      alert('haloo');
+      });
+</script>
 
 </body>
 </html>

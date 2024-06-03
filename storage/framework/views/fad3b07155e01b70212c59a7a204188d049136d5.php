@@ -446,8 +446,8 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
 
                                             <div class="input-box col-md-12">
-                                                <textarea type="url" name="social_url[]" value="<?php echo e(old('social_url.0')); ?>"
-                                                    class="form-control <?php $__errorArgs = ['social_url.0'];
+                                                <textarea type="url" name="social_url[]" value="<?php echo e(old('social_url')); ?>"
+                                                    class="form-control <?php $__errorArgs = ['social_url'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -456,7 +456,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                                                     placeholder="<?php echo app('translator')->get('Alamat Lengkap'); ?>"></textarea>
-                                                <?php $__errorArgs = ['social_url.0'];
+                                                <?php $__errorArgs = ['social_url'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1448,7 +1448,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="body_text" id="summernote" rows="15"><?php echo app('translator')->get('Hi there 👋 <br> <br> How can i help you?'); ?></textarea>
+unset($__errorArgs, $__bag); ?>" name="body_text" id="summernote" rows="15"><?php echo app('translator')->get(' How can i help you?'); ?></textarea>
                                                 <div class="invalid-feedback">
                                                     <?php $__errorArgs = ['body_text'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
