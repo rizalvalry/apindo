@@ -1,6 +1,7 @@
 @if(isset($templates['maps'][0]) && $maps = $templates['maps'][0]) 
 <section class="maps-section">
        
+<!-- latest -->
 <script src="{{ asset('assets/global/js/maps.js') }}"></script>
 
 <style>
