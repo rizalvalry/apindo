@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset($themeTrue.'css/all.min.css')); ?>"/>
 
-    <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/select2.min.css')); ?>" />
+    <!-- <link rel="stylesheet" href="<?php echo e(asset('assets/global/css/select2.min.css')); ?>" /> -->
 
     <link href="<?php echo e(asset('assets/admin/css/style.min.css')); ?>" rel="stylesheet">
 

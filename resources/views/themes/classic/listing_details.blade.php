@@ -215,7 +215,7 @@
 
                         @include($theme.'partials.xzoom_container')
 
-                        <div class="navigation">
+                        <!-- <div class="navigation">
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <span id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
@@ -235,9 +235,9 @@
                                         @endif
 
                                     </span>
-                                </li>
+                                </li> -->
 
-                                <li class="nav-item ms-1" role="presentation">
+                                <!-- <li class="nav-item ms-1" role="presentation">
                                     <span id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                           type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
                                         <a class="short-nav-item" href="#reviews">
@@ -275,9 +275,9 @@
                                                 {{ $single_listing_details->reviews()[0]->total }}
                                             </span></a>
                                     </span>
-                                </li>
-                            </ul>
-                        </div>
+                                </li> -->
+                            <!-- </ul>
+                        </div> -->
 
 
                         <div class="tab-content" id="pills-tabContent">
@@ -670,7 +670,7 @@
                                         @endforelse
                                     </ul>
                                 </div>
-                            @endif
+                            @endif -->
 
                             <div class="side-box">
                                 <h5>@lang('Contact Seller')</h5>
@@ -705,7 +705,7 @@
                                 @endif
                             </div>
 
-                            <div class="side-box">
+                            <!--<div class="side-box">
                                 <h5>@lang('Send a Message')</h5>
                                 <form action="{{ route('user.sendListingMessage', $id) }}" method="post"
                                       enctype="multipart/form-data">
@@ -731,7 +731,7 @@
                                             <div class="invalid-feedback">
                                                 @error('message') @lang($message) @enderror
                                             </div>
-                                        </div>
+                              div       </div>
                                         <div class="input-box col-12">
                                             <button class="btn-custom w-100">
                                                 @lang('submit')

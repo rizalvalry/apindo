@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ListingTrait;
+use App\Imports\ListingImport;
 use App\Models\Amenity;
 use App\Models\Analytics;
 use App\Models\BusinessHour;
@@ -33,6 +34,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Stevebauman\Purify\Facades\Purify;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListingController extends Controller
 {
@@ -112,6 +114,19 @@ class ListingController extends Controller
 
     public function listingStore(Request $request, $id)
     {
+        $package_id = $id;
+
+        if ($request->hasFile('excel_file')) {
+            $file = $request->file('excel_file');
+            
+            try {
+                Excel::import(new ListingImport($package_id), $file);
+    
+                return redirect()->route('admin.listingviews')->with('success', __('Data has been imported successfully!'));
+            } catch (\Exception $e) {
+                return back()->with('error', 'Failed to import data. Error: ' . $e->getMessage());
+            }
+        }
 
         $purifiedData = Purify::clean($request->except('image', '_token', '_method', 'thumbnail', 'listing_image', 'seo_image', 'product_image'));
         $purifiedData['thumbnail'] = $request->thumbnail ?? null;
@@ -175,8 +190,6 @@ class ListingController extends Controller
         }
 
         $purchase_package_info = PurchasePackage::where('user_id', 1)->where('status', 1)->findOrFail($id);
-
-        // dd($purchase_package_info);
 
         $user = 1;
 
@@ -623,6 +636,89 @@ class ListingController extends Controller
         }
 
         return back()->with('success', __('Listing update successfully'));
+    }
+
+    public function listingDelete($id)
+    {
+        $listing = Listing::with(['get_package', 'listingImages', 'get_listing_amenities', 'get_business_hour', 'get_social_info', 'get_products', 'listingSeo', 'get_reviews', 'listingAnalytics', 'listingClaims', 'allWishlists', 'productQueries.replies', 'listingViews'])->where('user_id', 1)->findOrFail($id);
+
+        if (optional($listing->get_package)->expire_date != null) {
+            $expiry_date = $listing->get_package->expire_date->format('Y-m-d');
+            $current_date = Carbon::now()->format('Y-m-d');
+            $no_of_listing = $listing->get_package->no_of_listing;
+
+            if ($current_date <= $expiry_date) {
+                $increase = $no_of_listing + 1;
+                $listing->get_package->no_of_listing = $increase;
+                $listing->get_package->save();
+            }
+        }
+
+        foreach ($listing->listingImages as $lisImage) {
+            $this->fileDelete($lisImage->driver, $lisImage->listing_image);
+            $lisImage->delete();
+        }
+
+        $this->fileDelete($listing->driver, $listing->thumbnail);
+
+        $allProducts = $listing->get_products;
+        foreach ($allProducts as $dbProduct) {
+            foreach ($dbProduct->get_product_image as $pImage) {
+                $this->fileDelete($pImage->driver, $pImage->product_image);
+                $pImage->delete();
+            }
+            $this->fileDelete($dbProduct->driver, $dbProduct->product_thumbnail);
+            $dbProduct->delete();
+        }
+
+        $allProductQueries = $listing->productQueries;
+        foreach ($allProductQueries as $query){
+            foreach ($query->replies as $reply){
+                $this->fileDelete($reply->driver, $reply->file);
+                $reply->delete();
+            }
+            $query->delete();
+        }
+
+        if(optional($listing->listingSeo)->seo_image){
+            $this->fileDelete(optional($listing->listingSeo)->driver, optional($listing->listingSeo)->seo_image);
+            optional($listing->listingSeo)->delete();
+        }
+
+        foreach ($listing->get_listing_amenities as $lisAmenity) {
+            $lisAmenity->delete();
+        }
+
+        foreach ($listing->get_business_hour as $business) {
+            $business->delete();
+        }
+
+        foreach ($listing->get_social_info as $social) {
+            $social->delete();
+        }
+
+        foreach ($listing->get_reviews as $review) {
+            $review->delete();
+        }
+
+        foreach ($listing->listingAnalytics as $analytic) {
+            $analytic->delete();
+        }
+
+        foreach ($listing->allWishlists as $wishlist) {
+            $wishlist->delete();
+        }
+
+        foreach ($listing->listingViews as $view) {
+            $view->delete();
+        }
+
+        foreach ($listing->listingClaims as $claim) {
+            $claim->delete();
+        }
+
+        $listing->delete();
+        return back()->with('success', __('Listing has been deleted successfully.'));
     }
 
 

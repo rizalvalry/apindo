@@ -149,7 +149,7 @@
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
-                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn currentColor notiflix-confirm dropdown-item" data-route="{{ route('user.listingDelete', $item->id) }}">
+                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn currentColor notiflix-confirm dropdown-item" data-route="{{ route('admin.listingDelete', $item->id) }}">
                                                         <i class="far fa-trash-alt me-2"></i> @lang('Delete')
                                                     </a>
                                                 </li>
@@ -179,7 +179,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn currentColor notiflix-confirm dropdown-item" data-route="{{ route('user.listingDelete', $item->id) }}">
+                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn currentColor notiflix-confirm dropdown-item" data-route="{{ route('admin.listingDelete', $item->id) }}">
                                                         <i class="far fa-trash-alt me-2"></i> @lang('Delete')
                                                     </a>
                                                 </li>
@@ -245,10 +245,9 @@
                                 <select name="package" id="package" class="form-control">
                                     <option selected disabled>@lang('Select Package')</option>
                                     @foreach($my_packages as $key => $package)
-                                        @php
-                                            $fundInfo = \App\Models\Fund::where('purchase_package_id', $package->id)->latest()->first();
-
-                                            print($fundInfo);
+                                    @php
+                                        $fundInfo = \App\Models\Fund::where('purchase_package_id', $package->id)->latest()->first();
+                                        // print($fundInfo); //
                                         @endphp
                                         @if(($package->no_of_listing > 0 || $package->no_of_listing == null) && ($package->expire_date == null ||  \Carbon\Carbon::now() <= \Carbon\Carbon::parse($package->expire_date)) && ($package->status == 1))
                                             <option value="{{ $package->id }}" data-listing="{{ $package->no_of_listing }}" data-route="{{ route('admin.addListing', $package->id) }}" class="total_listing{{$package->id}}">@lang(optional($package->get_package)->title)</option>

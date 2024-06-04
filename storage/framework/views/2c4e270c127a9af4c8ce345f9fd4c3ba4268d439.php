@@ -214,7 +214,7 @@
 
                         <?php echo $__env->make($theme.'partials.xzoom_container', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                        <div class="navigation">
+                        <!-- <div class="navigation">
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <span id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
@@ -234,9 +234,9 @@
                                         <?php endif; ?>
 
                                     </span>
-                                </li>
+                                </li> -->
 
-                                <li class="nav-item ms-1" role="presentation">
+                                <!-- <li class="nav-item ms-1" role="presentation">
                                     <span id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                           type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
                                         <a class="short-nav-item" href="#reviews">
@@ -275,9 +275,9 @@
 
                                             </span></a>
                                     </span>
-                                </li>
-                            </ul>
-                        </div>
+                                </li> -->
+                            <!-- </ul>
+                        </div> -->
 
 
                         <div class="tab-content" id="pills-tabContent">
@@ -685,7 +685,7 @@ unset($__errorArgs, $__bag); ?>
                                         <?php endif; ?>
                                     </ul>
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
 
                             <div class="side-box">
                                 <h5><?php echo app('translator')->get('Contact Seller'); ?></h5>
@@ -720,7 +720,7 @@ unset($__errorArgs, $__bag); ?>
                                 <?php endif; ?>
                             </div>
 
-                            <div class="side-box">
+                            <!--<div class="side-box">
                                 <h5><?php echo app('translator')->get('Send a Message'); ?></h5>
                                 <form action="<?php echo e(route('user.sendListingMessage', $id)); ?>" method="post"
                                       enctype="multipart/form-data">
@@ -774,7 +774,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                             </div>
-                                        </div>
+                              div       </div>
                                         <div class="input-box col-12">
                                             <button class="btn-custom w-100">
                                                 <?php echo app('translator')->get('submit'); ?>

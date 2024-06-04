@@ -5,9 +5,9 @@
                 <img class="img-fluid" src="<?php echo e(getFile($listing_image->driver, $listing_image->listing_image)); ?>"/>
             </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-            <div class="carousel__slide" data-src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>" data-fancybox="gallery" data-caption="">
+            <!-- <div class="carousel__slide" data-src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>" data-fancybox="gallery" data-caption="">
                 <img class="img-fluid" src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>"/>
-            </div>
+            </div> -->
         <?php endif; ?>
     </div>
 
@@ -32,8 +32,8 @@
         </div>
     <?php endif; ?>
 
-    <!-- <div class="col-4">
-        <div class="d-flex justify-content-end">
+    <!-- <div class="col-4"> -->
+        <!-- <div class="d-flex justify-content-end">
 
             <button class="share">
                 <div id="shareBlock2"></div>
@@ -42,8 +42,8 @@
             <button type="button" class="view-btn">
                 <i class="far fa-eye"></i><span class="badge text-white"><?php echo e($total_listing_view); ?></span>
             </button>
-        </div>
-    </div> -->
+        </div>-->
+    <!-- </div>  -->
 </div>
 
 <div class="info-box mb-5">
@@ -70,7 +70,7 @@
             title: $("title").text(),
         });
     </script>
-<?php $__env->stopPush(); ?>;
+<?php $__env->stopPush(); ?>
 
 
 <?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/partials/xzoom_container.blade.php ENDPATH**/ ?>

@@ -8357,10 +8357,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const bsnavMobile = document.querySelector(".bsnav-mobile");
   const closeIcon = document.querySelector(".bsnav-mobile__close-icon");
 
-  closeIcon.addEventListener('click', () => {
-    navbarToggler.classList.remove("active");
-    bsnavMobile.classList.remove("in");
-  })
+  // closeIcon.addEventListener('click', () => {
+  //   navbarToggler.classList.remove("active");
+  //   bsnavMobile.classList.remove("in");
+  // })
 
   // login password eye toggle
   const eyeTogglePassword = document.querySelector("#eyeTogglePassword");
@@ -8400,17 +8400,17 @@ window.addEventListener('scroll', function() {
     }
 
     // scroll to top button
-    var scroll = $(window).scrollTop();
-    if (scroll >= 200) {
-        $("#scrollTopButton").addClass("show");
+    // var scroll = $(window).scrollTop();
+    // if (scroll >= 200) {
+    //     $("#scrollTopButton").addClass("show");
 
-        var scrollTopButton = document.querySelector("#scrollTopButton");
-        scrollTopButton.addEventListener('click', () => {
-          window.scrollTo(0, 0);
-        })
-    } else {
-        $("#scrollTopButton").removeClass("show");
-    }
+    //     var scrollTopButton = document.querySelector("#scrollTopButton");
+    //     scrollTopButton.addEventListener('click', () => {
+    //       window.scrollTo(0, 0);
+    //     })
+    // } else {
+    //     $("#scrollTopButton").removeClass("show");
+    // }
 });
 
 window.addEventListener('resize', function (event) {

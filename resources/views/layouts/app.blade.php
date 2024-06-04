@@ -172,12 +172,7 @@
 @stack('js')
 @include('admin.layouts.notification')
 
-<script>
-      $(document).ready(function() {
-      // $('#popupModal').modal('show');
-      alert('haloo');
-      });
-</script>
+
 
 </body>
 </html>

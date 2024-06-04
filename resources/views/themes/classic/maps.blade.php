@@ -15,6 +15,7 @@
         max-width: 100%;
         margin: 0;
         padding: 0;
+        overflow-x: auto;
     }
     #map {
         width: 100%;
@@ -43,6 +44,14 @@
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.2s;
+    }
+    @media (max-width: 720px) {
+        #map-container {
+            overflow-x: auto;
+        }
+        #map {
+            width: 150%;
+        }
     }
 </style>
 
@@ -102,19 +111,55 @@
 
     const projection = d3.geoMercator()
         .center([118, -2])
-        .scale(1600)
+        .scale(width > 720 ? 1600 : 800)
         .translate([width / 2, height / 2]);
 
     const path = d3.geoPath().projection(projection);
 
     const loadingIndicator = d3.select("#loading");
 
-    d3.json(indonesiaMapUrl).then(data => {
-        displayMap(data);
-    }).catch(error => {
-        console.error('Error loading the map data:', error);
-        loadingIndicator.style("display", "none");
-    });
+    // Fetch all province data on page load
+    let provinceData = {};
+    const fetchAllData = async () => {
+        for (const state of stateSpecific) {
+            try {
+                const response = await fetch(`${baseURL}/place-details/${state.name}`);
+                
+                // Periksa status respons
+                if (!response.ok) {
+                    if (response.status === 500) {
+                        console.clear();
+                        // Handle 404 Not Found
+                    } else {
+                        // Handle other errors
+                        console.error(`Error fetching place details (${response.status}): ${response.statusText}`);
+                        // Atur ke nilai default jika perlu
+                        provinceData[state.name] = null;
+                    }
+                } else {
+                    const data = await response.json();
+                    provinceData[state.name] = data;
+                }
+            } catch (error) {
+                // Tangani error jika diperlukan
+                console.error('Error fetching place details:', error);
+                // Atur ke nilai default jika perlu
+                provinceData[state.name] = null;
+            }
+        }
+    };
+
+
+    const initializeMap = async () => {
+        await fetchAllData();
+
+        d3.json(indonesiaMapUrl).then(data => {
+            displayMap(data);
+        }).catch(error => {
+            // console.error('Error loading the map data:', error);
+            loadingIndicator.style("display", "none");
+        });
+    };
 
     const tooltip = d3.select("body")
         .append("div")
@@ -123,40 +168,36 @@
     const displayMap = data => {
         const features = data.features;
 
-        svg.selectAll("path")
+        const group = svg.selectAll("g")
             .data(features)
-            .enter().append("path")
-            .attr("d", path)
-            .attr("fill", (d, i) => stateSpecific[i] ? stateSpecific[i].color : "#ccc")
-            .attr("stroke", "#fff")
-            .attr("stroke-width", 1)
-            .style("cursor", "pointer")
+            .enter().append("g")
             .on("mouseover", function(event, d) {
-                d3.select(this).attr("fill", "#FF5733");
+                d3.select(this).select("path").attr("fill", "#FF5733");
                 const index = features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
 
-                // Tampilkan tooltip dan isi dengan informasi provinsi dan jumlah listings
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
                 tooltip.html(`<strong>${provinceName}</strong><br/>Loading...`);
 
-                // Ambil jumlah listings dari backend
-                fetchData(provinceName, tooltip);
+                if (provinceData[provinceName]) {
+                    const listingsCount = provinceData[provinceName].listings_count || 0;
+                    tooltip.html(`<strong>${provinceName}</strong><br/>Listings: ${listingsCount}`);
+                } else {
+                    tooltip.html(`<strong>${provinceName}</strong><br/>No details found`);
+                }
 
-                // Atur posisi tooltip
                 tooltip.style("left", (event.pageX + 10) + "px")
                        .style("top", (event.pageY - 28) + "px");
             })
             .on("mousemove", function(event, d) {
-                // Atur posisi tooltip saat mouse bergerak
                 tooltip.style("left", (event.pageX + 10) + "px")
                        .style("top", (event.pageY - 28) + "px");
             })
             .on("mouseout", function(event, d) {
                 const index = features.findIndex(feature => feature === d);
-                d3.select(this).attr("fill", stateSpecific[index] ? stateSpecific[index].color : "#ccc");
+                d3.select(this).select("path").attr("fill", stateSpecific[index] ? stateSpecific[index].color : "#ccc");
                 tooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
@@ -165,8 +206,7 @@
                 const index = features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
                 alert(`You clicked on ${provinceName}`);
-                
-                // Perform other actions after click if needed
+
                 fetch(`${baseURL}/place-details/${provinceName}`)
                     .then(response => response.json())
                     .then(data => {
@@ -178,16 +218,19 @@
                         }
                     })
                     .catch(error => {
-                        console.error('Error fetching place details:', error);
-                        alert('An error occurred while fetching place details.');
+                        // console.error('Error fetching place details:', error);
+                        // alert('An error occurred while fetching place details.');
                     });
-            })
-            .append("title")
-            .text((d, i) => stateSpecific[i] ? stateSpecific[i].name : "Unknown");
+            });
 
-        svg.selectAll("foreignObject")
-            .data(features)
-            .enter().append("foreignObject")
+        group.append("path")
+            .attr("d", path)
+            .attr("fill", (d, i) => stateSpecific[i] ? stateSpecific[i].color : "#ccc")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1)
+            .style("cursor", "pointer");
+
+        group.append("foreignObject")
             .attr("x", d => path.centroid(d)[0] - 50)
             .attr("y", d => path.centroid(d)[1] - 10)
             .attr("width", 100)
@@ -196,73 +239,12 @@
             .style("cursor", "pointer")
             .html((d, i) => `<div style="font-size:10px;">
                                 <span>${stateSpecific[i].name}</span>
-                            </div>`)
-            .on("mouseover", function(event, d) {
-                const index = features.findIndex(feature => feature === d);
-                const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
-            
-                // Tampilkan tooltip dan isi dengan informasi provinsi dan jumlah listings
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                tooltip.html(`<strong>${provinceName}</strong><br/>Loading...`);
-
-                // Ambil jumlah listings dari backend
-                fetchData(provinceName, tooltip);
-
-                // Atur posisi tooltip
-                tooltip.style("left", (event.pageX + 10) + "px")
-                       .style("top", (event.pageY - 28) + "px");
-            })
-            .on("mousemove", function(event, d) {
-                // Atur posisi tooltip saat mouse bergerak
-                tooltip.style("left", (event.pageX + 10) + "px")
-                       .style("top", (event.pageY - 28) + "px");
-            })
-            .on("mouseout", function(event, d) {
-                tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-            })
-            .on("click", function(event, d) {
-                const index = features.findIndex(feature => feature === d);
-                const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
-                
-                fetch(`${baseURL}/place-details/${provinceName}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data) {
-                            const url = `${baseURL}/category/${provinceName}`;
-                            window.location.href = url;
-                        } else {
-                            alert(`No details found for ${provinceName}`);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching place details:', error);
-                        alert('An error occurred while fetching place details.');
-                    });
-            });
+                            </div>`);
 
         loadingIndicator.style("display", "none");
     };
 
-    const fetchData = (provinceName, tooltip) => {
-        fetch(`${baseURL}/place-details/${provinceName}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    const listingsCount = data.listings_count || 0;
-                    tooltip.html(`<strong>${provinceName}</strong><br/>Listings: ${listingsCount}`);
-                } else {
-                    tooltip.html(`<strong>${provinceName}</strong><br/>No details found`);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching place details:', error);
-                tooltip.html(`<strong>${provinceName}</strong><br/>Error fetching details`);
-            });
-    };
+    initializeMap();
 </script>
 @endsection
 

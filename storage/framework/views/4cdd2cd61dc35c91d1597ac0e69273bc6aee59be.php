@@ -151,7 +151,7 @@
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
-                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn currentColor notiflix-confirm dropdown-item" data-route="<?php echo e(route('user.listingDelete', $item->id)); ?>">
+                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn currentColor notiflix-confirm dropdown-item" data-route="<?php echo e(route('admin.listingDelete', $item->id)); ?>">
                                                         <i class="far fa-trash-alt me-2"></i> <?php echo app('translator')->get('Delete'); ?>
                                                     </a>
                                                 </li>
@@ -181,7 +181,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn currentColor notiflix-confirm dropdown-item" data-route="<?php echo e(route('user.listingDelete', $item->id)); ?>">
+                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn currentColor notiflix-confirm dropdown-item" data-route="<?php echo e(route('admin.listingDelete', $item->id)); ?>">
                                                         <i class="far fa-trash-alt me-2"></i> <?php echo app('translator')->get('Delete'); ?>
                                                     </a>
                                                 </li>
@@ -248,10 +248,9 @@
                                 <select name="package" id="package" class="form-control">
                                     <option selected disabled><?php echo app('translator')->get('Select Package'); ?></option>
                                     <?php $__currentLoopData = $my_packages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $package): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <?php
-                                            $fundInfo = \App\Models\Fund::where('purchase_package_id', $package->id)->latest()->first();
-
-                                            print($fundInfo);
+                                    <?php
+                                        $fundInfo = \App\Models\Fund::where('purchase_package_id', $package->id)->latest()->first();
+                                        // print($fundInfo); //
                                         ?>
                                         <?php if(($package->no_of_listing > 0 || $package->no_of_listing == null) && ($package->expire_date == null ||  \Carbon\Carbon::now() <= \Carbon\Carbon::parse($package->expire_date)) && ($package->status == 1)): ?>
                                             <option value="<?php echo e($package->id); ?>" data-listing="<?php echo e($package->no_of_listing); ?>" data-route="<?php echo e(route('admin.addListing', $package->id)); ?>" class="total_listing<?php echo e($package->id); ?>"><?php echo app('translator')->get(optional($package->get_package)->title); ?></option>

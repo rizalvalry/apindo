@@ -192,6 +192,23 @@
                 </a>
             </div>
 
+            <div class="container">
+                <div class="row g-3 align-items-center">
+                <form action="{{ route('admin.listingStore', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <!-- Fields for listing creation -->
+                <div class="col-auto">
+                    <input type="file" name="excel_file" accept=".xlsx,.xls,.csv" placeholder="Upload Excel" class="form-control form-control-sm">
+                </div>
+                
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-outline-info btn-rounded btn-sm">Submit</button>
+                </div>
+                </form>
+                </div>
+            </div>
+
+
             <div id="tab1" class="add-listing-form content active">
                 <div class="main row gy-4">
                     <div class="col-xl-12">

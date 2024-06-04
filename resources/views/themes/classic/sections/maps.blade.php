@@ -1,7 +1,6 @@
-@if(isset($templates['maps'][0]) && $maps = $templates['maps'][0]) 
+@if(isset($templates['maps'][0]) && $maps = $templates['maps'][0])
 <section class="maps-section">
-       
-<!-- latest -->
+
 <script src="{{ asset('assets/global/js/maps.js') }}"></script>
 
 <style>
@@ -10,7 +9,7 @@
         max-width: 100%;
         margin: 0;
         padding: 0;
-        position: relative;
+        overflow-x: auto;
     }
     #map {
         width: 100%;
@@ -27,7 +26,7 @@
     }
     @media (min-width: 768px) {
         #map {
-            height: 70vh;
+            height: 100vh;
         }
     }
     .tooltip {
@@ -40,30 +39,19 @@
         opacity: 0;
         transition: opacity 0.2s;
     }
-    .zoom-controls {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-    .zoom-controls button {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        padding: 5px;
-        cursor: pointer;
-        margin-bottom: 5px;
-        font-size: 16px;
+    @media (max-width: 720px) {
+        #map-container {
+            overflow-x: auto;
+        }
+        #map {
+            width: 150%;
+        }
     }
 </style>
 
 <div id="map-container">
     <div id="loading">Loading map...</div>
     <div id="map"></div>
-    <div class="zoom-controls">
-        <button id="zoom-in">+</button>
-        <button id="zoom-out">-</button>
-    </div>
 </div>
 
 <script>
@@ -112,53 +100,73 @@
 
     const svg = d3.select("#map")
         .append("svg")
-        .attr("width", "100%")
-        .attr("height", "100%")
-        .attr("viewBox", `0 0 ${width} ${height}`)
-        .attr("preserveAspectRatio", "xMidYMid meet");
+        .attr("width", width)
+        .attr("height", height);
 
     const projection = d3.geoMercator()
         .center([118, -2])
-        .scale(width < 720 ? width / 1.6 : width / 1.2)
+        .scale(width > 720 ? 1600 : 800)
         .translate([width / 2, height / 2]);
 
     const path = d3.geoPath().projection(projection);
 
     const loadingIndicator = d3.select("#loading");
 
-    d3.json(indonesiaMapUrl).then(data => {
-        displayMap(data);
-    }).catch(error => {
-        console.error('Error loading the map data:', error);
-        loadingIndicator.style("display", "none");
-    });
+    // Fetch all province data on page load
+    let provinceData = {};
+    const fetchAllData = async () => {
+        for (const state of stateSpecific) {
+            try {
+                const response = await fetch(`${baseURL}/place-details/${state.name}`);
+                
+                // Periksa status respons
+                if (!response.ok) {
+                    if (response.status === 500) {
+                        console.clear();
+                        // Handle 404 Not Found
+                    } else {
+                        // Handle other errors
+                        console.error(`Error fetching place details (${response.status}): ${response.statusText}`);
+                        // Atur ke nilai default jika perlu
+                        provinceData[state.name] = null;
+                    }
+                } else {
+                    const data = await response.json();
+                    provinceData[state.name] = data;
+                }
+            } catch (error) {
+                // Tangani error jika diperlukan
+                console.error('Error fetching place details:', error);
+                // Atur ke nilai default jika perlu
+                provinceData[state.name] = null;
+            }
+        }
+    };
+
+
+    const initializeMap = async () => {
+        await fetchAllData();
+
+        d3.json(indonesiaMapUrl).then(data => {
+            displayMap(data);
+        }).catch(error => {
+            // console.error('Error loading the map data:', error);
+            loadingIndicator.style("display", "none");
+        });
+    };
 
     const tooltip = d3.select("body")
         .append("div")
         .attr("class", "tooltip");
 
-    const zoom = d3.zoom()
-        .scaleExtent([1, 8])
-        .on('zoom', (event) => {
-            svg.selectAll('path')
-                .attr('transform', event.transform);
-            svg.selectAll('.province-label')
-                .style("display", "none"); // Menyembunyikan teks provinsi saat zoom
-        });
-
     const displayMap = data => {
         const features = data.features;
 
-        svg.selectAll("path")
+        const group = svg.selectAll("g")
             .data(features)
-            .enter().append("path")
-            .attr("d", path)
-            .attr("fill", (d, i) => stateSpecific[i] ? stateSpecific[i].color : "#ccc")
-            .attr("stroke", "#fff")
-            .attr("stroke-width", 1)
-            .style("cursor", "pointer")
+            .enter().append("g")
             .on("mouseover", function(event, d) {
-                d3.select(this).attr("fill", "#FF5733");
+                d3.select(this).select("path").attr("fill", "#FF5733");
                 const index = features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
 
@@ -167,7 +175,12 @@
                     .style("opacity", .9);
                 tooltip.html(`<strong>${provinceName}</strong><br/>Loading...`);
 
-                fetchData(provinceName, tooltip);
+                if (provinceData[provinceName]) {
+                    const listingsCount = provinceData[provinceName].listings_count || 0;
+                    tooltip.html(`<strong>${provinceName}</strong><br/>Listings: ${listingsCount}`);
+                } else {
+                    tooltip.html(`<strong>${provinceName}</strong><br/>No details found`);
+                }
 
                 tooltip.style("left", (event.pageX + 10) + "px")
                        .style("top", (event.pageY - 28) + "px");
@@ -178,7 +191,7 @@
             })
             .on("mouseout", function(event, d) {
                 const index = features.findIndex(feature => feature === d);
-                d3.select(this).attr("fill", stateSpecific[index] ? stateSpecific[index].color : "#ccc");
+                d3.select(this).select("path").attr("fill", stateSpecific[index] ? stateSpecific[index].color : "#ccc");
                 tooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
@@ -199,81 +212,33 @@
                         }
                     })
                     .catch(error => {
-                        console.error('Error fetching place details:', error);
-                        alert('An error occurred while fetching place details.');
+                        // console.error('Error fetching place details:', error);
+                        // alert('An error occurred while fetching place details.');
                     });
-            })
-            .append("title")
-            .text((d, i) => stateSpecific[i] ? stateSpecific[i].name : "Unknown");
+            });
 
-        svg.selectAll(".province-label")
-            .data(features)
-            .enter().append("text")
+        group.append("path")
+            .attr("d", path)
+            .attr("fill", (d, i) => stateSpecific[i] ? stateSpecific[i].color : "#ccc")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1)
+            .style("cursor", "pointer");
+
+        group.append("foreignObject")
+            .attr("x", d => path.centroid(d)[0] - 50)
+            .attr("y", d => path.centroid(d)[1] - 10)
+            .attr("width", 100)
+            .attr("height", 20)
             .attr("class", "province-label")
-            .attr("x", d => path.centroid(d)[0])
-            .attr("y", d => path.centroid(d)[1])
-            .attr("text-anchor", "middle")
-            .attr("dy", ".35em")
-            .attr("font-size", "10px")
-            .attr("fill", "#000")
-            .style("pointer-events", "none")
-            .style("display", "block") // Menampilkan teks provinsi secara default
-            .text((d, i) => stateSpecific[i] ? stateSpecific[i].name : "Unknown");
+            .style("cursor", "pointer")
+            .html((d, i) => `<div style="font-size:10px;">
+                                <span>${stateSpecific[i].name}</span>
+                            </div>`);
 
         loadingIndicator.style("display", "none");
-
-        // Conditionally enable zoom based on window width
-        if (window.innerWidth >= 280 && window.innerWidth <= 780) {
-            svg.call(zoom);
-        } else {
-            svg.on('.zoom', null); // Disable zoom if outside the specified range
-        }
     };
 
-    const fetchData = (provinceName, tooltip) => {
-        fetch(`${baseURL}/place-details/${provinceName}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    const listingsCount = data.listings_count || 0;
-                    tooltip.html(`<strong>${provinceName}</strong><br/>Listings: ${listingsCount}`);
-                } else {
-                    tooltip.html(`<strong>${provinceName}</strong><br/>No details found`);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching place details:', error);
-                tooltip.html(`<strong>${provinceName}</strong><br/>Error fetching details`);
-            });
-    };
-
-    document.getElementById('zoom-in').addEventListener('click', () => {
-        svg.transition().call(zoom.scaleBy, 1.3);
-    });
-
-    document.getElementById('zoom-out').addEventListener('click', () => {
-        svg.transition().call(zoom.scaleBy, 1 / 1.3);
-    });
-
-    window.addEventListener('resize', () => {
-        // Recalculate zoom settings on window resize
-        const newWidth = document.getElementById("map").clientWidth;
-        const newHeight = document.getElementById("map").clientHeight;
-
-        projection.scale(newWidth < 780 ? newWidth / 1.8 : newWidth / 1.5)
-                  .translate([newWidth / 2, newHeight / 2]);
-
-        svg.selectAll('path').attr('d', path);
-        svg.selectAll('.province-label')
-            .attr("x", d => path.centroid(d)[0])
-            .attr("y", d => path.centroid(d)[1]);
-
-        if (window.innerWidth >= 280 && window.innerWidth <= 780) {
-            svg.call(zoom);
-        } else {
-            svg.on('.zoom', null); // Disable zoom if outside the specified range
-        }
-    });
+    initializeMap();
 </script>
 
 </section>

@@ -30,6 +30,8 @@ Route::get('cron', function () {
         return Illuminate\Support\Facades\Artisan::call('expiryDate:cron');
 })->name('cron');
 
+Route::post('/import', [ImportController::class, 'store'])->name('import.store');
+
 
 Auth::routes(['verify' => true]);
 
@@ -190,6 +192,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('listings/{type?}', 'Admin\ListingController@listings')->name('listingviews');
         Route::get('add-listing/{id?}', 'Admin\ListingController@addListing')->name('addListing');
         Route::post('listing-store/{id}', 'Admin\ListingController@listingStore')->name('listingStore');
+        Route::delete('listing-delete/{id}', 'Admin\ListingController@listingDelete')->name('listingDelete');
+
 
 
 

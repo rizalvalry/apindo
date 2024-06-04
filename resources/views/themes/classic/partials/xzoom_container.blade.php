@@ -5,9 +5,9 @@
                 <img class="img-fluid" src="{{ getFile($listing_image->driver, $listing_image->listing_image)}}"/>
             </div>
         @empty
-            <div class="carousel__slide" data-src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}" data-fancybox="gallery" data-caption="">
+            <!-- <div class="carousel__slide" data-src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}" data-fancybox="gallery" data-caption="">
                 <img class="img-fluid" src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}"/>
-            </div>
+            </div> -->
         @endforelse
     </div>
 
@@ -32,8 +32,8 @@
         </div>
     @endif
 
-    <!-- <div class="col-4">
-        <div class="d-flex justify-content-end">
+    <!-- <div class="col-4"> -->
+        <!-- <div class="d-flex justify-content-end">
 
             <button class="share">
                 <div id="shareBlock2"></div>
@@ -42,8 +42,8 @@
             <button type="button" class="view-btn">
                 <i class="far fa-eye"></i><span class="badge text-white">{{ $total_listing_view }}</span>
             </button>
-        </div>
-    </div> -->
+        </div>-->
+    <!-- </div>  -->
 </div>
 
 <div class="info-box mb-5">
@@ -69,6 +69,6 @@
             title: $("title").text(),
         });
     </script>
-@endpush;
+@endpush
 
 
