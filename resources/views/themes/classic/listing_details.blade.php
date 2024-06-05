@@ -207,6 +207,20 @@
 @endif
 
 @section('content')
+
+<div class="container">
+    <div class="header-text text-center">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
+            <li class="breadcrumb-item"><a href="#">@lang('Listings')</a></li>
+            <li class="breadcrumb-item"><a href="#">@lang('Details Listings')</a></li>
+            @yield('breadcrumb_items')
+        </ol>
+    </nav>
+</div>
+</div>
+
     <section class="listing-details">
         <div class="overlay">
             <div class="container">
@@ -283,7 +297,8 @@
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                  aria-labelledby="pills-home-tab" tabindex="0">
-                                <div id="description" class="description-box">
+                                <!-- <div id="description" class="description-box"> -->
+                                <div id="description" class="">
                                     <h4>@lang('Description')</h4>
                                     <p>
                                         {!! $single_listing_details->description !!}
@@ -612,21 +627,21 @@
                         </div>
                     </div>
 
-                    <!-- <div class="col-lg-4">
+                    <div class="col-lg-4">
                         <div class="side-bar">
                             <div class="side-box">
-                                <h5>@lang('Created By')</h5>
+                                <!-- <h5>@lang('Created By')</h5> -->
                                 <div class="creator-box">
                                     <div class="img-box">
-                                        <img
+                                        <!-- <img
                                             src="{{ getFile(optional($single_listing_details->get_user)->cover_driver, optional($single_listing_details->get_user)->cover_photo) }}"
-                                            alt="{{config('basic.site_title')}}" class="img-fluid cover"/>
+                                            alt="{{config('basic.site_title')}}" class="img-fluid cover"/> -->
                                         <img
                                             src="{{ getFile(optional($single_listing_details->get_user)->driver, optional($single_listing_details->get_user)->image) }}"
                                             class="img-fluid profile" alt="{{config('basic.site_title')}}"/>
                                     </div>
 
-                                    <div class="text-box">
+                                    <!-- <div class="text-box">
                                         <h5 class="creator-name">
                                             @lang(optional($single_listing_details->get_user)->firstname) @lang(optional($single_listing_details->get_user)->lastname)
                                         </h5>
@@ -640,17 +655,17 @@
                                                 @endif
                                             </span>
                                             <span>{{ $follower_count['totalFollower'] }} @lang('Followers')</span>
-                                        </div>
+                                        </div> -->
 
-                                        <a href="{{ route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id]) }}"
+                                        <!-- <a href="{{ route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id]) }}"
                                            class="btn-custom cursor-pointer">
                                             @lang('Visit profile')
-                                        </a>
-                                    </div>
+                                        </a> -->
+                                    <!-- </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            @if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0)
+                            <!-- @if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0)
                                 <div class="side-box">
                                     <h5>@lang('Opening Hours')</h5>
                                     <ul>
@@ -672,8 +687,13 @@
                                 </div>
                             @endif -->
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                             <div class="side-box">
-                                <h5>@lang('Contact Seller')</h5>
+                                <!-- <h5>@lang('Contact Seller')</h5> -->
                                 <ul>
                                     @if(optional($single_listing_details->get_user)->phone)
                                         <li>

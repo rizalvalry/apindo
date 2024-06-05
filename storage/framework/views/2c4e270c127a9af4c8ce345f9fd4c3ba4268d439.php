@@ -206,6 +206,20 @@
 <?php endif; ?>
 
 <?php $__env->startSection('content'); ?>
+
+<div class="container">
+    <div class="header-text text-center">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>"><?php echo app('translator')->get('Home'); ?></a></li>
+            <li class="breadcrumb-item"><a href="#"><?php echo app('translator')->get('Listings'); ?></a></li>
+            <li class="breadcrumb-item"><a href="#"><?php echo app('translator')->get('Details Listings'); ?></a></li>
+            <?php echo $__env->yieldContent('breadcrumb_items'); ?>
+        </ol>
+    </nav>
+</div>
+</div>
+
     <section class="listing-details">
         <div class="overlay">
             <div class="container">
@@ -283,7 +297,8 @@
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                  aria-labelledby="pills-home-tab" tabindex="0">
-                                <div id="description" class="description-box">
+                                <!-- <div id="description" class="description-box"> -->
+                                <div id="description" class="">
                                     <h4><?php echo app('translator')->get('Description'); ?></h4>
                                     <p>
                                         <?php echo $single_listing_details->description; ?>
@@ -627,21 +642,21 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                    <!-- <div class="col-lg-4">
+                    <div class="col-lg-4">
                         <div class="side-bar">
                             <div class="side-box">
-                                <h5><?php echo app('translator')->get('Created By'); ?></h5>
+                                <!-- <h5><?php echo app('translator')->get('Created By'); ?></h5> -->
                                 <div class="creator-box">
                                     <div class="img-box">
-                                        <img
+                                        <!-- <img
                                             src="<?php echo e(getFile(optional($single_listing_details->get_user)->cover_driver, optional($single_listing_details->get_user)->cover_photo)); ?>"
-                                            alt="<?php echo e(config('basic.site_title')); ?>" class="img-fluid cover"/>
+                                            alt="<?php echo e(config('basic.site_title')); ?>" class="img-fluid cover"/> -->
                                         <img
                                             src="<?php echo e(getFile(optional($single_listing_details->get_user)->driver, optional($single_listing_details->get_user)->image)); ?>"
                                             class="img-fluid profile" alt="<?php echo e(config('basic.site_title')); ?>"/>
                                     </div>
 
-                                    <div class="text-box">
+                                    <!-- <div class="text-box">
                                         <h5 class="creator-name">
                                             <?php echo app('translator')->get(optional($single_listing_details->get_user)->firstname); ?> <?php echo app('translator')->get(optional($single_listing_details->get_user)->lastname); ?>
                                         </h5>
@@ -655,17 +670,17 @@ unset($__errorArgs, $__bag); ?>
                                                 <?php endif; ?>
                                             </span>
                                             <span><?php echo e($follower_count['totalFollower']); ?> <?php echo app('translator')->get('Followers'); ?></span>
-                                        </div>
+                                        </div> -->
 
-                                        <a href="<?php echo e(route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id])); ?>"
+                                        <!-- <a href="<?php echo e(route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id])); ?>"
                                            class="btn-custom cursor-pointer">
                                             <?php echo app('translator')->get('Visit profile'); ?>
-                                        </a>
-                                    </div>
+                                        </a> -->
+                                    <!-- </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <?php if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0): ?>
+                            <!-- <?php if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0): ?>
                                 <div class="side-box">
                                     <h5><?php echo app('translator')->get('Opening Hours'); ?></h5>
                                     <ul>
@@ -687,8 +702,13 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             <?php endif; ?> -->
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                             <div class="side-box">
-                                <h5><?php echo app('translator')->get('Contact Seller'); ?></h5>
+                                <!-- <h5><?php echo app('translator')->get('Contact Seller'); ?></h5> -->
                                 <ul>
                                     <?php if(optional($single_listing_details->get_user)->phone): ?>
                                         <li>
