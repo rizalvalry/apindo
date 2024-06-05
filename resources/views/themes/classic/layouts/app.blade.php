@@ -47,15 +47,16 @@
 
     <div id="popupModal" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="popupModal" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header modal-colored-header bg-primary">
+                <!-- <div class="modal-header modal-colored-header bg-primary">
                     <h4 class="modal-title" id="popupModal">@lang('Haloo')
                     </h4>
                     
-                </div>
-                <div class="modal-body">
-                    <p>@lang('Woohoo, youre reading this text in a modal!')</p>
+                </div> -->
+                <div class="modal-body" style="padding:0px !important">
+                <img src="{{asset('assets/admin/images/show-banner-popup.jpeg')}}"
+                            class="w-100" alt="{{config('basic.site_title')}}">
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

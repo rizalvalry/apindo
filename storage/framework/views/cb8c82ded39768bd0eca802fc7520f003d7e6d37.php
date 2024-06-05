@@ -39,12 +39,12 @@
         opacity: 0;
         transition: opacity 0.2s;
     }
-    @media (max-width: 720px) {
+    @media (max-width: 520px) {
         #map-container {
             overflow-x: auto;
         }
         #map {
-            width: 150%;
+            width: 150%; /* Menambahkan lebar lebih agar scroll muncul */
         }
     }
 </style>
@@ -95,18 +95,33 @@
         { name: "Yogyakarta", color: "#46CFDD" }
     ];
 
-    const width = document.getElementById("map").clientWidth;
-    const height = document.getElementById("map").clientHeight;
+    const updateMapDimensions = () => {
+        const map = document.getElementById("map");
+        const width = map.clientWidth;
+        const height = map.clientHeight;
+
+        const projection = d3.geoMercator()
+            .center([118, -2])
+            .scale(width > 520 ? 1600 : 800)
+            .translate([width / 2, height / 2]);
+
+        const path = d3.geoPath().projection(projection);
+
+        svg.attr("width", width)
+           .attr("height", height);
+
+        svg.selectAll("path").attr("d", path);
+    };
 
     const svg = d3.select("#map")
         .append("svg")
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", document.getElementById("map").clientWidth)
+        .attr("height", document.getElementById("map").clientHeight);
 
     const projection = d3.geoMercator()
         .center([118, -2])
-        .scale(width > 720 ? 1600 : 800)
-        .translate([width / 2, height / 2]);
+        .scale(document.getElementById("map").clientWidth > 520 ? 1600 : 800)
+        .translate([document.getElementById("map").clientWidth / 2, document.getElementById("map").clientHeight / 2]);
 
     const path = d3.geoPath().projection(projection);
 
@@ -142,7 +157,6 @@
             }
         }
     };
-
 
     const initializeMap = async () => {
         await fetchAllData();
@@ -238,7 +252,10 @@
         loadingIndicator.style("display", "none");
     };
 
+    window.addEventListener("resize", updateMapDimensions);
+
     initializeMap();
+    updateMapDimensions();
 </script>
 
 </section>

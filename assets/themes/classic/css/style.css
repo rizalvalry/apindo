@@ -3669,7 +3669,7 @@ a.btn-custom {
 }
 
 .contact-section {
-    padding: 70px 0;.login-section
+    padding: 70px 0;
 }
 
 .contact-section .header-text {
@@ -4713,3 +4713,8 @@ a.btn-custom {
     }
 }
 
+@media screen and (max-width: 780px) and (min-width: 200px) {
+    span.navbar__toggler-text {
+        display: none;
+    }
+}
