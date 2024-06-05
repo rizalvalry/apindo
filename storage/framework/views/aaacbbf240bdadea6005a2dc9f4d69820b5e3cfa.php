@@ -18,6 +18,34 @@
         .jumbotron .img-box {
             display: none;
         }
+        .filter-area {
+            margin-bottom: 20px;
+        }
+        .filter-box {
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+        .filter-box h5 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .filter-box .input-group {
+            margin-bottom: 15px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+        .btn-custom:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
     </style>
 <?php $__env->stopPush(); ?>
 
@@ -25,71 +53,41 @@
     <section class="listing-section">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-2 col-lg-2 col-sm-12 my-4">
-                    <form action="<?php echo e(route('listing')); ?>" method="get">
-                        <div class="filter-area">
-                            <div class="filter-box">
-                                <h5><?php echo app('translator')->get('search'); ?></h5>
-                                <div class="input-group mb-3">
-                                    <input type="text" name="name" class="form-control"
-                                           value="<?php echo e(old('name', request()->name)); ?>" autocomplete="off"
-                                           placeholder="<?php echo app('translator')->get('Listing name'); ?>"/>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <select class="js-example-basic-single form-control" name="location">
-                                        <option selected disabled><?php echo app('translator')->get('Select Location'); ?></option>
-                                        <option value="all" <?php if(request()->location == 'all'): ?> selected <?php endif; ?>><?php echo app('translator')->get('All Location'); ?></option>
-                                        <?php $__currentLoopData = $all_places; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $place): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option class="m-0" value="<?php echo e($place->id); ?>" <?php if(request()->location == $place->id): ?> selected <?php endif; ?>><?php echo app('translator')->get(optional($place->details)->place); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <select class="listing__category__select2 form-control" name="category[]" multiple>
-                                        <option value="all" <?php if(request()->category && in_array('all', request()->category)): ?> selected <?php endif; ?>><?php echo app('translator')->get('All Category'); ?></option>
-                                        <?php $__currentLoopData = $all_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($category->id); ?>" <?php if(request()->category && in_array($category->id, request()->category)): ?> selected <?php endif; ?>> <?php echo app('translator')->get(optional($category->details)->name); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
-                                </div>
+                <!-- Search Section -->
+                <div class="col-xl-12 my-8 d-flex justify-content-center">
+                    <form action="<?php echo e(route('listing')); ?>" method="get" class="filter-area d-flex justify-content-center">
+                    <div class="filter-box d-flex justify-content-between align-items-center">
+                            <!-- <h5><?php echo app('translator')->get('Search'); ?></h5> -->
+                            <div class="input-group mb-3">
+                                <input type="text" name="name" class="form-control" value="<?php echo e(old('name', request()->name)); ?>" autocomplete="off" placeholder="<?php echo app('translator')->get('Listing name'); ?>"/>
                             </div>
-                            <!-- <div class="filter-box">
-                                <h5><?php echo app('translator')->get('Filter by User'); ?></h5>
-                                <div class="input-group mb-3">
-                                    <select class="js-example-basic-single form-control" name="user">
-                                        <option selected disabled><?php echo app('translator')->get('Select User'); ?></option>
-                                        <option value="all" <?php if(request()->user == 'all'): ?> selected <?php endif; ?>><?php echo app('translator')->get('All User'); ?></option>
-                                        <?php $__currentLoopData = $distinctUser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($user->id); ?>" <?php if(request()->user == $user->id): ?> selected <?php endif; ?>><?php echo app('translator')->get($user->fullname); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
-                                </div>
-                            </div> -->
-                            <!-- <div class="filter-box">
-                                <h5><?php echo app('translator')->get('Filter by Ratings'); ?></h5>
-                                <div class="check-box">
-                                    <?php for($i = 5; $i >= 1; $i--): ?>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="<?php echo e($i); ?>" name="rating[]" id="check<?php echo e($i); ?>"
-                                                   <?php if(isset(request()->rating) && in_array($i, request()->rating)): ?> checked <?php endif; ?>/>
-                                            <label class="form-check-label" for="check<?php echo e($i); ?>">
-                                                <?php for($j = 1; $j <= $i; $j++): ?>
-                                                    <i class="fas fa-star"></i>
-                                                <?php endfor; ?>
-                                                <?php for($j = $i; $j < 5; $j++): ?>
-                                                    <i class="far fa-star"></i>
-                                                <?php endfor; ?>
-                                            </label>
-                                        </div>
-                                    <?php endfor; ?>
-                                </div>
-                            </div> -->
-                            <button class="btn-custom w-100" type="submit"><?php echo app('translator')->get('submit'); ?></button>
+                            <div class="input-group mb-3">
+                                <select class="js-example-basic-single form-control" name="location">
+                                    <option selected disabled><?php echo app('translator')->get('Select Location'); ?></option>
+                                    <option value="all" <?php if(request()->location == 'all'): ?> selected <?php endif; ?>><?php echo app('translator')->get('All Location'); ?></option>
+                                    <?php $__currentLoopData = $all_places; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $place): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option class="m-0" value="<?php echo e($place->id); ?>" <?php if(request()->location == $place->id): ?> selected <?php endif; ?>><?php echo app('translator')->get(optional($place->details)->place); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="listing__category__select2 form-control" name="category[]" multiple>
+                                    <option value="all" <?php if(request()->category && in_array('all', request()->category)): ?> selected <?php endif; ?>><?php echo app('translator')->get('All Category'); ?></option>
+                                    <?php $__currentLoopData = $all_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($category->id); ?>" <?php if(request()->category && in_array($category->id, request()->category)): ?> selected <?php endif; ?>> <?php echo app('translator')->get(optional($category->details)->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 p-4 mb-3">
+                            <button class="btn btn-primary ml-2" type="submit"><?php echo app('translator')->get('Submit'); ?></button>
+                            </div>
                         </div>
                     </form>
                 </div>
+                <!-- End Search Section -->
 
-                <div class="col-xl-10 col-lg-10 col-sm-12 my-4">
+                <!-- Listing Section -->
+                <!-- <div class="col-xl-10 col-lg-10 col-sm-10"> -->
                     <?php if(count($all_listings) > 0): ?>
                         <div class="row g-4">
                             <?php $__empty_1 = true; $__currentLoopData = $all_listings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $listing): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
@@ -97,29 +95,34 @@
                                     $total = $listing->reviews()[0]->total;
                                     $average_review = $listing->reviews()[0]->average;
                                 ?>
-                                <div class="col-12">
-                                    <div class="jumbotron" data-lat="<?php echo e($listing->lat); ?>" data-long="<?php echo e($listing->long); ?>" data-title="<?php echo app('translator')->get(Str::limit($listing->title, 30)); ?>" data-location="<?php echo app('translator')->get($listing->address); ?>" data-route="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>">
-                                        <div class="text-box">
-                                            <div class="review">
-                                                <?php for($i = 1; $i <= 5; $i++): ?>
-                                                    <i class="fas fa-star<?php echo e($i <= $average_review ? '' : ($i - 1 < $average_review ? '-half-alt' : '-empty')); ?>"></i>
-                                                <?php endfor; ?>
-                                                <!-- <span>(<?php echo app('translator')->get($total . ' reviews'); ?>)</span> -->
+                                <div class="col-12 m-2 d-flex justify-content-sm-center">
+                                    <div class="jumbotron d-flex justify-content-center m-4" data-lat="<?php echo e($listing->lat); ?>" data-long="<?php echo e($listing->long); ?>" data-title="<?php echo app('translator')->get(Str::limit($listing->title, 30)); ?>" data-location="<?php echo app('translator')->get($listing->address); ?>" data-route="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>">
+                                        <div class="col-sm-2 m-4">
+                                            <img class="img-fluid" style="border-radius:5px;" src="<?php echo e(getFile($listing->driver, $listing->listing_image)); ?>" alt="<?php echo app('translator')->get(Str::limit($listing->title, 30)); ?>">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="text-box">
+                                                <div class="review">
+                                                    <?php for($i = 1; $i <= 5; $i++): ?>
+                                                        <i class="fas fa-star<?php echo e($i <= $average_review ? '' : ($i - 1 < $average_review ? '-half-alt' : '-empty')); ?>"></i>
+                                                    <?php endfor; ?>
+                                                </div>
+                                                <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>"><h5 class="title"><?php echo app('translator')->get(Str::limit($listing->title, 30)); ?></h5></a>
+                                                <!-- <a class="author" href="<?php echo e(route('profile', [slug(optional($listing->get_user)->firstname), optional($listing->get_user)->id])); ?>">
+                                                    <?php echo app('translator')->get(optional($listing->get_user)->firstname); ?> <?php echo app('translator')->get(optional($listing->get_user)->lastname); ?>
+                                                </a> -->
+                                                
+                                                <p class="address mt-1">
+                                                    <i class="fal fa-map-marker-alt"></i>
+                                                    <?php echo app('translator')->get($listing->address); ?>, <?php echo app('translator')->get(optional(optional($listing->get_place)->details)->place); ?>
+                                                </p>
+                                                <span class="badge bg-secondary">
+                                                    <!-- <span class=""><?php echo app('translator')->get('Category'); ?>: </span>  -->
+                                                    <?php echo e(optional($listing)->getCategoriesName()); ?>
+
+                                                </span>
+                                                <!-- <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>" class="btn-custom"><?php echo app('translator')->get('View details'); ?></a> -->
                                             </div>
-
-                                            <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>" ><h5 class="title"><?php echo app('translator')->get(Str::limit($listing->title, 30)); ?></h5></a>
-                                            <a class="author" href="<?php echo e(route('profile', [slug(optional($listing->get_user)->firstname), optional($listing->get_user)->id])); ?>">
-                                                <?php echo app('translator')->get(optional($listing->get_user)->firstname); ?> <?php echo app('translator')->get(optional($listing->get_user)->lastname); ?>
-                                            </a>
-                                            <p class="mb-2">
-                                                <span class=""><?php echo app('translator')->get('Category'); ?>: </span> <?php echo e(optional($listing)->getCategoriesName()); ?>
-
-                                            </p>
-                                            <p class="address mt-1">
-                                                <i class="fal fa-map-marker-alt"></i>
-                                                <?php echo app('translator')->get($listing->address); ?>, <?php echo app('translator')->get(optional(optional($listing->get_place)->details)->place); ?>
-                                            </p>
-                                            <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>" class="btn-custom"><?php echo app('translator')->get('View details'); ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -141,11 +144,9 @@
                             <img src="<?php echo e(asset($themeTrue.'img/no_data_found.png')); ?>" alt="<?php echo e(config('basic.site_title')); ?>" class="img-fluid">
                         </div>
                     <?php endif; ?>
-                </div>
+                <!-- </div> -->
+                <!-- End Listing Section -->
 
-                <!-- <div class="col-xl-4 col-lg-4 col-sm-12">
-                    <div class="h-100" id="map"></div>
-                </div> -->
             </div>
         </div>
     </section>

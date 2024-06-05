@@ -47,11 +47,43 @@
             width: 150%; /* Menambahkan lebar lebih agar scroll muncul */
         }
     }
+    /* Tambahkan CSS untuk tabel legend */
+#legend-container {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
+}
+#legend-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#legend-table th, #legend-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+#legend-table th {
+    background-color: #f4f4f4;
+}
+tr {font-size:12px; color: blue;}
 </style>
 
 <div id="map-container">
     <div id="loading">Loading map...</div>
     <div id="map"></div>
+</div>
+
+<div class="container mb-4">
+<div id="legend-container">
+    <table id="legend-table">
+        <thead>
+            <tr>
+                <th colspan="3">Legends Maps</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 </div>
 
 <script>
@@ -252,10 +284,25 @@
         loadingIndicator.style("display", "none");
     };
 
+    const createLegendTable = () => {
+    const tbody = document.querySelector("#legend-table tbody");
+    let row;
+    stateSpecific.forEach((state, index) => {
+        if (index % 3 === 0) {
+            row = document.createElement("tr");
+            tbody.appendChild(row);
+        }
+        const cell = document.createElement("td");
+        cell.textContent = state.name;
+        row.appendChild(cell);
+    });
+};
+
     window.addEventListener("resize", updateMapDimensions);
 
     initializeMap();
     updateMapDimensions();
+    createLegendTable();
 </script>
 
 </section>

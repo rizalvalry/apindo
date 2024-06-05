@@ -720,6 +720,18 @@ unset($__errorArgs, $__bag); ?>
                                 <?php endif; ?>
                             </div>
 
+
+                            <div id="mainCarousel" class="carousel mx-auto main_carousel">
+        <?php $__empty_1 = true; $__currentLoopData = $single_listing_details->get_listing_images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $listing_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <div class="carousel__slide" data-src="<?php echo e(getFile($listing_image->driver, $listing_image->listing_image)); ?>" data-fancybox="gallery" data-caption="">
+                <img class="img-fluid" src="<?php echo e(getFile($listing_image->driver, $listing_image->listing_image)); ?>"/>
+            </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+            <div class="carousel__slide" data-src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>" data-fancybox="gallery" data-caption="">
+                <img class="img-fluid" src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>"/>
+            </div>
+        <?php endif; ?>
+    </div>
                             <!--<div class="side-box">
                                 <h5><?php echo app('translator')->get('Send a Message'); ?></h5>
                                 <form action="<?php echo e(route('user.sendListingMessage', $id)); ?>" method="post"
