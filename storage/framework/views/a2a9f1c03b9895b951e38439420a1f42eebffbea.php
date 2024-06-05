@@ -6,6 +6,18 @@
 
 <?php $__env->startSection('content'); ?>
 
+<div class="container">
+    <div class="header-text text-center">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>"><?php echo app('translator')->get('Home'); ?></a></li>
+            <li class="breadcrumb-item"><a href="#"><?php echo app('translator')->get('Listing Category'); ?></a></li>
+            <?php echo $__env->yieldContent('breadcrumb_items'); ?>
+        </ol>
+    </nav>
+</div>
+
+
 <?php if($allListingsAndCategory->count() > 0): ?>
     <section class="category-section">
         <div class="container">

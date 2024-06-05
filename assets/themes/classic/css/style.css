@@ -2158,8 +2158,8 @@ a.btn-custom {
     -webkit-box-shadow: var(--shadow);
     box-shadow: var(--shadow);
     margin-bottom: 30px;
-    position: relative;
-    top: -5rem;
+    /* position: relative;
+    top: -5rem; */
 }
 
 .listing-section .filter-area .filter-box {

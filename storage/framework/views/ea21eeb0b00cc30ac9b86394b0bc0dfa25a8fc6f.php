@@ -47,20 +47,16 @@
 
     <div id="popupModal" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="popupModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md mt-0">
             <div class="modal-content">
-                <!-- <div class="modal-header modal-colored-header bg-primary">
-                    <h4 class="modal-title" id="popupModal"><?php echo app('translator')->get('Haloo'); ?>
-                    </h4>
-                    
-                </div> -->
                 <div class="modal-body" style="padding:0px !important">
-                <img src="<?php echo e(asset('assets/admin/images/show-banner-popup.jpeg')); ?>"
+                    <button type="button" style="position:absolute; right:0px;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <img src="<?php echo e(asset('assets/admin/images/show-banner-popup.jpeg')); ?>"
                             class="w-100" alt="<?php echo e(config('basic.site_title')); ?>">
                 </div>
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

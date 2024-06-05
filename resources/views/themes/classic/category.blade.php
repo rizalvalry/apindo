@@ -7,6 +7,18 @@
 
 @section('content')
 
+<div class="container">
+    <div class="header-text text-center">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
+            <li class="breadcrumb-item"><a href="#">@lang('Listing Category')</a></li>
+            @yield('breadcrumb_items')
+        </ol>
+    </nav>
+</div>
+
+
 @if($allListingsAndCategory->count() > 0)
     <section class="category-section">
         <div class="container">

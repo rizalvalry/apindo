@@ -11,15 +11,16 @@
 
 <style>
     #map-container {
-        width: 100%;
-        max-width: 100%;
+        width: 90%;
+        max-width: 90%;
         margin: 0;
         padding: 0;
         overflow-x: auto;
+        align-content: center;
     }
     #map {
-        width: 100%;
-        height: 100vh;
+        width: 90%;
+        height: 90vh;
         position: relative;
     }
     #loading {
@@ -60,11 +61,12 @@
     margin-top: 20px;
 }
 #legend-table {
+    border: 0px solid #ccc;
     width: 100%;
     border-collapse: collapse;
 }
 #legend-table th, #legend-table td {
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     padding: 8px;
     text-align: center;
 }
@@ -82,11 +84,6 @@ tr {font-size:12px; color: blue;}
 <div class="container mb-4">
 <div id="legend-container">
     <table id="legend-table">
-        <thead>
-            <tr>
-                <th colspan="3">Legends Maps</th>
-            </tr>
-        </thead>
         <tbody></tbody>
     </table>
 </div>
@@ -251,7 +248,7 @@ tr {font-size:12px; color: blue;}
             .on("click", function(event, d) {
                 const index = features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
-                alert(`You clicked on ${provinceName}`);
+                //alert(`You clicked on ${provinceName}`);
 
                 fetch(`${baseURL}/place-details/${provinceName}`)
                     .then(response => response.json())

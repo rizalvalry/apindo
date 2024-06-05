@@ -44,28 +44,28 @@
             overflow-x: auto;
         }
         #map {
-            width: 150%; /* Menambahkan lebar lebih agar scroll muncul */
+            width: 150%;
         }
     }
-    /* Tambahkan CSS untuk tabel legend */
-#legend-container {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 20px;
-}
-#legend-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-#legend-table th, #legend-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
-}
-#legend-table th {
-    background-color: #f4f4f4;
-}
-tr {font-size:12px; color: blue;}
+    #legend-container {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+    #legend-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    #legend-table th, #legend-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        cursor: pointer;
+    }
+    #legend-table th {
+        background-color: #f4f4f4;
+    }
+    tr {font-size:12px; color: blue;}
 </style>
 
 <div id="map-container">
@@ -74,16 +74,16 @@ tr {font-size:12px; color: blue;}
 </div>
 
 <div class="container mb-4">
-<div id="legend-container">
-    <table id="legend-table">
-        <thead>
-            <tr>
-                <th colspan="3">Legends Maps</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
+    <div id="legend-container">
+        <table id="legend-table">
+            <thead>
+                <tr>
+                    <th colspan="3">Legends Maps</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 </div>
 
 <script>
@@ -127,33 +127,18 @@ tr {font-size:12px; color: blue;}
         { name: "Yogyakarta", color: "#46CFDD" }
     ];
 
-    const updateMapDimensions = () => {
-        const map = document.getElementById("map");
-        const width = map.clientWidth;
-        const height = map.clientHeight;
-
-        const projection = d3.geoMercator()
-            .center([118, -2])
-            .scale(width > 520 ? 1600 : 800)
-            .translate([width / 2, height / 2]);
-
-        const path = d3.geoPath().projection(projection);
-
-        svg.attr("width", width)
-           .attr("height", height);
-
-        svg.selectAll("path").attr("d", path);
-    };
+    const width = document.getElementById("map").clientWidth;
+    const height = document.getElementById("map").clientHeight;
 
     const svg = d3.select("#map")
         .append("svg")
-        .attr("width", document.getElementById("map").clientWidth)
-        .attr("height", document.getElementById("map").clientHeight);
+        .attr("width", width)
+        .attr("height", height);
 
     const projection = d3.geoMercator()
         .center([118, -2])
-        .scale(document.getElementById("map").clientWidth > 520 ? 1600 : 800)
-        .translate([document.getElementById("map").clientWidth / 2, document.getElementById("map").clientHeight / 2]);
+        .scale(width > 720 ? 1600 : 800)
+        .translate([width / 2, height / 2]);
 
     const path = d3.geoPath().projection(projection);
 
@@ -166,7 +151,6 @@ tr {font-size:12px; color: blue;}
             try {
                 const response = await fetch(`${baseURL}/place-details/${state.name}`);
                 
-                // Periksa status respons
                 if (!response.ok) {
                     if (response.status === 500) {
                         console.clear();
@@ -174,7 +158,6 @@ tr {font-size:12px; color: blue;}
                     } else {
                         // Handle other errors
                         console.error(`Error fetching place details (${response.status}): ${response.statusText}`);
-                        // Atur ke nilai default jika perlu
                         provinceData[state.name] = null;
                     }
                 } else {
@@ -182,13 +165,12 @@ tr {font-size:12px; color: blue;}
                     provinceData[state.name] = data;
                 }
             } catch (error) {
-                // Tangani error jika diperlukan
                 console.error('Error fetching place details:', error);
-                // Atur ke nilai default jika perlu
                 provinceData[state.name] = null;
             }
         }
     };
+
 
     const initializeMap = async () => {
         await fetchAllData();
@@ -282,29 +264,35 @@ tr {font-size:12px; color: blue;}
                             </div>`);
 
         loadingIndicator.style("display", "none");
+
+        createLegendTable();
     };
 
     const createLegendTable = () => {
-    const tbody = document.querySelector("#legend-table tbody");
-    let row;
-    stateSpecific.forEach((state, index) => {
-        if (index % 3 === 0) {
-            row = document.createElement("tr");
-            tbody.appendChild(row);
-        }
-        const cell = document.createElement("td");
-        cell.textContent = state.name;
-        row.appendChild(cell);
-    });
-};
-
-    window.addEventListener("resize", updateMapDimensions);
+        const tbody = document.querySelector("#legend-table tbody");
+        let row;
+        stateSpecific.forEach((state, index) => {
+            if (index % 3 === 0) {
+                row = document.createElement("tr");
+                tbody.appendChild(row);
+            }
+            const cell = document.createElement("td");
+            const link = document.createElement("a");
+            link.href = `${baseURL}/category/${state.name}`;
+            link.textContent = state.name;
+            link.style.color = state.color; 
+            link.style.textDecoration = "none";
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                window.location.href = link.href;
+            });
+            cell.appendChild(link);
+            row.appendChild(cell);
+        });
+    };
 
     initializeMap();
-    updateMapDimensions();
-    createLegendTable();
 </script>
 
 </section>
-<?php endif; ?>
-<?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/maps.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/maps.blade.php ENDPATH**/ ?>

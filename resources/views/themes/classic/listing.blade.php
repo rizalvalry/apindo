@@ -51,53 +51,73 @@
 @endpush
 
 @section('content')
+
+<div class="container">
+    <div class="header-text text-center">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
+            <li class="breadcrumb-item"><a href="#">@lang('Listings')</a></li>
+            @yield('breadcrumb_items')
+        </ol>
+    </nav>
+</div>
+
     <section class="listing-section">
         <div class="container-fluid">
             <div class="row">
                 <!-- Search Section -->
-                <div class="col-xl-12 my-8 d-flex justify-content-center">
-                    <form action="{{ route('listing') }}" method="get" class="filter-area d-flex justify-content-center">
-                    <div class="filter-box d-flex justify-content-between align-items-center">
-                            <!-- <h5>@lang('Search')</h5> -->
-                            <div class="input-group mb-3">
-                                <input type="text" name="name" class="form-control" value="{{ old('name', request()->name) }}" autocomplete="off" placeholder="@lang('Listing name')"/>
-                            </div>
-                            <div class="input-group mb-3">
-                                <select class="js-example-basic-single form-control" name="location">
-                                    <option selected disabled>@lang('Select Location')</option>
-                                    <option value="all" @if(request()->location == 'all') selected @endif>@lang('All Location')</option>
-                                    @foreach($all_places as $place)
-                                        <option class="m-0" value="{{ $place->id }}" @if(request()->location == $place->id) selected @endif>@lang(optional($place->details)->place)</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="input-group mb-3">
-                                <select class="listing__category__select2 form-control" name="category[]" multiple>
-                                    <option value="all" @if(request()->category && in_array('all', request()->category)) selected @endif>@lang('All Category')</option>
-                                    @foreach($all_categories as $category)
-                                        <option value="{{ $category->id }}" @if(request()->category && in_array($category->id, request()->category)) selected @endif> @lang(optional($category->details)->name)</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-sm-2 p-4 mb-3">
-                            <button class="btn btn-primary ml-2" type="submit">@lang('Submit')</button>
-                            </div>
+                <!-- <div class="col-xl-12 my-8 d-flex justify-content-center"> -->
+                <form action="{{ route('listing') }}" method="get">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="mb-3">
+                            <input type="text" name="name" class="form-control" value="{{ old('name', request()->name) }}" autocomplete="off" placeholder="@lang('Listing name')" style="background-color: #e9ecef; height: 3rem;">
                         </div>
-                    </form>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="mb-3">
+                            <select class="js-example-basic-single form-control" name="location">
+                                <option selected disabled>@lang('Select Location')</option>
+                                <option value="all" @if(request()->location == 'all') selected @endif>@lang('All Location')</option>
+                                @foreach($all_places as $place)
+                                    <option class="m-0" value="{{ $place->id }}" @if(request()->location == $place->id) selected @endif>@lang(optional($place->details)->place)</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="mb-3">
+                            <select class="listing__category__select2 form-control" name="category[]" multiple>
+                                <option value="all" @if(request()->category && in_array('all', request()->category)) selected @endif>@lang('All Category')</option>
+                                @foreach($all_categories as $category)
+                                    <option value="{{ $category->id }}" @if(request()->category && in_array($category->id, request()->category)) selected @endif> @lang(optional($category->details)->name)</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12 col-sm-12">
+                        <div class="mb-3">
+                            <button class="btn btn-primary btn-block" style="height: 3rem;" type="submit">@lang('Submit')</button>
+                        </div>
+                    </div>
                 </div>
+            </form>
+
+                <!-- </div> -->
                 <!-- End Search Section -->
 
                 <!-- Listing Section -->
                 <!-- <div class="col-xl-10 col-lg-10 col-sm-10"> -->
                     @if(count($all_listings) > 0)
-                        <div class="row g-4">
+                        <div class="row g-0 d-flex justify-content-sm-center">
                             @forelse($all_listings as $key => $listing)
                                 @php
                                     $total = $listing->reviews()[0]->total;
                                     $average_review = $listing->reviews()[0]->average;
                                 @endphp
-                                <div class="col-12 m-2 d-flex justify-content-sm-center">
-                                    <div class="jumbotron d-flex justify-content-center m-4" data-lat="{{ $listing->lat }}" data-long="{{ $listing->long }}" data-title="@lang(Str::limit($listing->title, 30))" data-location="@lang($listing->address)" data-route="{{ route('listing-details', [slug($listing->title), $listing->id]) }}">
+                                <div class="col-10 m-2">
+                                    <div class="jumbotron d-flex justify-content-center" style="padding:1rem;" data-lat="{{ $listing->lat }}" data-long="{{ $listing->long }}" data-title="@lang(Str::limit($listing->title, 30))" data-location="@lang($listing->address)" data-route="{{ route('listing-details', [slug($listing->title), $listing->id]) }}">
                                         <div class="col-sm-2 m-4">
                                             <img class="img-fluid" style="border-radius:5px;" src="{{ getFile($listing->driver, $listing->listing_image) }}" alt="@lang(Str::limit($listing->title, 30))">
                                         </div>

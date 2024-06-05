@@ -205,7 +205,7 @@
             .on("click", function(event, d) {
                 const index = features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
-                alert(`You clicked on ${provinceName}`);
+                //alert(`You clicked on ${provinceName}`);
 
                 fetch(`${baseURL}/place-details/${provinceName}`)
                     .then(response => response.json())

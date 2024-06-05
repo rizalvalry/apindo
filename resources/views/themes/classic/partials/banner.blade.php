@@ -15,13 +15,13 @@
                 <div class="row">
                     <div class="col">
                         <div class="header-text text-center">
-                            <nav aria-label="breadcrumb">
+                            <!-- <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
                                     @yield('breadcrumb_items')
                                     <li class="breadcrumb-item active text-white" aria-current="page">@yield('banner_heading')</li>
                                 </ol>
-                            </nav>
+                            </nav> -->
                             <h3>@yield('banner_heading')</h3>
                         </div>
                     </div>
