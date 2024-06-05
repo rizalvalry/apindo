@@ -5,7 +5,12 @@
         }
     </style>
 <?php else: ?>
-    <?php echo $__env->yieldContent('listing_thumbnail'); ?>
+<style>
+        .banner-section {
+            display: none;
+        }
+    </style>
+    <!-- <?php echo $__env->yieldContent('listing_thumbnail'); ?> -->
 <?php endif; ?>
 
 <?php if(!request()->routeIs('home')): ?>

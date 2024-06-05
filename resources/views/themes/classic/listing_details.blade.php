@@ -298,12 +298,12 @@
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                  aria-labelledby="pills-home-tab" tabindex="0">
                                 <!-- <div id="description" class="description-box"> -->
-                                <div id="description" class="">
+                                <!-- <div id="description" class="">
                                     <h4>@lang('Description')</h4>
                                     <p>
                                         {!! $single_listing_details->description !!}
                                     </p>
-                                </div>
+                                </div> -->
 
                                 @if(optional($single_listing_details->get_package)->is_video != 0 && $single_listing_details->youtube_video_id != null)
                                     <div id="videobox" class="video-box">

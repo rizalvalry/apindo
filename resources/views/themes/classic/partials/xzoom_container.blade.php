@@ -8,7 +8,7 @@
             <!-- <div class="carousel__slide" data-src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}" data-fancybox="gallery" data-caption="">
                 <img class="img-fluid" src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}"/>
             </div> -->
-        @endforelse
+        <!-- @endforelse -->
     </div>
 
     <div id="thumbCarousel" class="carousel max-w-xl mx-auto mb-3 thumb_carousel">

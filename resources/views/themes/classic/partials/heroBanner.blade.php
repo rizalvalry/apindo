@@ -9,7 +9,7 @@
 </style>
 @endpush
 
-<section class="home-section">
+<!-- <section class="home-section">
     <div class="overlay h-100">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 @endif
 
 @push('script')

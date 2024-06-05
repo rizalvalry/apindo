@@ -5,7 +5,12 @@
         }
     </style>
 @else
-    @yield('listing_thumbnail')
+<style>
+        .banner-section {
+            display: none;
+        }
+    </style>
+    <!-- @yield('listing_thumbnail') -->
 @endif
 
 @if (!request()->routeIs('home'))
