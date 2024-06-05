@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title',trans('Category')); ?>
 
 <?php $__env->startSection('banner_heading'); ?>
@@ -15,6 +16,7 @@
             <?php echo $__env->yieldContent('breadcrumb_items'); ?>
         </ol>
     </nav>
+</div>
 </div>
 
 

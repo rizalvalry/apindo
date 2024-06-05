@@ -17,6 +17,7 @@
         </ol>
     </nav>
 </div>
+</div>
 
 
 @if($allListingsAndCategory->count() > 0)
