@@ -227,7 +227,7 @@
             .on("click", function(event, d) {
                 const index = features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
-                alert(`You clicked on ${provinceName}`);
+                //alert(`You clicked on ${provinceName}`);
 
                 fetch(`${baseURL}/place-details/${provinceName}`)
                     .then(response => response.json())
@@ -269,27 +269,30 @@
     };
 
     const createLegendTable = () => {
-        const tbody = document.querySelector("#legend-table tbody");
-        let row;
-        stateSpecific.forEach((state, index) => {
-            if (index % 3 === 0) {
-                row = document.createElement("tr");
-                tbody.appendChild(row);
-            }
-            const cell = document.createElement("td");
-            const link = document.createElement("a");
-            link.href = `${baseURL}/category/${state.name}`;
-            link.textContent = state.name;
-            link.style.color = state.color; 
-            link.style.textDecoration = "none";
-            link.addEventListener("click", (event) => {
-                event.preventDefault();
-                window.location.href = link.href;
-            });
-            cell.appendChild(link);
-            row.appendChild(cell);
+    const tbody = document.querySelector("#legend-table tbody");
+    let row;
+    stateSpecific.forEach((state, index) => {
+        if (index % 3 === 0) {
+            row = document.createElement("tr");
+            tbody.appendChild(row);
+        }
+        const cell = document.createElement("td");
+        const link = document.createElement("a");
+        link.href = `${baseURL}/category/${state.name}`;
+        const listingsCount = provinceData[state.name] ? provinceData[state.name].listings_count : 0;
+        link.textContent = `${state.name} (${listingsCount})`;
+        link.style.color = state.color; 
+        link.style.textDecoration = "none";
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            window.location.href = link.href;
         });
+        cell.appendChild(link);
+        row.appendChild(cell);
+    });
     };
+
+
 
     initializeMap();
 </script>
