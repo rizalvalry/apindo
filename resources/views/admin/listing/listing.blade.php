@@ -163,18 +163,18 @@
                                                 <i class="far fa-ellipsis-v"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li>
+                                                <!-- <li>
                                                     <a href="{{ route('user.analytics', $item->id) }}" class="btn currentColor dropdown-item">
                                                         <i class="fal fa-analytics me-2"></i> @lang('Analytics')
                                                     </a>
-                                                </li>
-                                                <li>
+                                                </li> -->
+                                                <!-- <li>
                                                     <a href="{{ route('user.reviews', $item->id) }}" class="btn currentColor dropdown-item">
                                                         <i class="far fa-star me-2"></i> @lang('Reviews')
                                                     </a>
-                                                </li>
+                                                </li> -->
                                                 <li>
-                                                    <a href="{{ route('user.editListing', $item->id) }}" class="btn currentColor dropdown-item">
+                                                    <a href="{{ route('admin.editListing', $item->id) }}" class="btn currentColor dropdown-item">
                                                         <i class="far fa-edit me-2"></i> @lang('Edit')
                                                     </a>
                                                 </li>

@@ -1,24 +1,24 @@
 <div>
     <div id="mainCarousel" class="carousel mx-auto main_carousel">
-        @forelse($single_listing_details->get_listing_images as $listing_image)
+        <!-- @forelse($single_listing_details->get_listing_images as $listing_image)
             <div class="carousel__slide" data-src="{{ getFile($listing_image->driver, $listing_image->listing_image)}}" data-fancybox="gallery" data-caption="">
                 <img class="img-fluid" src="{{ getFile($listing_image->driver, $listing_image->listing_image)}}"/>
             </div>
-        @empty
+        @empty -->
             <!-- <div class="carousel__slide" data-src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}" data-fancybox="gallery" data-caption="">
                 <img class="img-fluid" src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}"/>
             </div> -->
         <!-- @endforelse -->
     </div>
 
-    <div id="thumbCarousel" class="carousel max-w-xl mx-auto mb-3 thumb_carousel">
+    <!-- <div id="thumbCarousel" class="carousel max-w-xl mx-auto mb-3 thumb_carousel">
         @forelse($single_listing_details->get_listing_images as $listing_image)
             <div class="carousel__slide">
                 <img class="panzoom__content img-fluid" src="{{ getFile($listing_image->driver, $listing_image->listing_image)}}"/>
             </div>
         @empty
         @endforelse
-    </div>
+    </div> -->
 </div>
 
 <div class="row align-items-center">

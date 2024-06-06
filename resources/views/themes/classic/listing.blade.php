@@ -54,14 +54,16 @@
 
 <div class="container">
     <div class="header-text text-center">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
-            <li class="breadcrumb-item"><a href="#">@lang('Listings')</a></li>
-            @yield('breadcrumb_items')
-        </ol>
-    </nav>
-</div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
+                @if(Request::get('region'))
+                    <li class="breadcrumb-item"><a href="{{ url('/category/' . Request::get('region')) }}">{{ ucfirst(Request::get('region')) }}</a></li>
+                @endif
+                <li class="breadcrumb-item active" aria-current="page">{{ Request::segment(2) }}</li>
+            </ol>
+        </nav>
+    </div>
 </div>
 
 <section class="listing-section">
@@ -130,7 +132,7 @@
                                                     <i class="fas fa-star{{ $i <= $average_review ? '' : ($i - 1 < $average_review ? '-half-alt' : '-empty') }}"></i>
                                                 @endfor
                                             </div>
-                                            <a href="{{ route('listing-details', [slug($listing->title), $listing->id]) }}"><h5 class="title">@lang(Str::limit($listing->title, 30))</h5></a>
+                                            <a href="{{ route('listing-details', [slug($listing->title), $listing->id]) }}?region={{ Request::get('region') }}&category={{ Request::segment(2) }}"><h5 class="title">@lang(Str::limit($listing->title, 30))</h5></a>
                                             <p class="address mt-1">
                                                 <i class="fal fa-map-marker-alt"></i>
                                                 @lang($listing->address), @lang(optional(optional($listing->get_place)->details)->place)

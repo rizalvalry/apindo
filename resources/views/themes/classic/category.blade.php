@@ -1,5 +1,5 @@
 @extends($theme.'layouts.app')
-@section('title',trans('Category'))
+@section('title', trans('Category'))
 
 @section('banner_heading')
    @lang('Listing Category')
@@ -9,16 +9,18 @@
 
 <div class="container">
     <div class="header-text text-center">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
-            <li class="breadcrumb-item"><a href="#">@lang('Listing Category')</a></li>
-            @yield('breadcrumb_items')
-        </ol>
-    </nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
+                @if(Request::segment(2))
+                    <li class="breadcrumb-item active" aria-current="page">{{ Request::segment(2) }}</li>
+                @else
+                    <li class="breadcrumb-item active" aria-current="page">@lang('Listing Category')</li>
+                @endif
+            </ol>
+        </nav>
+    </div>
 </div>
-</div>
-
 
 @if($allListingsAndCategory->count() > 0)
     <section class="category-section">
@@ -26,7 +28,7 @@
             <div class="row g-3 g-lg-4">
                 @forelse($allListingsAndCategory as $category)
                     <div class="col-xl-3 col-md-6 col-6">
-                        <a href="{{ route('listing', [slug(optional($category->details)->name), $category->id]) }}">
+                        <a href="{{ route('listing', [slug(optional($category->details)->name), $category->id]) }}?region={{ Request::segment(2) }}">
                             <div class="category-box">
                                 <div class="icon-box">
                                     <i class="{{ $category->icon }}"></i>
@@ -61,14 +63,13 @@
 @endsection
 
 @push('script')
-
-      <script>
-         'use strict'
-         $(document).ready(function(){
+    <script>
+        'use strict';
+        $(document).ready(function(){
             $('.character').on('click', function(){
-               let character = $(this).attr('data-character');
-               let _this = this;
-               $.ajaxSetup({
+                let character = $(this).attr('data-character');
+                let _this = this;
+                $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
@@ -77,34 +78,25 @@
                 $.ajax({
                     url: "{{ route('categorySearch') }}",
                     type: "post",
-                    data:{
-                        character:character,
+                    data: {
+                        character: character,
                     },
-                    success: function(data)
-                    {
+                    success: function(data) {
                         $('.owl-item').removeClass('active');
                         $('.character').not(this).removeClass('active');
-                        $(_this).addClass('active')
-                        if ((data.count)*1 <  1) {
-                                $('#renderCategory').html(`<div class="custom-not-found2">
-                            <img src="{{ asset($themeTrue.'img/no_data_found.png') }}" alt="{{config('basic.site_title')}}"
-                                 class="img-fluid">
-                        </div>`);
-
+                        $(_this).addClass('active');
+                        if ((data.count) * 1 < 1) {
+                            $('#renderCategory').html(`<div class="custom-not-found2">
+                                <img src="{{ asset($themeTrue.'img/no_data_found.png') }}" alt="{{config('basic.site_title')}}"
+                                     class="img-fluid">
+                            </div>`);
                         } else {
-
-                           console.log(this);
-                           $('#renderCategory').html(data.data);
-                           $(this).addClass('active');
+                            $('#renderCategory').html(data.data);
+                            $(this).addClass('active');
                         }
-
                     }
                 });
-
             });
-
-         });
-      </script>
+        });
+    </script>
 @endpush
-
-

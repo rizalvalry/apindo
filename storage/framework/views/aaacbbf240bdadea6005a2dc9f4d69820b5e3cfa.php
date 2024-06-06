@@ -53,14 +53,16 @@
 
 <div class="container">
     <div class="header-text text-center">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>"><?php echo app('translator')->get('Home'); ?></a></li>
-            <li class="breadcrumb-item"><a href="#"><?php echo app('translator')->get('Listings'); ?></a></li>
-            <?php echo $__env->yieldContent('breadcrumb_items'); ?>
-        </ol>
-    </nav>
-</div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>"><?php echo app('translator')->get('Home'); ?></a></li>
+                <?php if(Request::get('region')): ?>
+                    <li class="breadcrumb-item"><a href="<?php echo e(url('/category/' . Request::get('region'))); ?>"><?php echo e(ucfirst(Request::get('region'))); ?></a></li>
+                <?php endif; ?>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo e(Request::segment(2)); ?></li>
+            </ol>
+        </nav>
+    </div>
 </div>
 
 <section class="listing-section">
@@ -129,7 +131,7 @@
                                                     <i class="fas fa-star<?php echo e($i <= $average_review ? '' : ($i - 1 < $average_review ? '-half-alt' : '-empty')); ?>"></i>
                                                 <?php endfor; ?>
                                             </div>
-                                            <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>"><h5 class="title"><?php echo app('translator')->get(Str::limit($listing->title, 30)); ?></h5></a>
+                                            <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>?region=<?php echo e(Request::get('region')); ?>&category=<?php echo e(Request::segment(2)); ?>"><h5 class="title"><?php echo app('translator')->get(Str::limit($listing->title, 30)); ?></h5></a>
                                             <p class="address mt-1">
                                                 <i class="fal fa-map-marker-alt"></i>
                                                 <?php echo app('translator')->get($listing->address); ?>, <?php echo app('translator')->get(optional(optional($listing->get_place)->details)->place); ?>

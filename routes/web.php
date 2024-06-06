@@ -193,7 +193,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('add-listing/{id?}', 'Admin\ListingController@addListing')->name('addListing');
         Route::post('listing-store/{id}', 'Admin\ListingController@listingStore')->name('listingStore');
         Route::delete('listing-delete/{id}', 'Admin\ListingController@listingDelete')->name('listingDelete');
-
+        Route::get('edit-listing/{id}', 'Admin\ListingController@editListing')->name('editListing');
+        
 
 
 

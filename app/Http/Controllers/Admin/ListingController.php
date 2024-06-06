@@ -114,19 +114,19 @@ class ListingController extends Controller
 
     public function listingStore(Request $request, $id)
     {
-        $package_id = $id;
+        // $package_id = $id;
 
-        if ($request->hasFile('excel_file')) {
-            $file = $request->file('excel_file');
+        // if ($request->hasFile('excel_file')) {
+        //     $file = $request->file('excel_file');
             
-            try {
-                Excel::import(new ListingImport($package_id), $file);
+        //     try {
+        //         Excel::import(new ListingImport($package_id), $file);
     
-                return redirect()->route('admin.listingviews')->with('success', __('Data has been imported successfully!'));
-            } catch (\Exception $e) {
-                return back()->with('error', 'Failed to import data. Error: ' . $e->getMessage());
-            }
-        }
+        //         return redirect()->route('admin.listingviews')->with('success', __('Data has been imported successfully!'));
+        //     } catch (\Exception $e) {
+        //         return back()->with('error', 'Failed to import data. Error: ' . $e->getMessage());
+        //     }
+        // }
 
         $purifiedData = Purify::clean($request->except('image', '_token', '_method', 'thumbnail', 'listing_image', 'seo_image', 'product_image'));
         $purifiedData['thumbnail'] = $request->thumbnail ?? null;

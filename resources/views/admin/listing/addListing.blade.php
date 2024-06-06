@@ -184,15 +184,7 @@
         </div>
 
 
-        <form action="{{ route('admin.listingStore', $id) }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="media mt-0 mb-2 d-flex justify-content-end">
-                <a href="{{route('user.allListing')}}" class="btn btn-sm  btn-primary mr-2">
-                    <span><i class="fas fa-arrow-left"></i> @lang('Back')</span>
-                </a>
-            </div>
-
-            <div class="container">
+        <div class="container">
                 <div class="row g-3 align-items-center">
                 <form action="{{ route('admin.listingStore', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -207,6 +199,16 @@
                 </form>
                 </div>
             </div>
+
+        <form action="{{ route('admin.listingStore', $id) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="media mt-0 mb-2 d-flex justify-content-end">
+                <a href="{{route('user.allListing')}}" class="btn btn-sm  btn-primary mr-2">
+                    <span><i class="fas fa-arrow-left"></i> @lang('Back')</span>
+                </a>
+            </div>
+
+            
 
 
             <div id="tab1" class="add-listing-form content active">

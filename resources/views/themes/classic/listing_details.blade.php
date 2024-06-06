@@ -210,16 +210,19 @@
 
 <div class="container">
     <div class="header-text text-center">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
-            <li class="breadcrumb-item"><a href="#">@lang('Listings')</a></li>
-            <li class="breadcrumb-item"><a href="#">@lang('Details Listings')</a></li>
-            @yield('breadcrumb_items')
-        </ol>
-    </nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
+                @if(Request::get('region') && Request::get('category'))
+                    <li class="breadcrumb-item"><a href="{{ url('/category/' . Request::get('region') . '/' . Request::get('category')) }}">{{ Request::get('region') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ Request::get('category') }}</li>
+                @endif
+                <li class="breadcrumb-item active" aria-current="page">{{ Request::segment(2) }}</li>
+            </ol>
+        </nav>
+    </div>
 </div>
-</div>
+
 
     <section class="listing-details">
         <div class="overlay">
@@ -632,12 +635,12 @@
                             <div class="side-box">
                                 <!-- <h5>@lang('Created By')</h5> -->
                                 <div class="creator-box">
-                                    <div class="img-box">
+                                    <div class="">
                                         <!-- <img
                                             src="{{ getFile(optional($single_listing_details->get_user)->cover_driver, optional($single_listing_details->get_user)->cover_photo) }}"
                                             alt="{{config('basic.site_title')}}" class="img-fluid cover"/> -->
                                         <img
-                                            src="{{ getFile(optional($single_listing_details->get_user)->driver, optional($single_listing_details->get_user)->image) }}"
+                                            src="{{  getFile($single_listing_details->driver, $single_listing_details->thumbnail) }}"
                                             class="img-fluid profile" alt="{{config('basic.site_title')}}"/>
                                     </div>
 

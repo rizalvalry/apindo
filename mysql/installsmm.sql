@@ -13,7 +13,6 @@ MySQL - 10.4.32-MariaDB : Database - installsmm
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
 /*Table structure for table `admins` */
 
 DROP TABLE IF EXISTS `admins`;
@@ -42,7 +41,7 @@ CREATE TABLE `admins` (
 /*Data for the table `admins` */
 
 insert  into `admins`(`id`,`name`,`username`,`email`,`password`,`image`,`driver`,`phone`,`address`,`admin_access`,`last_login`,`status`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'admin','admin','admin@gmail.com','$2y$10$MjIGHeJr/lPkyrQrHhPK8usJwoFVYdpmpVG807ZhBWxGtDslyCtbC','adminProfile/YiKSqPeNWPDIgCBI5l7wsqM0RyIw3Cg1vJzYukl9.jpg','local','+5641 455646','TX, USA','[\"admin.dashboard\",\"admin.staff\",\"admin.storeStaff\",\"admin.updateStaff\",\"admin.identify-form\",\"admin.identify-form.store\",\"admin.identify-form.action\",\"admin.users\",\"admin.user-multiple-active\",\"admin.user-multiple-inactive\",\"admin.user-edit\",\"admin.email-send\",\"admin.kyc.users.pending\",\"admin.kyc.kyc.users\",\"admin.email-send.store\",\"admin.user-update\",\"admin.userPasswordUpdate\",\"admin.userKycHistory\",\"admin.send-email\",\"admin.login-as-user\",\"admin.users.Kyc.action\",\"admin.package\",\"admin.purchasePackageList\",\"admin.packageCreate\",\"admin.packageEdit\",\"admin.packageDelete\",\"admin.userPurchasePackageDelete\",\"admin.listingCategory\",\"admin.viewListings\",\"admin.listingSettings\",\"admin.wishList\",\"admin.productEnquiry\",\"admin.listingAnalytics\",\"admin.showListingAnalytics\",\"admin.listingReview\",\"admin.listingCategoryCreate\",\"admin.listingCategoryEdit\",\"admin.editListing\",\"admin.listingCategoryDelete\",\"admin.viewListingDelete\",\"admin.wishListDelete\",\"admin.listingReviewDelete\",\"admin.listingAnalyticsDelete\",\"admin.amenities\",\"admin.amenitiesCreate\",\"admin.amenitiesEdit\",\"admin.amenitiesDelete\",\"admin.place\",\"admin.placeCreate\",\"admin.placeEdit\",\"admin.placeDelete\",\"admin.claimBusiness\",\"admin.claimMessageDelete\",\"admin.contactMessage\",\"admin.contactMessageDelete\",\"admin.transaction\",\"admin.transaction.search\",\"admin.subscriber.index\",\"admin.subscriber.sendEmail\",\"admin.subscriber.remove\",\"admin.payment.methods\",\"admin.deposit.manual.index\",\"admin.deposit.manual.create\",\"admin.edit.payment.methods\",\"admin.deposit.manual.edit\",\"admin.payment.pending\",\"admin.payment.log\",\"admin.payment.search\",\"admin.payment.action\",\"admin.ticket\",\"admin.ticket.view\",\"admin.ticket.reply\",\"admin.ticket.delete\",\"admin.basic-controls\",\"admin.email-controls\",\"admin.email-template.show\",\"admin.sms.config\",\"admin.sms-template\",\"admin.notify-config\",\"admin.notify-template.show\",\"admin.notify-template.edit\",\"admin.basic-controls.update\",\"admin.email-controls.update\",\"admin.email-template.edit\",\"admin.sms-template.edit\",\"admin.notify-config.update\",\"admin.notify-template.update\",\"admin.language.index\",\"admin.language.create\",\"admin.language.edit\",\"admin.language.keywordEdit\",\"admin.language.delete\",\"admin.manage.theme\",\"admin.logo-seo\",\"admin.breadcrumb\",\"admin.template.show\",\"admin.content.index\",\"admin.content.create\",\"admin.logoUpdate\",\"admin.seoUpdate\",\"admin.breadcrumbUpdate\",\"admin.content.show\",\"admin.content.delete\",\"admin.blogCategory\",\"admin.blogList\",\"admin.blogCategoryCreate\",\"admin.blogCreate\",\"admin.blogCategoryEdit\",\"admin.blogEdit\",\"admin.blogCategoryDelete\",\"admin.blogDelete\"]','2024-06-04 07:14:12',1,'mSTT5Hxb18mRckMPU9by93ryOAUSoVOkMslGOs078nAX0Ui6e3MaA72Cfj3t','2021-12-17 11:00:01','2024-06-04 07:14:12'),
+(1,'admin','admin','admin@gmail.com','$2y$10$MjIGHeJr/lPkyrQrHhPK8usJwoFVYdpmpVG807ZhBWxGtDslyCtbC','adminProfile/YiKSqPeNWPDIgCBI5l7wsqM0RyIw3Cg1vJzYukl9.jpg','local','+5641 455646','TX, USA','[\"admin.dashboard\",\"admin.staff\",\"admin.storeStaff\",\"admin.updateStaff\",\"admin.identify-form\",\"admin.identify-form.store\",\"admin.identify-form.action\",\"admin.users\",\"admin.user-multiple-active\",\"admin.user-multiple-inactive\",\"admin.user-edit\",\"admin.email-send\",\"admin.kyc.users.pending\",\"admin.kyc.kyc.users\",\"admin.email-send.store\",\"admin.user-update\",\"admin.userPasswordUpdate\",\"admin.userKycHistory\",\"admin.send-email\",\"admin.login-as-user\",\"admin.users.Kyc.action\",\"admin.package\",\"admin.purchasePackageList\",\"admin.packageCreate\",\"admin.packageEdit\",\"admin.packageDelete\",\"admin.userPurchasePackageDelete\",\"admin.listingCategory\",\"admin.viewListings\",\"admin.listingSettings\",\"admin.wishList\",\"admin.productEnquiry\",\"admin.listingAnalytics\",\"admin.showListingAnalytics\",\"admin.listingReview\",\"admin.listingCategoryCreate\",\"admin.listingCategoryEdit\",\"admin.editListing\",\"admin.listingCategoryDelete\",\"admin.viewListingDelete\",\"admin.wishListDelete\",\"admin.listingReviewDelete\",\"admin.listingAnalyticsDelete\",\"admin.amenities\",\"admin.amenitiesCreate\",\"admin.amenitiesEdit\",\"admin.amenitiesDelete\",\"admin.place\",\"admin.placeCreate\",\"admin.placeEdit\",\"admin.placeDelete\",\"admin.claimBusiness\",\"admin.claimMessageDelete\",\"admin.contactMessage\",\"admin.contactMessageDelete\",\"admin.transaction\",\"admin.transaction.search\",\"admin.subscriber.index\",\"admin.subscriber.sendEmail\",\"admin.subscriber.remove\",\"admin.payment.methods\",\"admin.deposit.manual.index\",\"admin.deposit.manual.create\",\"admin.edit.payment.methods\",\"admin.deposit.manual.edit\",\"admin.payment.pending\",\"admin.payment.log\",\"admin.payment.search\",\"admin.payment.action\",\"admin.ticket\",\"admin.ticket.view\",\"admin.ticket.reply\",\"admin.ticket.delete\",\"admin.basic-controls\",\"admin.email-controls\",\"admin.email-template.show\",\"admin.sms.config\",\"admin.sms-template\",\"admin.notify-config\",\"admin.notify-template.show\",\"admin.notify-template.edit\",\"admin.basic-controls.update\",\"admin.email-controls.update\",\"admin.email-template.edit\",\"admin.sms-template.edit\",\"admin.notify-config.update\",\"admin.notify-template.update\",\"admin.language.index\",\"admin.language.create\",\"admin.language.edit\",\"admin.language.keywordEdit\",\"admin.language.delete\",\"admin.manage.theme\",\"admin.logo-seo\",\"admin.breadcrumb\",\"admin.template.show\",\"admin.content.index\",\"admin.content.create\",\"admin.logoUpdate\",\"admin.seoUpdate\",\"admin.breadcrumbUpdate\",\"admin.content.show\",\"admin.content.delete\",\"admin.blogCategory\",\"admin.blogList\",\"admin.blogCategoryCreate\",\"admin.blogCreate\",\"admin.blogCategoryEdit\",\"admin.blogEdit\",\"admin.blogCategoryDelete\",\"admin.blogDelete\"]','2024-06-06 15:49:16',1,'mSTT5Hxb18mRckMPU9by93ryOAUSoVOkMslGOs078nAX0Ui6e3MaA72Cfj3t','2021-12-17 11:00:01','2024-06-06 15:49:16'),
 (2,'Staff','staff','staff@staff.com','$2y$10$wnKJKURjEzNQ90OEvNleG.jbM5h9mFd5ZuuMfj.Mzr/DU8fM5.PPm',NULL,NULL,'+9454 4541541',NULL,'[\"admin.dashboard\",\"admin.staff\",\"admin.storeStaff\",\"admin.updateStaff\",\"admin.identify-form\",\"admin.identify-form.store\",\"admin.identify-form.action\",\"admin.users\",\"admin.user-multiple-active\",\"admin.user-multiple-inactive\",\"admin.user-edit\",\"admin.email-send\",\"admin.kyc.users.pending\",\"admin.kyc.kyc.users\",\"admin.email-send.store\",\"admin.user-update\",\"admin.userPasswordUpdate\",\"admin.userKycHistory\",\"admin.send-email\",\"admin.login-as-user\",\"admin.users.Kyc.action\",\"admin.package\",\"admin.purchasePackageList\",\"admin.packageCreate\",\"admin.packageEdit\",\"admin.packageDelete\",\"admin.userPurchasePackageDelete\",\"admin.listingCategory\",\"admin.viewListings\",\"admin.listingSettings\",\"admin.wishList\",\"admin.productEnquiry\",\"admin.listingAnalytics\",\"admin.showListingAnalytics\",\"admin.listingReview\",\"admin.listingCategoryCreate\",\"admin.listingCategoryEdit\",\"admin.editListing\",\"admin.listingCategoryDelete\",\"admin.viewListingDelete\",\"admin.wishListDelete\",\"admin.listingReviewDelete\",\"admin.listingAnalyticsDelete\",\"admin.amenities\",\"admin.amenitiesCreate\",\"admin.amenitiesEdit\",\"admin.amenitiesDelete\",\"admin.place\",\"admin.placeCreate\",\"admin.placeEdit\",\"admin.placeDelete\",\"admin.claimBusiness\",\"admin.claimMessageDelete\",\"admin.contactMessage\",\"admin.contactMessageDelete\",\"admin.transaction\",\"admin.transaction.search\",\"admin.subscriber.index\",\"admin.subscriber.sendEmail\",\"admin.subscriber.remove\",\"admin.payment.methods\",\"admin.deposit.manual.index\",\"admin.deposit.manual.create\",\"admin.edit.payment.methods\",\"admin.deposit.manual.edit\",\"admin.payment.pending\",\"admin.payment.log\",\"admin.payment.search\",\"admin.payment.action\",\"admin.ticket\",\"admin.ticket.view\",\"admin.ticket.reply\",\"admin.ticket.delete\",\"admin.basic-controls\",\"admin.email-controls\",\"admin.email-template.show\",\"admin.sms.config\",\"admin.sms-template\",\"admin.notify-config\",\"admin.notify-template.show\",\"admin.notify-template.edit\",\"admin.basic-controls.update\",\"admin.email-controls.update\",\"admin.email-template.edit\",\"admin.sms-template.edit\",\"admin.notify-config.update\",\"admin.notify-template.update\",\"admin.language.index\",\"admin.language.create\",\"admin.language.edit\",\"admin.language.keywordEdit\",\"admin.language.delete\",\"admin.manage.theme\",\"admin.logo-seo\",\"admin.breadcrumb\",\"admin.template.show\",\"admin.content.index\",\"admin.content.create\",\"admin.logoUpdate\",\"admin.seoUpdate\",\"admin.breadcrumbUpdate\",\"admin.content.show\",\"admin.content.delete\",\"admin.blogCategory\",\"admin.blogList\",\"admin.blogCategoryCreate\",\"admin.blogCreate\",\"admin.blogCategoryEdit\",\"admin.blogEdit\",\"admin.blogCategoryDelete\",\"admin.blogDelete\"]','2024-05-28 04:27:59',1,NULL,'2022-05-25 22:29:03','2024-05-28 04:27:59');
 
 /*Table structure for table `amenities` */
@@ -106,7 +105,7 @@ CREATE TABLE `analytics` (
   PRIMARY KEY (`id`),
   KEY `analytics_listing_owner_id_index` (`listing_owner_id`),
   KEY `analytics_listing_id_index` (`listing_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `analytics` */
 
@@ -161,7 +160,123 @@ insert  into `analytics`(`id`,`listing_owner_id`,`listing_id`,`visitor_ip`,`coun
 (49,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-04 14:19:21','2024-06-04 14:19:21'),
 (50,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-04 14:19:33','2024-06-04 14:19:33'),
 (51,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-04 14:20:00','2024-06-04 14:20:00'),
-(52,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-04 14:20:17','2024-06-04 14:20:17');
+(52,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-04 14:20:17','2024-06-04 14:20:17'),
+(53,1,16,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-04 18:42:54','2024-06-04 18:42:54'),
+(54,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 12:56:05','2024-06-05 12:56:05'),
+(55,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 12:57:19','2024-06-05 12:57:19'),
+(56,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 12:59:45','2024-06-05 12:59:45'),
+(57,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:02:30','2024-06-05 13:02:30'),
+(58,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:03:01','2024-06-05 13:03:01'),
+(59,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:03:18','2024-06-05 13:03:18'),
+(60,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:03:59','2024-06-05 13:03:59'),
+(61,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:04:28','2024-06-05 13:04:28'),
+(62,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:04:56','2024-06-05 13:04:56'),
+(63,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:05:02','2024-06-05 13:05:02'),
+(64,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:05:09','2024-06-05 13:05:09'),
+(65,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:05:26','2024-06-05 13:05:26'),
+(66,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:05:47','2024-06-05 13:05:47'),
+(67,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:06:05','2024-06-05 13:06:05'),
+(68,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:06:30','2024-06-05 13:06:30'),
+(69,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 13:06:37','2024-06-05 13:06:37'),
+(70,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:36:55','2024-06-05 18:36:55'),
+(71,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:37:21','2024-06-05 18:37:21'),
+(72,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:39:19','2024-06-05 18:39:19'),
+(73,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:39:59','2024-06-05 18:39:59'),
+(74,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:40:12','2024-06-05 18:40:12'),
+(75,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:41:14','2024-06-05 18:41:14'),
+(76,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:41:45','2024-06-05 18:41:45'),
+(77,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:42:18','2024-06-05 18:42:18'),
+(78,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:42:33','2024-06-05 18:42:33'),
+(79,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:42:51','2024-06-05 18:42:51'),
+(80,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:42:58','2024-06-05 18:42:58'),
+(81,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:43:08','2024-06-05 18:43:08'),
+(82,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:43:16','2024-06-05 18:43:16'),
+(83,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:44:21','2024-06-05 18:44:21'),
+(84,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:44:29','2024-06-05 18:44:29'),
+(85,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:45:42','2024-06-05 18:45:42'),
+(86,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:47:14','2024-06-05 18:47:14'),
+(87,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:47:29','2024-06-05 18:47:29'),
+(88,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:47:39','2024-06-05 18:47:39'),
+(89,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:47:52','2024-06-05 18:47:52'),
+(90,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 18:47:59','2024-06-05 18:47:59'),
+(91,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:29:52','2024-06-05 22:29:52'),
+(92,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:30:27','2024-06-05 22:30:27'),
+(93,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:32:53','2024-06-05 22:32:53'),
+(94,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:33:12','2024-06-05 22:33:12'),
+(95,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:33:33','2024-06-05 22:33:33'),
+(96,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:33:43','2024-06-05 22:33:43'),
+(97,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:34:18','2024-06-05 22:34:18'),
+(98,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:34:31','2024-06-05 22:34:31'),
+(99,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:35:02','2024-06-05 22:35:02'),
+(100,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:35:07','2024-06-05 22:35:07'),
+(101,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-05 22:35:36','2024-06-05 22:35:36'),
+(102,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 12:06:24','2024-06-06 12:06:24'),
+(103,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 12:07:56','2024-06-06 12:07:56'),
+(104,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 12:08:38','2024-06-06 12:08:38'),
+(105,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:15:12','2024-06-06 15:15:12'),
+(106,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:17:54','2024-06-06 15:17:54'),
+(107,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:20:53','2024-06-06 15:20:53'),
+(108,1,15,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:21:34','2024-06-06 15:21:34'),
+(109,1,15,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:22:18','2024-06-06 15:22:18'),
+(110,1,15,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:22:27','2024-06-06 15:22:27'),
+(111,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:26:01','2024-06-06 15:26:01'),
+(112,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:26:11','2024-06-06 15:26:11'),
+(113,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:29:26','2024-06-06 15:29:26'),
+(114,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:30:10','2024-06-06 15:30:10'),
+(115,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:32:12','2024-06-06 15:32:12'),
+(116,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:32:33','2024-06-06 15:32:33'),
+(117,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:33:20','2024-06-06 15:33:20'),
+(118,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:34:42','2024-06-06 15:34:42'),
+(119,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:35:45','2024-06-06 15:35:45'),
+(120,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:38:00','2024-06-06 15:38:00'),
+(121,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:38:55','2024-06-06 15:38:55'),
+(122,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:39:57','2024-06-06 15:39:57'),
+(123,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:40:44','2024-06-06 15:40:44'),
+(124,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:41:10','2024-06-06 15:41:10'),
+(125,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:42:06','2024-06-06 15:42:06'),
+(126,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:42:25','2024-06-06 15:42:25'),
+(127,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:42:36','2024-06-06 15:42:36'),
+(128,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:43:59','2024-06-06 15:43:59'),
+(129,1,17,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 15:48:04','2024-06-06 15:48:04'),
+(130,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:27:41','2024-06-06 16:27:41'),
+(131,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:29:33','2024-06-06 16:29:33'),
+(132,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:29:49','2024-06-06 16:29:49'),
+(133,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:30:10','2024-06-06 16:30:10'),
+(134,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:30:55','2024-06-06 16:30:55'),
+(135,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:31:22','2024-06-06 16:31:22'),
+(136,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:31:37','2024-06-06 16:31:37'),
+(137,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:32:12','2024-06-06 16:32:12'),
+(138,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:32:27','2024-06-06 16:32:27'),
+(139,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:33:02','2024-06-06 16:33:02'),
+(140,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:36:33','2024-06-06 16:36:33'),
+(141,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:36:50','2024-06-06 16:36:50'),
+(142,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:36:54','2024-06-06 16:36:54'),
+(143,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:37:57','2024-06-06 16:37:57'),
+(144,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:38:28','2024-06-06 16:38:28'),
+(145,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:39:02','2024-06-06 16:39:02'),
+(146,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:39:26','2024-06-06 16:39:26'),
+(147,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:39:41','2024-06-06 16:39:41'),
+(148,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:40:05','2024-06-06 16:40:05'),
+(149,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:40:14','2024-06-06 16:40:14'),
+(150,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:40:29','2024-06-06 16:40:29'),
+(151,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:40:40','2024-06-06 16:40:40'),
+(152,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:41:03','2024-06-06 16:41:03'),
+(153,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:41:26','2024-06-06 16:41:26'),
+(154,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:42:12','2024-06-06 16:42:12'),
+(155,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:42:20','2024-06-06 16:42:20'),
+(156,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:42:42','2024-06-06 16:42:42'),
+(157,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:43:04','2024-06-06 16:43:04'),
+(158,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:43:13','2024-06-06 16:43:13'),
+(159,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:43:38','2024-06-06 16:43:38'),
+(160,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:43:49','2024-06-06 16:43:49'),
+(161,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:44:31','2024-06-06 16:44:31'),
+(162,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:44:49','2024-06-06 16:44:49'),
+(163,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:45:01','2024-06-06 16:45:01'),
+(164,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:45:25','2024-06-06 16:45:25'),
+(165,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:46:32','2024-06-06 16:46:32'),
+(166,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:47:11','2024-06-06 16:47:11'),
+(167,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:47:33','2024-06-06 16:47:33'),
+(168,1,28,'::1',NULL,NULL,NULL,NULL,NULL,'Windows 10','Chrome','2024-06-06 16:47:44','2024-06-06 16:47:44');
 
 /*Table structure for table `blog_categories` */
 
@@ -247,7 +362,7 @@ CREATE TABLE `business_hours` (
   PRIMARY KEY (`id`),
   KEY `business_hours_listing_id_index` (`listing_id`),
   KEY `business_hours_purchase_package_id_index` (`purchase_package_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `business_hours` */
 
@@ -259,7 +374,8 @@ insert  into `business_hours`(`id`,`listing_id`,`purchase_package_id`,`working_d
 (15,13,2,'Monday','05:50:00','17:50:00','2024-06-02 17:50:52','2024-06-02 17:50:52'),
 (17,15,2,'Monday','05:54:00','17:54:00','2024-06-02 17:55:09','2024-06-02 17:55:09'),
 (18,16,2,'Monday','06:09:00','18:09:00','2024-06-02 18:09:28','2024-06-02 18:09:28'),
-(19,17,2,'Monday','06:12:00','18:12:00','2024-06-02 18:12:38','2024-06-02 18:12:38');
+(19,17,2,'Monday','06:12:00','18:12:00','2024-06-02 18:12:38','2024-06-02 18:12:38'),
+(20,28,2,'Monday','04:26:00','16:26:00','2024-06-06 16:27:09','2024-06-06 16:27:09');
 
 /*Table structure for table `claim_businesses` */
 
@@ -915,12 +1031,13 @@ CREATE TABLE `listing_images` (
   PRIMARY KEY (`id`),
   KEY `listing_images_listing_id_index` (`listing_id`),
   KEY `listing_images_purchase_package_id_index` (`purchase_package_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `listing_images` */
 
 insert  into `listing_images`(`id`,`listing_id`,`purchase_package_id`,`listing_image`,`driver`,`created_at`,`updated_at`) values 
-(2,1,2,'listings/TdOhS3Y9SEU2RTxltioOg5NrIxVZksRCmyrc8ysI.jpg','local','2024-05-28 12:39:10','2024-05-28 12:39:10');
+(2,1,2,'listings/TdOhS3Y9SEU2RTxltioOg5NrIxVZksRCmyrc8ysI.jpg','local','2024-05-28 12:39:10','2024-05-28 12:39:10'),
+(3,28,2,'listings/LZyEqRXOwzKGfhr9cmgHzEUYGSQTpJxqOmbAknFN.jpg','local','2024-06-06 16:27:09','2024-06-06 16:27:09');
 
 /*Table structure for table `listing_seos` */
 
@@ -981,7 +1098,7 @@ CREATE TABLE `listings` (
   KEY `listings_category_id_index` (`category_id`(768)),
   KEY `listings_purchase_package_id_index` (`purchase_package_id`),
   KEY `listings_place_id_index` (`place_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `listings` */
 
@@ -994,8 +1111,7 @@ insert  into `listings`(`id`,`user_id`,`category_id`,`purchase_package_id`,`plac
 (15,1,'[\"6\"]',2,1,'PT. Loka Mada','loka@gmail.com',2147483647,'<p>Properti Perusahaan</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 17:55:09',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 17:55:09',NULL),
 (16,1,'[\"7\"]',2,1,'PT. Gomen Naka','goen@gmail.com',2147483647,'<p>gomen naka</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 18:09:28',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 18:09:28',NULL),
 (17,1,'[\"5\"]',2,1,'PT. Koayaba','m.rheza@anugerahvataabadi.com',2147483647,'<p>Kolam angka</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-02 18:12:38',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-02 18:12:38',NULL),
-(24,1,'[7]',2,1,'PT. EXCEL TABS','cawangbsi@gmail.com',2147483647,'PERUSAHAAN HOTEL BESAR','Jl. Cikoko Barat III - Jakarta',NULL,NULL,NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-04 10:27:49',NULL,NULL,NULL,NULL,NULL,'2024-06-04 10:27:49',NULL),
-(25,1,'[6]',2,2,'PT. EXCEL RANA DWI','cawangbsi@gmail.com',2147483647,'PERUSAHAAN PERDAGANGAN SEMBAKO','JL Pengadegan V - ACEH',NULL,NULL,NULL,NULL,NULL,1,1,NULL,NULL,'2024-06-04 10:27:49',NULL,NULL,NULL,NULL,NULL,'2024-06-04 10:27:49',NULL);
+(28,1,'[\"3\"]',2,1,'PT. Mitra Adi Perkasa','adi@perkasa.com',2147483647,'<p>slmfdsf</p>','Jakarta Special Capital Region, Gambir, Jakarta, IDN','-6.1747565','106.8270734',NULL,'listingsThumbnail/1P1oyBnCQh7FuYXa1r7MJlajp0XeJWYzzM3z4PWo.jpg','local',1,1,NULL,NULL,'2024-06-06 16:27:09',NULL,NULL,NULL,NULL,'How can i help you?','2024-06-06 16:27:09',NULL);
 
 /*Table structure for table `migrations` */
 
@@ -1355,7 +1471,7 @@ CREATE TABLE `products` (
   KEY `products_listing_id_index` (`listing_id`),
   KEY `products_purchase_package_id_index` (`purchase_package_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `products` */
 
@@ -1367,7 +1483,8 @@ insert  into `products`(`id`,`user_id`,`listing_id`,`purchase_package_id`,`produ
 (13,1,13,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 17:50:52','2024-06-02 17:50:52'),
 (15,1,15,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 17:55:09','2024-06-02 17:55:09'),
 (16,1,16,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 18:09:28','2024-06-02 18:09:28'),
-(17,1,17,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 18:12:38','2024-06-02 18:12:38');
+(17,1,17,2,NULL,NULL,NULL,NULL,NULL,'2024-06-02 18:12:38','2024-06-02 18:12:38'),
+(18,1,28,2,NULL,NULL,NULL,NULL,NULL,'2024-06-06 16:27:09','2024-06-06 16:27:09');
 
 /*Table structure for table `purchase_packages` */
 
@@ -1762,7 +1879,7 @@ CREATE TABLE `viewers` (
   PRIMARY KEY (`id`),
   KEY `viewers_user_id_index` (`user_id`),
   KEY `viewers_listing_id_index` (`listing_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `viewers` */
 
@@ -1817,7 +1934,123 @@ insert  into `viewers`(`id`,`user_id`,`listing_id`,`viewer_ip`,`created_at`,`upd
 (49,1,17,'::1','2024-06-04 14:19:20','2024-06-04 14:19:20'),
 (50,1,17,'::1','2024-06-04 14:19:33','2024-06-04 14:19:33'),
 (51,1,17,'::1','2024-06-04 14:19:59','2024-06-04 14:19:59'),
-(52,1,17,'::1','2024-06-04 14:20:16','2024-06-04 14:20:16');
+(52,1,17,'::1','2024-06-04 14:20:16','2024-06-04 14:20:16'),
+(53,1,16,'::1','2024-06-04 18:42:52','2024-06-04 18:42:52'),
+(54,1,17,'::1','2024-06-05 12:56:04','2024-06-05 12:56:04'),
+(55,1,17,'::1','2024-06-05 12:57:18','2024-06-05 12:57:18'),
+(56,1,17,'::1','2024-06-05 12:59:45','2024-06-05 12:59:45'),
+(57,1,17,'::1','2024-06-05 13:02:29','2024-06-05 13:02:29'),
+(58,1,17,'::1','2024-06-05 13:03:00','2024-06-05 13:03:00'),
+(59,1,17,'::1','2024-06-05 13:03:17','2024-06-05 13:03:17'),
+(60,1,17,'::1','2024-06-05 13:03:59','2024-06-05 13:03:59'),
+(61,1,17,'::1','2024-06-05 13:04:27','2024-06-05 13:04:27'),
+(62,1,17,'::1','2024-06-05 13:04:54','2024-06-05 13:04:54'),
+(63,1,17,'::1','2024-06-05 13:05:01','2024-06-05 13:05:01'),
+(64,1,17,'::1','2024-06-05 13:05:08','2024-06-05 13:05:08'),
+(65,1,17,'::1','2024-06-05 13:05:26','2024-06-05 13:05:26'),
+(66,1,17,'::1','2024-06-05 13:05:46','2024-06-05 13:05:46'),
+(67,1,17,'::1','2024-06-05 13:06:04','2024-06-05 13:06:04'),
+(68,1,17,'::1','2024-06-05 13:06:29','2024-06-05 13:06:29'),
+(69,1,17,'::1','2024-06-05 13:06:37','2024-06-05 13:06:37'),
+(70,1,17,'::1','2024-06-05 18:36:54','2024-06-05 18:36:54'),
+(71,1,17,'::1','2024-06-05 18:37:20','2024-06-05 18:37:20'),
+(72,1,17,'::1','2024-06-05 18:39:18','2024-06-05 18:39:18'),
+(73,1,17,'::1','2024-06-05 18:39:58','2024-06-05 18:39:58'),
+(74,1,17,'::1','2024-06-05 18:40:11','2024-06-05 18:40:11'),
+(75,1,17,'::1','2024-06-05 18:41:13','2024-06-05 18:41:13'),
+(76,1,17,'::1','2024-06-05 18:41:45','2024-06-05 18:41:45'),
+(77,1,17,'::1','2024-06-05 18:42:17','2024-06-05 18:42:17'),
+(78,1,17,'::1','2024-06-05 18:42:33','2024-06-05 18:42:33'),
+(79,1,17,'::1','2024-06-05 18:42:50','2024-06-05 18:42:50'),
+(80,1,17,'::1','2024-06-05 18:42:57','2024-06-05 18:42:57'),
+(81,1,17,'::1','2024-06-05 18:43:07','2024-06-05 18:43:07'),
+(82,1,17,'::1','2024-06-05 18:43:15','2024-06-05 18:43:15'),
+(83,1,17,'::1','2024-06-05 18:44:21','2024-06-05 18:44:21'),
+(84,1,17,'::1','2024-06-05 18:44:28','2024-06-05 18:44:28'),
+(85,1,17,'::1','2024-06-05 18:45:41','2024-06-05 18:45:41'),
+(86,1,17,'::1','2024-06-05 18:47:13','2024-06-05 18:47:13'),
+(87,1,17,'::1','2024-06-05 18:47:28','2024-06-05 18:47:28'),
+(88,1,17,'::1','2024-06-05 18:47:39','2024-06-05 18:47:39'),
+(89,1,17,'::1','2024-06-05 18:47:51','2024-06-05 18:47:51'),
+(90,1,17,'::1','2024-06-05 18:47:58','2024-06-05 18:47:58'),
+(91,1,17,'::1','2024-06-05 22:29:51','2024-06-05 22:29:51'),
+(92,1,17,'::1','2024-06-05 22:30:27','2024-06-05 22:30:27'),
+(93,1,17,'::1','2024-06-05 22:32:53','2024-06-05 22:32:53'),
+(94,1,17,'::1','2024-06-05 22:33:11','2024-06-05 22:33:11'),
+(95,1,17,'::1','2024-06-05 22:33:33','2024-06-05 22:33:33'),
+(96,1,17,'::1','2024-06-05 22:33:43','2024-06-05 22:33:43'),
+(97,1,17,'::1','2024-06-05 22:34:17','2024-06-05 22:34:17'),
+(98,1,17,'::1','2024-06-05 22:34:31','2024-06-05 22:34:31'),
+(99,1,17,'::1','2024-06-05 22:35:01','2024-06-05 22:35:01'),
+(100,1,17,'::1','2024-06-05 22:35:06','2024-06-05 22:35:06'),
+(101,1,17,'::1','2024-06-05 22:35:35','2024-06-05 22:35:35'),
+(102,1,17,'::1','2024-06-06 12:06:23','2024-06-06 12:06:23'),
+(103,1,17,'::1','2024-06-06 12:07:55','2024-06-06 12:07:55'),
+(104,1,17,'::1','2024-06-06 12:08:37','2024-06-06 12:08:37'),
+(105,1,17,'::1','2024-06-06 15:15:11','2024-06-06 15:15:11'),
+(106,1,17,'::1','2024-06-06 15:17:53','2024-06-06 15:17:53'),
+(107,1,17,'::1','2024-06-06 15:20:53','2024-06-06 15:20:53'),
+(108,1,15,'::1','2024-06-06 15:21:34','2024-06-06 15:21:34'),
+(109,1,15,'::1','2024-06-06 15:22:18','2024-06-06 15:22:18'),
+(110,1,15,'::1','2024-06-06 15:22:26','2024-06-06 15:22:26'),
+(111,1,17,'::1','2024-06-06 15:26:00','2024-06-06 15:26:00'),
+(112,1,17,'::1','2024-06-06 15:26:11','2024-06-06 15:26:11'),
+(113,1,17,'::1','2024-06-06 15:29:26','2024-06-06 15:29:26'),
+(114,1,17,'::1','2024-06-06 15:30:10','2024-06-06 15:30:10'),
+(115,1,17,'::1','2024-06-06 15:32:11','2024-06-06 15:32:11'),
+(116,1,17,'::1','2024-06-06 15:32:32','2024-06-06 15:32:32'),
+(117,1,17,'::1','2024-06-06 15:33:19','2024-06-06 15:33:19'),
+(118,1,17,'::1','2024-06-06 15:34:41','2024-06-06 15:34:41'),
+(119,1,17,'::1','2024-06-06 15:35:45','2024-06-06 15:35:45'),
+(120,1,17,'::1','2024-06-06 15:38:00','2024-06-06 15:38:00'),
+(121,1,17,'::1','2024-06-06 15:38:55','2024-06-06 15:38:55'),
+(122,1,17,'::1','2024-06-06 15:39:56','2024-06-06 15:39:56'),
+(123,1,17,'::1','2024-06-06 15:40:43','2024-06-06 15:40:43'),
+(124,1,17,'::1','2024-06-06 15:41:09','2024-06-06 15:41:09'),
+(125,1,17,'::1','2024-06-06 15:42:05','2024-06-06 15:42:05'),
+(126,1,17,'::1','2024-06-06 15:42:24','2024-06-06 15:42:24'),
+(127,1,17,'::1','2024-06-06 15:42:35','2024-06-06 15:42:35'),
+(128,1,17,'::1','2024-06-06 15:43:59','2024-06-06 15:43:59'),
+(129,1,17,'::1','2024-06-06 15:48:04','2024-06-06 15:48:04'),
+(130,1,28,'::1','2024-06-06 16:27:40','2024-06-06 16:27:40'),
+(131,1,28,'::1','2024-06-06 16:29:32','2024-06-06 16:29:32'),
+(132,1,28,'::1','2024-06-06 16:29:48','2024-06-06 16:29:48'),
+(133,1,28,'::1','2024-06-06 16:30:10','2024-06-06 16:30:10'),
+(134,1,28,'::1','2024-06-06 16:30:55','2024-06-06 16:30:55'),
+(135,1,28,'::1','2024-06-06 16:31:21','2024-06-06 16:31:21'),
+(136,1,28,'::1','2024-06-06 16:31:36','2024-06-06 16:31:36'),
+(137,1,28,'::1','2024-06-06 16:32:11','2024-06-06 16:32:11'),
+(138,1,28,'::1','2024-06-06 16:32:26','2024-06-06 16:32:26'),
+(139,1,28,'::1','2024-06-06 16:33:01','2024-06-06 16:33:01'),
+(140,1,28,'::1','2024-06-06 16:36:32','2024-06-06 16:36:32'),
+(141,1,28,'::1','2024-06-06 16:36:49','2024-06-06 16:36:49'),
+(142,1,28,'::1','2024-06-06 16:36:53','2024-06-06 16:36:53'),
+(143,1,28,'::1','2024-06-06 16:37:56','2024-06-06 16:37:56'),
+(144,1,28,'::1','2024-06-06 16:38:27','2024-06-06 16:38:27'),
+(145,1,28,'::1','2024-06-06 16:39:01','2024-06-06 16:39:01'),
+(146,1,28,'::1','2024-06-06 16:39:26','2024-06-06 16:39:26'),
+(147,1,28,'::1','2024-06-06 16:39:40','2024-06-06 16:39:40'),
+(148,1,28,'::1','2024-06-06 16:40:04','2024-06-06 16:40:04'),
+(149,1,28,'::1','2024-06-06 16:40:13','2024-06-06 16:40:13'),
+(150,1,28,'::1','2024-06-06 16:40:29','2024-06-06 16:40:29'),
+(151,1,28,'::1','2024-06-06 16:40:40','2024-06-06 16:40:40'),
+(152,1,28,'::1','2024-06-06 16:41:03','2024-06-06 16:41:03'),
+(153,1,28,'::1','2024-06-06 16:41:25','2024-06-06 16:41:25'),
+(154,1,28,'::1','2024-06-06 16:42:12','2024-06-06 16:42:12'),
+(155,1,28,'::1','2024-06-06 16:42:19','2024-06-06 16:42:19'),
+(156,1,28,'::1','2024-06-06 16:42:42','2024-06-06 16:42:42'),
+(157,1,28,'::1','2024-06-06 16:43:03','2024-06-06 16:43:03'),
+(158,1,28,'::1','2024-06-06 16:43:13','2024-06-06 16:43:13'),
+(159,1,28,'::1','2024-06-06 16:43:37','2024-06-06 16:43:37'),
+(160,1,28,'::1','2024-06-06 16:43:48','2024-06-06 16:43:48'),
+(161,1,28,'::1','2024-06-06 16:44:31','2024-06-06 16:44:31'),
+(162,1,28,'::1','2024-06-06 16:44:49','2024-06-06 16:44:49'),
+(163,1,28,'::1','2024-06-06 16:45:00','2024-06-06 16:45:00'),
+(164,1,28,'::1','2024-06-06 16:45:24','2024-06-06 16:45:24'),
+(165,1,28,'::1','2024-06-06 16:46:32','2024-06-06 16:46:32'),
+(166,1,28,'::1','2024-06-06 16:47:10','2024-06-06 16:47:10'),
+(167,1,28,'::1','2024-06-06 16:47:33','2024-06-06 16:47:33'),
+(168,1,28,'::1','2024-06-06 16:47:43','2024-06-06 16:47:43');
 
 /*Table structure for table `website_and_socials` */
 
@@ -1834,7 +2067,7 @@ CREATE TABLE `website_and_socials` (
   PRIMARY KEY (`id`),
   KEY `website_and_socials_listing_id_index` (`listing_id`),
   KEY `website_and_socials_purchase_package_id_index` (`purchase_package_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `website_and_socials` */
 
@@ -1846,7 +2079,8 @@ insert  into `website_and_socials`(`id`,`listing_id`,`purchase_package_id`,`soci
 (15,13,2,'gelora@gmail.com','Jl Gelora Raya','2024-06-02 17:50:52','2024-06-02 17:50:52'),
 (17,15,2,'properti@gmail.com','Jl Sudirman','2024-06-02 17:55:09','2024-06-02 17:55:09'),
 (18,16,2,'naka@gmail.com','Jl Gambir 2','2024-06-02 18:09:28','2024-06-02 18:09:28'),
-(19,17,2,'salemba@gmail.com','Jl Salemba','2024-06-02 18:12:38','2024-06-02 18:12:38');
+(19,17,2,'salemba@gmail.com','Jl Salemba','2024-06-02 18:12:38','2024-06-02 18:12:38'),
+(20,28,2,'support@perkasa.com','Jl. Jendral Sudirman Gatot Subroto - Jakarta','2024-06-06 16:27:09','2024-06-06 16:27:09');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

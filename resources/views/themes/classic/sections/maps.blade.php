@@ -278,7 +278,8 @@
         }
         const cell = document.createElement("td");
         const link = document.createElement("a");
-        link.href = `${baseURL}/category/${state.name}`;
+        // link.href = `${baseURL}/category/${state.name}`;
+        link.href = `${baseURL}/category/${encodeURIComponent(state.name)}`;
         const listingsCount = provinceData[state.name] ? provinceData[state.name].listings_count : 0;
         link.textContent = `${state.name} (${listingsCount})`;
         link.style.color = state.color; 

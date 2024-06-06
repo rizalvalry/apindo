@@ -209,16 +209,19 @@
 
 <div class="container">
     <div class="header-text text-center">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>"><?php echo app('translator')->get('Home'); ?></a></li>
-            <li class="breadcrumb-item"><a href="#"><?php echo app('translator')->get('Listings'); ?></a></li>
-            <li class="breadcrumb-item"><a href="#"><?php echo app('translator')->get('Details Listings'); ?></a></li>
-            <?php echo $__env->yieldContent('breadcrumb_items'); ?>
-        </ol>
-    </nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>"><?php echo app('translator')->get('Home'); ?></a></li>
+                <?php if(Request::get('region') && Request::get('category')): ?>
+                    <li class="breadcrumb-item"><a href="<?php echo e(url('/category/' . Request::get('region') . '/' . Request::get('category'))); ?>"><?php echo e(Request::get('region')); ?></a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php echo e(Request::get('category')); ?></li>
+                <?php endif; ?>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo e(Request::segment(2)); ?></li>
+            </ol>
+        </nav>
+    </div>
 </div>
-</div>
+
 
     <section class="listing-details">
         <div class="overlay">
@@ -647,12 +650,12 @@ unset($__errorArgs, $__bag); ?>
                             <div class="side-box">
                                 <!-- <h5><?php echo app('translator')->get('Created By'); ?></h5> -->
                                 <div class="creator-box">
-                                    <div class="img-box">
+                                    <div class="">
                                         <!-- <img
                                             src="<?php echo e(getFile(optional($single_listing_details->get_user)->cover_driver, optional($single_listing_details->get_user)->cover_photo)); ?>"
                                             alt="<?php echo e(config('basic.site_title')); ?>" class="img-fluid cover"/> -->
                                         <img
-                                            src="<?php echo e(getFile(optional($single_listing_details->get_user)->driver, optional($single_listing_details->get_user)->image)); ?>"
+                                            src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>"
                                             class="img-fluid profile" alt="<?php echo e(config('basic.site_title')); ?>"/>
                                     </div>
 

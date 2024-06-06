@@ -184,15 +184,7 @@
         </div>
 
 
-        <form action="<?php echo e(route('admin.listingStore', $id)); ?>" method="post" enctype="multipart/form-data">
-            <?php echo csrf_field(); ?>
-            <div class="media mt-0 mb-2 d-flex justify-content-end">
-                <a href="<?php echo e(route('user.allListing')); ?>" class="btn btn-sm  btn-primary mr-2">
-                    <span><i class="fas fa-arrow-left"></i> <?php echo app('translator')->get('Back'); ?></span>
-                </a>
-            </div>
-
-            <div class="container">
+        <div class="container">
                 <div class="row g-3 align-items-center">
                 <form action="<?php echo e(route('admin.listingStore', ['id' => $id])); ?>" method="POST" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
@@ -207,6 +199,16 @@
                 </form>
                 </div>
             </div>
+
+        <form action="<?php echo e(route('admin.listingStore', $id)); ?>" method="post" enctype="multipart/form-data">
+            <?php echo csrf_field(); ?>
+            <div class="media mt-0 mb-2 d-flex justify-content-end">
+                <a href="<?php echo e(route('user.allListing')); ?>" class="btn btn-sm  btn-primary mr-2">
+                    <span><i class="fas fa-arrow-left"></i> <?php echo app('translator')->get('Back'); ?></span>
+                </a>
+            </div>
+
+            
 
 
             <div id="tab1" class="add-listing-form content active">
@@ -1827,5 +1829,4 @@ unset($__errorArgs, $__bag); ?></span>
         });
     </script>
 <?php $__env->stopPush(); ?>
-
 <?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\apindo\resources\views/admin/listing/addListing.blade.php ENDPATH**/ ?>
