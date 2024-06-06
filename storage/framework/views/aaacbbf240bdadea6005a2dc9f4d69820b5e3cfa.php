@@ -122,7 +122,7 @@
                             <div class="col-12">
                                 <div class="jumbotron d-flex justify-content-center" style="padding:1rem;" data-lat="<?php echo e($listing->lat); ?>" data-long="<?php echo e($listing->long); ?>" data-title="<?php echo app('translator')->get(Str::limit($listing->title, 30)); ?>" data-location="<?php echo app('translator')->get($listing->address); ?>" data-route="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>">
                                     <div class="col-sm-2 m-4">
-                                        <img class="img-fluid" style="border-radius:5px;" src="<?php echo e(getFile($listing->driver, $listing->listing_image)); ?>" alt="<?php echo app('translator')->get(Str::limit($listing->title, 30)); ?>">
+                                        <img class="img-fluid" style="border-radius:5px;" src="<?php echo e(getFile($listing->driver, $listing->thumbnail)); ?>" alt="<?php echo app('translator')->get(Str::limit($listing->title, 30)); ?>">
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="text-box">

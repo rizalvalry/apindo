@@ -123,7 +123,7 @@
                             <div class="col-12">
                                 <div class="jumbotron d-flex justify-content-center" style="padding:1rem;" data-lat="{{ $listing->lat }}" data-long="{{ $listing->long }}" data-title="@lang(Str::limit($listing->title, 30))" data-location="@lang($listing->address)" data-route="{{ route('listing-details', [slug($listing->title), $listing->id]) }}">
                                     <div class="col-sm-2 m-4">
-                                        <img class="img-fluid" style="border-radius:5px;" src="{{ getFile($listing->driver, $listing->listing_image) }}" alt="@lang(Str::limit($listing->title, 30))">
+                                        <img class="img-fluid" style="border-radius:5px;" src="{{  getFile($listing->driver, $listing->thumbnail) }}" alt="@lang(Str::limit($listing->title, 30))">
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="text-box">
