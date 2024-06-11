@@ -647,9 +647,9 @@ unset($__errorArgs, $__bag); ?>
 
                     <div class="col-lg-4">
                         <div class="side-bar">
-                            <div class="side-box">
+                            <div class="">
                                 <!-- <h5><?php echo app('translator')->get('Created By'); ?></h5> -->
-                                <div class="creator-box">
+                                <div class="creator-box" style="margin-bottom:20px;">
                                     <div class="">
                                         <!-- <img
                                             src="<?php echo e(getFile(optional($single_listing_details->get_user)->cover_driver, optional($single_listing_details->get_user)->cover_photo)); ?>"
@@ -707,8 +707,6 @@ unset($__errorArgs, $__bag); ?>
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
                             <div class="side-box">
                                 <!-- <h5><?php echo app('translator')->get('Contact Seller'); ?></h5> -->
@@ -742,6 +740,11 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 <?php endif; ?>
                             </div>
+
+                        </div>
+                    </div>
+
+                            
 
 
                             <div id="mainCarousel" class="carousel mx-auto main_carousel">

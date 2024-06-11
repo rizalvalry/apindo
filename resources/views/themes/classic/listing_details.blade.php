@@ -632,9 +632,9 @@
 
                     <div class="col-lg-4">
                         <div class="side-bar">
-                            <div class="side-box">
+                            <div class="">
                                 <!-- <h5>@lang('Created By')</h5> -->
-                                <div class="creator-box">
+                                <div class="creator-box" style="margin-bottom:20px;">
                                     <div class="">
                                         <!-- <img
                                             src="{{ getFile(optional($single_listing_details->get_user)->cover_driver, optional($single_listing_details->get_user)->cover_photo) }}"
@@ -692,8 +692,6 @@
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
                             <div class="side-box">
                                 <!-- <h5>@lang('Contact Seller')</h5> -->
@@ -727,6 +725,11 @@
                                     </div>
                                 @endif
                             </div>
+
+                        </div>
+                    </div>
+
+                            
 
 
                             <div id="mainCarousel" class="carousel mx-auto main_carousel">
