@@ -1,4 +1,5 @@
 <?php if(isset($templates['maps'][0]) && $maps = $templates['maps'][0]): ?>
+
 <section class="maps-section">
 
 <script src="<?php echo e(asset('assets/global/js/maps.js')); ?>"></script>
@@ -66,6 +67,11 @@
         background-color: #f4f4f4;
     }
     tr {font-size:12px; color: blue;}
+    .province-label {
+        font-size: 10px;
+        fill: #000;
+        pointer-events: none;
+    }
 </style>
 
 <div id="map-container">
@@ -171,7 +177,6 @@
         }
     };
 
-
     const initializeMap = async () => {
         await fetchAllData();
 
@@ -193,6 +198,7 @@
         const group = svg.selectAll("g")
             .data(features)
             .enter().append("g")
+            .attr("class", "province-group")
             .on("mouseover", function(event, d) {
                 d3.select(this).select("path").attr("fill", "#FF5733");
                 const index = features.findIndex(feature => feature === d);
@@ -227,8 +233,7 @@
             .on("click", function(event, d) {
                 const index = features.findIndex(feature => feature === d);
                 const provinceName = stateSpecific[index] ? stateSpecific[index].name : "Unknown";
-                //alert(`You clicked on ${provinceName}`);
-
+                
                 fetch(`${baseURL}/place-details/${provinceName}`)
                     .then(response => response.json())
                     .then(data => {
@@ -240,8 +245,8 @@
                         }
                     })
                     .catch(error => {
-                        // console.error('Error fetching place details:', error);
-                        // alert('An error occurred while fetching place details.');
+                        console.error('Error fetching place details:', error);
+                        alert('An error occurred while fetching place details.');
                     });
             });
 
@@ -252,46 +257,97 @@
             .attr("stroke-width", 1)
             .style("cursor", "pointer");
 
-        group.append("foreignObject")
-            .attr("x", d => path.centroid(d)[0] - 50)
-            .attr("y", d => path.centroid(d)[1] - 10)
-            .attr("width", 100)
-            .attr("height", 20)
+        // Append text labels to a separate layer to ensure they are on top
+        const labelGroup = svg.append("g").attr("class", "label-group");
+        labelGroup.selectAll("text")
+            .data(features)
+            .enter().append("text")
+            .attr("x", d => path.centroid(d)[0])
+            .attr("y", d => path.centroid(d)[1])
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "central")
             .attr("class", "province-label")
-            .style("cursor", "pointer")
-            .html((d, i) => `<div style="font-size:10px;">
-                                <span>${stateSpecific[i].name}</span>
-                            </div>`);
+            .style("pointer-events", "none")
+            .style("fill", "#000")
+            .style("font-size", "10px")
+            .text((d, i) => stateSpecific[i] ? stateSpecific[i].name : "");
 
         loadingIndicator.style("display", "none");
 
         createLegendTable();
     };
 
-    const createLegendTable = () => {
+    const customOrder = [
+    { name: "Aceh", color: "#FF5733" },
+    { name: "Sumatra Utara", color: "#FA70AA" },
+    { name: "Sumatra Selatan", color: "#FFD647" },
+    { name: "Sumatra Barat", color: "#FA70AA" },
+    { name: "Bengkulu", color: "#FA70AA" },
+    { name: "Riau", color: "#FFD647" },
+    { name: "Kepulauan Riau", color: "#46CFDD" },
+    { name: "Jambi", color: "#FFD647" },
+    { name: "Lampung", color: "#997FCE" },
+    { name: "Bangka Belitung", color: "#46CFDD" },
+    { name: "Kalimantan Barat", color: "#FA70AA" },
+    { name: "Kalimantan Timur", color: "#FFD647" },
+    { name: "Kalimantan Selatan", color: "#FA70AA" },
+    { name: "Kalimantan Tengah", color: "#46CFDD" },
+    { name: "Kalimantan Utara", color: "#46CFDD" },
+    { name: "Banten", color: "#997FCE" },
+    { name: "Jakarta", color: "#FA70AA" },
+    { name: "Jawa Barat", color: "#FA70AA" },
+    { name: "Jawa Tengah", color: "#9D7CD6" },
+    { name: "DIY Yogyakarta", color: "#46CFDD" },
+    { name: "Jawa Timur", color: "#FFD647" },
+    { name: "Bali", color: "#FFD647" },
+    { name: "Nusa Tenggara Timur", color: "#9D7CD6" },
+    { name: "Nusa Tenggara Barat", color: "#46CFDD" },
+    { name: "Gorontalo", color: "#46CFDD" },
+    { name: "Sulawesi Barat", color: "#9D7CD6" },
+    { name: "Sulawesi Tengah", color: "#46CFDD" },
+    { name: "Sulawesi Utara", color: "#FA70AA" },
+    { name: "Sulawesi Tenggara", color: "#46CFDD" },
+    { name: "Sulawesi Selatan", color: "#FFD647" },
+    { name: "Maluku Utara", color: "#997FCE" },
+    { name: "Maluku", color: "#997FCE" },
+    { name: "Papua Barat", color: "#46CFDD" },
+    { name: "Papua", color: "#FFD647" },
+    { name: "Papua Tengah", color: "#9D7CD6" },
+    { name: "Papua Pegunungan", color: "#46CFDD" },
+    { name: "Papua Selatan", color: "#FFD647" },
+    { name: "Papua Barat Daya", color: "#46CFDD" }
+];
+
+const createLegendTable = () => {
     const tbody = document.querySelector("#legend-table tbody");
-    let row;
-    stateSpecific.forEach((state, index) => {
-        if (index % 3 === 0) {
-            row = document.createElement("tr");
-            tbody.appendChild(row);
-        }
-        const cell = document.createElement("td");
-        const link = document.createElement("a");
-        // link.href = `${baseURL}/category/${state.name}`;
-        link.href = `${baseURL}/category/${encodeURIComponent(state.name)}`;
-        const listingsCount = provinceData[state.name] ? provinceData[state.name].listings_count : 0;
-        link.textContent = `${state.name} (${listingsCount})`;
-        link.style.color = state.color; 
-        link.style.textDecoration = "none";
-        link.addEventListener("click", (event) => {
-            event.preventDefault();
-            window.location.href = link.href;
+        tbody.innerHTML = ""; // Clear existing table content
+        let row;
+        customOrder.forEach((state, index) => {
+            if (index % 3 === 0) {
+                row = document.createElement("tr");
+                tbody.appendChild(row);
+            }
+            const cell = document.createElement("td");
+            const link = document.createElement("a");
+            link.href = `${baseURL}/category/${encodeURIComponent(state.name)}`;
+            const listingsCount = provinceData[state.name] ? provinceData[state.name].listings_count : 0;
+            fetchAllData
+            link.textContent = `${state.name} (${listingsCount})`;
+            link.style.color = state.color; 
+            link.style.textDecoration = "none";
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                window.location.href = link.href;
+            });
+            cell.appendChild(link);
+            row.appendChild(cell);
         });
-        cell.appendChild(link);
-        row.appendChild(cell);
-    });
-    };
+    
+};
+
+// Panggil fungsi untuk membuat tabel legenda
+// createLegendTable();
+
 
 
 
@@ -299,4 +355,6 @@
 </script>
 
 </section>
-<?php endif; ?><?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/maps.blade.php ENDPATH**/ ?>
+
+<?php endif; ?>
+<?php /**PATH C:\xampp\htdocs\apindo\resources\views/themes/classic/sections/maps.blade.php ENDPATH**/ ?>

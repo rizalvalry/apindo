@@ -150,7 +150,7 @@
                     </li>
 
                     <li class="nav-item dropdown ">
-                        <a class="nav-link navbar__link" href="<?php echo e(route('maps')); ?>"><span>Daftar Anggota</span> <i
+                        <a class="nav-link navbar__link" href="<?php echo e(route('home')); ?>"><span>Daftar Anggota</span> <i
                                 class="fa fa-angle-down"></i></a>
                     </li>
 

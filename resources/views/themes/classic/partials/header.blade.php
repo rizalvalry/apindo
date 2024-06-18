@@ -150,7 +150,7 @@
                     </li>
 
                     <li class="nav-item dropdown ">
-                        <a class="nav-link navbar__link" href="{{ route('maps') }}"><span>Daftar Anggota</span> <i
+                        <a class="nav-link navbar__link" href="{{ route('home') }}"><span>Daftar Anggota</span> <i
                                 class="fa fa-angle-down"></i></a>
                     </li>
 
