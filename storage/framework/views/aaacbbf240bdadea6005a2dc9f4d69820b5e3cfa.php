@@ -79,13 +79,19 @@
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="mb-3">
-                                <select class="js-example-basic-single form-control" name="location">
-                                    <option selected disabled><?php echo app('translator')->get('Select Location'); ?></option>
-                                    <option value="all" <?php if(request()->location == 'all'): ?> selected <?php endif; ?>><?php echo app('translator')->get('All Location'); ?></option>
-                                    <?php $__currentLoopData = $all_places; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $place): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option class="m-0" value="<?php echo e($place->id); ?>" <?php if(request()->location == $place->id): ?> selected <?php endif; ?>><?php echo app('translator')->get(optional($place->details)->place); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
+                            <select class="js-example-basic-single form-control" name="location">
+                                <option selected disabled><?php echo app('translator')->get('Select Location'); ?></option>
+                                <option value="all" <?php if(request()->location == 'all'): ?> selected <?php endif; ?>><?php echo app('translator')->get('All Location'); ?></option>
+                                <?php $__currentLoopData = $all_places; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $place): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php
+                                        $locationDetail = optional($place->details)->place;
+                                        $locationParts = explode(' ', $locationDetail);
+                                        $firstWord = rtrim($locationParts[0], ',');
+                                    ?>
+                                    <option class="m-0" value="<?php echo e($place->id); ?>" <?php if(request()->location == $place->id): ?> selected <?php endif; ?>><?php echo e($firstWord); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6">
@@ -115,6 +121,7 @@
                 <?php if(count($all_listings) > 0): ?>
                     <div class="row g-0 d-flex justify-content-sm-center">
                         <?php $__empty_1 = true; $__currentLoopData = $all_listings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $listing): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        
                             <?php
                                 $total = $listing->reviews()[0]->total;
                                 $average_review = $listing->reviews()[0]->average;
@@ -138,6 +145,17 @@
                                             </p>
                                             <span class="badge bg-secondary">
                                                 <?php echo e(optional($listing)->getCategoriesName()); ?>
+
+                                            </span>
+                                            <span class="badge bg-secondary">
+                                            <?php if(optional($listing)->getCategoriesName() == "Shopping"): ?> 
+                                                    Kontrak
+                                                <?php else: ?>
+                                                    Permanent
+                                                <?php endif; ?>
+                                            
+
+
 
                                             </span>
                                         </div>

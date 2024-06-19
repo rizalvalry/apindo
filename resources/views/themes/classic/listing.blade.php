@@ -80,13 +80,19 @@
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="mb-3">
-                                <select class="js-example-basic-single form-control" name="location">
-                                    <option selected disabled>@lang('Select Location')</option>
-                                    <option value="all" @if(request()->location == 'all') selected @endif>@lang('All Location')</option>
-                                    @foreach($all_places as $place)
-                                        <option class="m-0" value="{{ $place->id }}" @if(request()->location == $place->id) selected @endif>@lang(optional($place->details)->place)</option>
-                                    @endforeach
-                                </select>
+                            <select class="js-example-basic-single form-control" name="location">
+                                <option selected disabled>@lang('Select Location')</option>
+                                <option value="all" @if(request()->location == 'all') selected @endif>@lang('All Location')</option>
+                                @foreach($all_places as $place)
+                                    <?php
+                                        $locationDetail = optional($place->details)->place;
+                                        $locationParts = explode(' ', $locationDetail);
+                                        $firstWord = rtrim($locationParts[0], ',');
+                                    ?>
+                                    <option class="m-0" value="{{ $place->id }}" @if(request()->location == $place->id) selected @endif>{{ $firstWord }}</option>
+                                @endforeach
+                            </select>
+
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6">
@@ -116,6 +122,7 @@
                 @if(count($all_listings) > 0)
                     <div class="row g-0 d-flex justify-content-sm-center">
                         @forelse($all_listings as $key => $listing)
+                        
                             @php
                                 $total = $listing->reviews()[0]->total;
                                 $average_review = $listing->reviews()[0]->average;
@@ -139,6 +146,14 @@
                                             </p>
                                             <span class="badge bg-secondary">
                                                 {{ optional($listing)->getCategoriesName() }}
+                                            </span>
+                                            <span class="badge bg-secondary">
+                                            @if(optional($listing)->getCategoriesName() == "Shopping") 
+                                                    Kontrak
+                                                @else
+                                                    Permanent
+                                                @endif
+
                                             </span>
                                         </div>
                                     </div>

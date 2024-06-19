@@ -213,14 +213,19 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>"><?php echo app('translator')->get('Home'); ?></a></li>
                 <?php if(Request::get('region') && Request::get('category')): ?>
-                    <li class="breadcrumb-item"><a href="<?php echo e(url('/category/' . Request::get('region') . '/' . Request::get('category'))); ?>"><?php echo e(Request::get('region')); ?></a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo e(Request::get('category')); ?></li>
+                    <?php
+                        $region = str_replace('-', ' ', Request::get('region'));
+                        $category = str_replace('-', ' ', Request::get('category'));
+                    ?>
+                    <li class="breadcrumb-item"><a href="<?php echo e(url('/category/' . $region . '/' . $category)); ?>"><?php echo e($region); ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo e(url( $region . '/' .$category)); ?>"><?php echo e($category); ?></a></li>
                 <?php endif; ?>
-                <li class="breadcrumb-item active" aria-current="page"><?php echo e(Request::segment(2)); ?></li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo e(str_replace('-', ' ', Request::segment(2))); ?></li>
             </ol>
         </nav>
     </div>
 </div>
+
 
 
     <section class="listing-details">

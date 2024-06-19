@@ -214,14 +214,19 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
                 @if(Request::get('region') && Request::get('category'))
-                    <li class="breadcrumb-item"><a href="{{ url('/category/' . Request::get('region') . '/' . Request::get('category')) }}">{{ Request::get('region') }}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ Request::get('category') }}</li>
+                    <?php
+                        $region = str_replace('-', ' ', Request::get('region'));
+                        $category = str_replace('-', ' ', Request::get('category'));
+                    ?>
+                    <li class="breadcrumb-item"><a href="{{ url('/category/' . $region . '/' . $category) }}">{{ $region }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url( $region . '/' .$category) }}">{{$category}}</a></li>
                 @endif
-                <li class="breadcrumb-item active" aria-current="page">{{ Request::segment(2) }}</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ str_replace('-', ' ', Request::segment(2)) }}</li>
             </ol>
         </nav>
     </div>
 </div>
+
 
 
     <section class="listing-details">
