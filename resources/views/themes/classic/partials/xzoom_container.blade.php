@@ -46,9 +46,17 @@
     <!-- </div>  -->
 </div>
 
-<div class="info-box mb-5">
+<div class="info-box">
     <h4 class="title">{{ $single_listing_details->title }}</h4>
     <p class="p-0">@lang('Category'): {{ $single_listing_details->getCategoriesName() }} </p>
+    <span class="badge bg-secondary">
+        @if(optional($single_listing_details)->getCategoriesName() == "Shopping") 
+                Kontrak
+            @else
+                Permanent
+            @endif
+
+        </span>
     @if($single_listing_details->address)
         <p class="address mb-2">
             <i class="fas fa-map-marker-alt"></i>
@@ -60,6 +68,36 @@
     @endif
 </div>
 
+
+<ul>
+    @if(optional($single_listing_details->get_user)->phone)
+        <li>
+            <i class="far fa-phone-alt" aria-hidden="true"></i>
+            <span>{{ optional($single_listing_details->get_user)->phone }}</span>
+        </li>
+    @endif
+    @if(optional($single_listing_details->get_user)->email)
+        <li>
+            <i class="far fa-envelope" aria-hidden="true"></i>
+            <span>{{ optional($single_listing_details->get_user)->email }}</span>
+        </li>
+    @endif
+    @if(optional($single_listing_details->get_user)->address)
+        <li>
+            <i class="far fa-map-marker-alt" aria-hidden="true"></i>
+            <span>{{ optional($single_listing_details->get_user)->address }}</span>
+        </li>
+    @endif
+</ul>
+@if(count(optional($single_listing_details->get_user)->get_social_links_user) > 0)
+    <div class="social-links mt-4">
+        @foreach(optional($single_listing_details->get_user)->get_social_links_user as $social)
+            <a href="{{ $social->social_url }}" target="_blank">
+                <i class="{{ $social->social_icon }}" aria-hidden="true"></i>
+            </a>
+        @endforeach
+    </div>
+@endif
 
 @push('script')
     <script>

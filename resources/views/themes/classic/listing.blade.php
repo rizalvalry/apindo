@@ -58,7 +58,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
                 @if(Request::get('region'))
-                    <li class="breadcrumb-item"><a href="{{ url('/category/' . Request::get('region')) }}">{{ ucfirst(Request::get('region')) }}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">{{ ucfirst(Request::get('region')) }}</a></li>
                 @endif
                 <li class="breadcrumb-item active" aria-current="page">{{ Request::segment(2) }}</li>
             </ol>
@@ -71,14 +71,14 @@
         <div class="row">
             <!-- Search Section -->
             <div class="col-12">
-                <form action="{{ route('listing') }}" method="get" class="d-flex justify-content-center">
+                <form action="{{ route('listing') }}" method="get" class="justify-content-between w-100">
                     <div class="row justify-content-center">
-                        <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="mb-3">
                                 <input type="text" name="name" class="form-control" value="{{ old('name', request()->name) }}" autocomplete="off" placeholder="@lang('Listing name')" style="background-color: #e9ecef; height: 3rem;">
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="mb-3">
                             <select class="js-example-basic-single form-control" name="location">
                                 <option selected disabled>@lang('Select Location')</option>
@@ -95,7 +95,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="mb-3">
                                 <select class="listing__category__select2 form-control" name="category[]" multiple>
                                     <option value="all" @if(request()->category && in_array('all', request()->category)) selected @endif>@lang('All Category')</option>
@@ -105,20 +105,16 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-12 col-sm-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="mb-3">
-                                <button class="btn btn-primary btn-block" style="height: 3rem;" type="submit">@lang('Submit')</button>
+                                <button class="btn btn-primary btn-lg" style="height: 3rem; width:100%;" type="submit">@lang('Submit')</button>
                             </div>
                         </div>
                     </div>
                 </form>
 
                 
-            </div>
-            <!-- End Search Section -->
-
-            <!-- Listing Section -->
-            <div class="col-12">
+           
                 @if(count($all_listings) > 0)
                     <div class="row g-0 d-flex justify-content-sm-center">
                         @forelse($all_listings as $key => $listing)
@@ -127,7 +123,6 @@
                                 $total = $listing->reviews()[0]->total;
                                 $average_review = $listing->reviews()[0]->average;
                             @endphp
-                            <div class="col-12">
                                 <div class="jumbotron d-flex justify-content-center" style="padding:1rem;" data-lat="{{ $listing->lat }}" data-long="{{ $listing->long }}" data-title="@lang(Str::limit($listing->title, 30))" data-location="@lang($listing->address)" data-route="{{ route('listing-details', [slug($listing->title), $listing->id]) }}">
                                     <div class="col-sm-2 m-4">
                                         <img class="img-fluid" style="border-radius:5px;" src="{{  getFile($listing->driver, $listing->thumbnail) }}" alt="@lang(Str::limit($listing->title, 30))">
@@ -178,8 +173,7 @@
                 @endif
             </div>
             <!-- End Listing Section -->
-            </div>
-        </div>
+      
     </div>
 </section>
 

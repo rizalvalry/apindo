@@ -403,9 +403,9 @@
                             @endif
 
                             <div class="col-xl-6 col-md-6 col-sm-12">
-                                <h3 class="mt-5 mb-4 listing-tab-heading">@lang('Websites And Social Links')</h3>
+                                <!-- <h3 class="mt-5 mb-4 listing-tab-heading">@lang('Websites And Social Links')</h3> -->
 
-                                <div class="form website_social_links">
+                                <!-- <div class="form website_social_links"> -->
                                     @php
                                         $oldSocialCounts = max(old('social_icon', $social_links) ? count(old('social_icon', $social_links)) : 1, 1);
                                     @endphp
@@ -415,20 +415,20 @@
                                             <div
                                                 class="d-flex justify-content-between append_new_social_form removeSocialLinksInput">
                                                 <div class="input-group mt-1">
-                                                    <input type="text" name="social_icon[]"
+                                                <input type="hidden" name="social_icon[]"
                                                            value="{{ old("social_icon.$i", $social_links[$i]->social_icon ?? '') }}"
                                                            class="form-control demo__icon__picker iconpicker1 @error("social_icon.$i") is-invalid @enderror"
                                                            placeholder="Pick a icon" aria-label="Pick a icon"
                                                            aria-describedby="basic-addon1" readonly>
 
-                                                    <div class="invalid-feedback">
+                                                    <!-- <div class="invalid-feedback">
                                                         @error("social_icon.$i") @lang($message) @enderror
-                                                    </div>
+                                                    </div> -->
                                                 </div>
 
                                                 <div class="input-box w-100 my-1 me-1">
-                                                    <input type="url" name="social_url[]"
-                                                           value="{{ old("social_url.$i", $social_links[$i]->social_url ?? '') }}"
+                                                    <input type="hidden" name="social_url[]"
+                                                           value="https://apindo.com"
                                                            class="form-control h-100 @error("social_url.$i") is-invalid @enderror"
                                                            placeholder="@lang('URL')"/>
                                                     @error("social_url.$i")
@@ -436,7 +436,7 @@
                                                     @enderror
 
                                                 </div>
-                                                <div class="my-1 me-1">
+                                                <!-- <div class="my-1 me-1">
                                                     @if($i == 0)
                                                         <button class="btn-custom add-new border-0" type="button"
                                                                 id="add_social_links">
@@ -449,8 +449,8 @@
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     @endif
-                                                </div>
-                                            </div>
+                                                </div> -->
+                                            <!-- </div> -->
                                         @endfor
                                     @endif
 

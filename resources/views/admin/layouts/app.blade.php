@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset($themeTrue.'css/all.min.css')}}"/>
 
-    <!-- <link rel="stylesheet" href="{{ asset('assets/global/css/select2.min.css') }}" /> -->
+    <link rel="stylesheet" href="{{ asset('assets/global/css/select2.min.css') }}" />
 
     <link href="{{asset('assets/admin/css/style.min.css')}}" rel="stylesheet">
 

@@ -153,9 +153,6 @@
                                                 <?php else: ?>
                                                     Permanent
                                                 <?php endif; ?>
-                                            
-
-
 
                                             </span>
                                         </div>

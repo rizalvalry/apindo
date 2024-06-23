@@ -47,11 +47,15 @@
 
     <div id="popupModal" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="popupModal" aria-hidden="true">
-        <div class="modal-dialog modal-md mt-0">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
+              
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title">Modal title</h5> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body" style="padding:0px !important">
-                    <button type="button" style="position:absolute; right:0px;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <img src="<?php echo e(asset('assets/admin/images/show-banner-popup.jpeg')); ?>"
+                <img src="<?php echo e(asset('assets/admin/images/show-banner-popup.jpeg')); ?>"
                             class="w-100" alt="<?php echo e(config('basic.site_title')); ?>">
                 </div>
                 <!-- <div class="modal-footer">

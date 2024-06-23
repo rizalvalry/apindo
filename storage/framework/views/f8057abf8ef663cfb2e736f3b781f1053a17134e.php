@@ -46,9 +46,17 @@
     <!-- </div>  -->
 </div>
 
-<div class="info-box mb-5">
+<div class="info-box">
     <h4 class="title"><?php echo e($single_listing_details->title); ?></h4>
     <p class="p-0"><?php echo app('translator')->get('Category'); ?>: <?php echo e($single_listing_details->getCategoriesName()); ?> </p>
+    <span class="badge bg-secondary">
+        <?php if(optional($single_listing_details)->getCategoriesName() == "Shopping"): ?> 
+                Kontrak
+            <?php else: ?>
+                Permanent
+            <?php endif; ?>
+
+        </span>
     <?php if($single_listing_details->address): ?>
         <p class="address mb-2">
             <i class="fas fa-map-marker-alt"></i>
@@ -61,6 +69,36 @@
     <?php endif; ?>
 </div>
 
+
+<ul>
+    <?php if(optional($single_listing_details->get_user)->phone): ?>
+        <li>
+            <i class="far fa-phone-alt" aria-hidden="true"></i>
+            <span><?php echo e(optional($single_listing_details->get_user)->phone); ?></span>
+        </li>
+    <?php endif; ?>
+    <?php if(optional($single_listing_details->get_user)->email): ?>
+        <li>
+            <i class="far fa-envelope" aria-hidden="true"></i>
+            <span><?php echo e(optional($single_listing_details->get_user)->email); ?></span>
+        </li>
+    <?php endif; ?>
+    <?php if(optional($single_listing_details->get_user)->address): ?>
+        <li>
+            <i class="far fa-map-marker-alt" aria-hidden="true"></i>
+            <span><?php echo e(optional($single_listing_details->get_user)->address); ?></span>
+        </li>
+    <?php endif; ?>
+</ul>
+<?php if(count(optional($single_listing_details->get_user)->get_social_links_user) > 0): ?>
+    <div class="social-links mt-4">
+        <?php $__currentLoopData = optional($single_listing_details->get_user)->get_social_links_user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $social): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <a href="<?php echo e($social->social_url); ?>" target="_blank">
+                <i class="<?php echo e($social->social_icon); ?>" aria-hidden="true"></i>
+            </a>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+<?php endif; ?>
 
 <?php $__env->startPush('script'); ?>
     <script>

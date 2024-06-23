@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title','404'); ?>
 <?php $__env->startSection('banner_heading'); ?>
    <?php echo app('translator')->get('404'); ?>

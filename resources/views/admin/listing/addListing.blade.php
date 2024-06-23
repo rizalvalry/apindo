@@ -186,7 +186,7 @@
 
         <div class="container">
                 <div class="row g-3 align-items-center">
-                <form action="{{ route('admin.listingStore', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.listingStore', ['id' => $id]) }}" method="POST" class="row g-3" enctype="multipart/form-data">
                 @csrf
                 <!-- Fields for listing creation -->
                 <div class="col-auto">

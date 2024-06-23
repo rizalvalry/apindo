@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title',trans('Listing Details')); ?>
 
 <?php $__env->startSection('banner_heading'); ?>
@@ -236,70 +237,7 @@
 
                         <?php echo $__env->make($theme.'partials.xzoom_container', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                        <!-- <div class="navigation">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <span id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                                          type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-                                        <a class="short-nav-item active" href="#description"><?php echo app('translator')->get('Description'); ?></a>
-                                        <?php if(optional($single_listing_details->get_package)->is_video != 0 && $single_listing_details->youtube_video_id != null): ?>
-                                            <a class="short-nav-item" href="#videobox"><?php echo app('translator')->get('Video'); ?></a>
-                                        <?php endif; ?>
-                                        <?php if(optional($single_listing_details->get_package)->is_amenities != 0 && count($single_listing_details->get_listing_amenities) > 0): ?>
-                                            <a class="short-nav-item" href="#amenities"><?php echo app('translator')->get('Amenities'); ?></a>
-                                        <?php endif; ?>
-                                        <?php if(count($single_listing_details->get_products) == 1 && $single_listing_details->get_products[0]->product_title == null && $single_listing_details->get_products[0]->product_price == null && $single_listing_details->get_products[0]->product_description == null && $single_listing_details->get_products[0]->product_thumbnail == null): ?>
-                                        <?php else: ?>
-                                            <?php if(optional($single_listing_details->get_package)->is_product != 0 && count($single_listing_details->get_products) > 0): ?>
-                                                <a class="short-nav-item" href="#products"><?php echo app('translator')->get('Products'); ?></a>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-
-                                    </span>
-                                </li> -->
-
-                                <!-- <li class="nav-item ms-1" role="presentation">
-                                    <span id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                                          type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-                                        <a class="short-nav-item" href="#reviews">
-                                            <?php echo app('translator')->get('Reviews'); ?>
-                                            <span class="listing__reviews">
-                                                <?php
-                                                    $isCheck = 0;
-                                                    $j = 0;
-                                                ?>
-
-                                                <?php if($average_review != intval($average_review)): ?>
-                                                    <?php
-                                                        $isCheck = 1;
-                                                    ?>
-                                                <?php endif; ?>
-                                                <?php for($i = $average_review; $i > $isCheck; $i--): ?>
-                                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                                    <?php
-                                                        $j = $j + 1;
-                                                    ?>
-                                                <?php endfor; ?>
-                                                <?php if($average_review != intval($average_review)): ?>
-                                                    <i class="fa fa-star-half-alt"></i>
-                                                    <?php
-                                                        $j = $j + 1;
-                                                    ?>
-                                                <?php endif; ?>
-                                                <?php if($average_review == 0 || $average_review != null): ?>
-                                                    <?php for($j; $j < 5; $j++): ?>
-                                                        <i class="far fa-star"></i>
-                                                    <?php endfor; ?>
-                                                <?php endif; ?>
-                                            </span>
-                                            <span class="badge bg-primary font-10">
-                                                <?php echo e($single_listing_details->reviews()[0]->total); ?>
-
-                                            </span></a>
-                                    </span>
-                                </li> -->
-                            <!-- </ul>
-                        </div> -->
+                        
 
 
                         <div class="tab-content" id="pills-tabContent">
@@ -345,7 +283,7 @@
                                 <?php if(count($single_listing_details->get_products) == 1 && $single_listing_details->get_products[0]->product_title == null && $single_listing_details->get_products[0]->product_price == null && $single_listing_details->get_products[0]->product_description == null && $single_listing_details->get_products[0]->product_thumbnail == null): ?>
                                 <?php else: ?>
                                     <?php if(optional($single_listing_details->get_package)->is_product != 0 && count($single_listing_details->get_products) > 0): ?>
-                                        <div id="products" class="products mb-5">
+                                        <div id="products" class="products mb-2">
                                             <h4><?php echo app('translator')->get('Products'); ?></h4>
                                             <div class="owl-carousel products-slider">
                                                 <?php $__currentLoopData = $single_listing_details->get_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $listing_product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -428,7 +366,7 @@
 
                                                                                     <div
                                                                                         id="thumbCarousel<?php echo e($listing_product->id); ?>"
-                                                                                        class="carousel max-w-xl mx-auto mb-5 thumb_carousel">
+                                                                                        class="carousel max-w-xl mx-auto mb-2 thumb_carousel">
                                                                                         <?php $__empty_1 = true; $__currentLoopData = $listing_product->get_product_image; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $listing_product_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                                                             <?php
                                                                                                 $all_product_images = App\Models\ProductImage::where('product_id',$listing_product_image->product_id)->count();
@@ -564,7 +502,7 @@ unset($__errorArgs, $__bag); ?>
 
                                         <?php if(auth()->guard()->check()): ?>
                                             <?php if($reviewDone <= 0 && $single_listing_details->user_id != Auth::id()): ?>
-                                                <div class="add-review mb-5" v-if="item.reviewDone < 1">
+                                                <div class="add-review mb-2" v-if="item.reviewDone < 1">
                                                     <div>
                                                         <h4><?php echo app('translator')->get('Add Review'); ?></h4>
                                                     </div>
@@ -636,7 +574,7 @@ unset($__errorArgs, $__bag); ?>
                                                 </div>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <div class="add-review mb-5 add__review__login" v-if="item.reviewDone < 1">
+                                            <div class="add-review mb-2 add__review__login" v-if="item.reviewDone <div 1">
                                                 <div class="d-flex justify-content-between">
                                                     <h4><?php echo app('translator')->get('Add Review'); ?></h4>
                                                 </div>
@@ -659,190 +597,80 @@ unset($__errorArgs, $__bag); ?>
                                         <!-- <img
                                             src="<?php echo e(getFile(optional($single_listing_details->get_user)->cover_driver, optional($single_listing_details->get_user)->cover_photo)); ?>"
                                             alt="<?php echo e(config('basic.site_title')); ?>" class="img-fluid cover"/> -->
-                                        <img
+                                            <img
                                             src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>"
-                                            class="img-fluid profile" alt="<?php echo e(config('basic.site_title')); ?>"/>
-                                    </div>
+                                            class="img-fluid" style="width:300px; height:300px;" alt="<?php echo e(config('basic.site_title')); ?>"/>
+                                        </div>
 
-                                    <!-- <div class="text-box">
-                                        <h5 class="creator-name">
-                                            <?php echo app('translator')->get(optional($single_listing_details->get_user)->firstname); ?> <?php echo app('translator')->get(optional($single_listing_details->get_user)->lastname); ?>
-                                        </h5>
-                                        <span><?php echo app('translator')->get('Member since'); ?> <?php echo app('translator')->get(optional($single_listing_details->get_user)->created_at->format('M Y')); ?> </span>
-                                        <div class="d-flex justify-content-between my-3">
-                                            <span>
-                                                <?php if($total_listings_an_user['totalListing'] > 1): ?>
+                                        <!-- <div class="text-box">
+                                            <h5 class="creator-name">
+                                                <?php echo app('translator')->get(optional($single_listing_details->get_user)->firstname); ?> <?php echo app('translator')->get(optional($single_listing_details->get_user)->lastname); ?>
+                                            </h5>
+                                            <span><?php echo app('translator')->get('Member since'); ?> <?php echo app('translator')->get(optional($single_listing_details->get_user)->created_at->format('M Y')); ?> </span>
+                                            <div class="d-flex justify-content-between my-3">
+                                                <span>
+                                                    <?php if($total_listings_an_user['totalListing'] > 1): ?>
                                                     <?php echo e($total_listings_an_user['totalListing']); ?> <?php echo app('translator')->get('Listings'); ?>
-                                                <?php else: ?>
+                                                    <?php else: ?>
                                                     <?php echo e($total_listings_an_user['totalListing']); ?> <?php echo app('translator')->get('Listing'); ?>
-                                                <?php endif; ?>
-                                            </span>
-                                            <span><?php echo e($follower_count['totalFollower']); ?> <?php echo app('translator')->get('Followers'); ?></span>
+                                                    <?php endif; ?>
+                                                </span>
+                                                <span><?php echo e($follower_count['totalFollower']); ?> <?php echo app('translator')->get('Followers'); ?></span>
+                                            </div> -->
+                                            
+                                            <!-- <a href="<?php echo e(route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id])); ?>"
+                                                class="btn-custom cursor-pointer">
+                                                <?php echo app('translator')->get('Visit profile'); ?>
+                                            </a> -->
+                                            <!-- </div>
+                                            </div>
                                         </div> -->
-
-                                        <!-- <a href="<?php echo e(route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id])); ?>"
-                                           class="btn-custom cursor-pointer">
-                                            <?php echo app('translator')->get('Visit profile'); ?>
-                                        </a> -->
-                                    <!-- </div>
-                                </div>
-                            </div> -->
-
-                            <!-- <?php if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0): ?>
-                                <div class="side-box">
-                                    <h5><?php echo app('translator')->get('Opening Hours'); ?></h5>
+                                        
+                                        <!-- <?php if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0): ?>
+                                            <div class="side-box">
+                                                <h5><?php echo app('translator')->get('Opening Hours'); ?></h5>
                                     <ul>
                                         <?php $__empty_1 = true; $__currentLoopData = $single_listing_details->get_business_hour; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $business_hour): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                            <?php if($business_hour->start_time): ?>
-                                                <li>
-                                                    <?php echo app('translator')->get($business_hour->working_day); ?>
-                                                    <span class="float-end"><?php echo e(\Carbon\Carbon::parse($business_hour->start_time)->format('h a')); ?> - <?php echo e(\Carbon\Carbon::parse($business_hour->end_time)->format('h a')); ?></span>
-                                                </li>
-                                            <?php else: ?>
-                                                <li>
-                                                    <?php echo app('translator')->get($business_hour->working_day); ?>
-                                                    <span class="float-end"><?php echo app('translator')->get('Closed'); ?></span>
-                                                </li>
-                                            <?php endif; ?>
+                                        <?php if($business_hour->start_time): ?>
+                                        <li>
+                                            <?php echo app('translator')->get($business_hour->working_day); ?>
+                                            <span class="float-end"><?php echo e(\Carbon\Carbon::parse($business_hour->start_time)->format('h a')); ?> - <?php echo e(\Carbon\Carbon::parse($business_hour->end_time)->format('h a')); ?></span>
+                                        </li>
+                                        <?php else: ?>
+                                        <li>
+                                            <?php echo app('translator')->get($business_hour->working_day); ?>
+                                            <span class="float-end"><?php echo app('translator')->get('Closed'); ?></span>
+                                        </li>
+                                        <?php endif; ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                         <?php endif; ?>
                                     </ul>
                                 </div>
-                            <?php endif; ?> -->
-
-                                </div>
+                                <?php endif; ?> -->
+                                
                             </div>
-
-                            <div class="side-box">
-                                <!-- <h5><?php echo app('translator')->get('Contact Seller'); ?></h5> -->
-                                <ul>
-                                    <?php if(optional($single_listing_details->get_user)->phone): ?>
-                                        <li>
-                                            <i class="far fa-phone-alt" aria-hidden="true"></i>
-                                            <span><?php echo e(optional($single_listing_details->get_user)->phone); ?></span>
-                                        </li>
-                                    <?php endif; ?>
-                                    <?php if(optional($single_listing_details->get_user)->email): ?>
-                                        <li>
-                                            <i class="far fa-envelope" aria-hidden="true"></i>
-                                            <span><?php echo e(optional($single_listing_details->get_user)->email); ?></span>
-                                        </li>
-                                    <?php endif; ?>
-                                    <?php if(optional($single_listing_details->get_user)->address): ?>
-                                        <li>
-                                            <i class="far fa-map-marker-alt" aria-hidden="true"></i>
-                                            <span><?php echo e(optional($single_listing_details->get_user)->address); ?></span>
-                                        </li>
-                                    <?php endif; ?>
-                                </ul>
-                                <?php if(count(optional($single_listing_details->get_user)->get_social_links_user) > 0): ?>
-                                    <div class="social-links mt-4">
-                                        <?php $__currentLoopData = optional($single_listing_details->get_user)->get_social_links_user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $social): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <a href="<?php echo e($social->social_url); ?>" target="_blank">
-                                                <i class="<?php echo e($social->social_icon); ?>" aria-hidden="true"></i>
-                                            </a>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-
                         </div>
                     </div>
-
-                            
-
-
-                            <div id="mainCarousel" class="carousel mx-auto main_carousel">
-        <?php $__empty_1 = true; $__currentLoopData = $single_listing_details->get_listing_images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $listing_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-            <div class="carousel__slide" data-src="<?php echo e(getFile($listing_image->driver, $listing_image->listing_image)); ?>" data-fancybox="gallery" data-caption="">
-                <img class="img-fluid" src="<?php echo e(getFile($listing_image->driver, $listing_image->listing_image)); ?>"/>
-            </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-            <div class="carousel__slide" data-src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>" data-fancybox="gallery" data-caption="">
-                <img class="img-fluid" src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>"/>
-            </div>
-        <?php endif; ?>
-    </div>
-                            <!--<div class="side-box">
-                                <h5><?php echo app('translator')->get('Send a Message'); ?></h5>
-                                <form action="<?php echo e(route('user.sendListingMessage', $id)); ?>" method="post"
-                                      enctype="multipart/form-data">
-                                    <?php echo csrf_field(); ?>
-                                    <div class="row g-3">
-                                        <div class="input-box col-12">
-                                            <input class="form-control <?php $__errorArgs = ['name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" type="text"
-                                                   autocomplete="off" name="name"
-                                                   <?php if(Auth::check() == true && Auth::id() != $single_listing_details->user_id): ?>
-                                                   value="<?php echo app('translator')->get(Auth::user()->firstname); ?> <?php echo app('translator')->get(Auth::user()->lastname); ?>"
-                                                   <?php else: ?>
-                                                   placeholder="<?php echo app('translator')->get('Full Name'); ?>"
-                                                <?php endif; ?>/>
-                                            <div class="invalid-feedback">
-                                                <?php $__errorArgs = ['name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> <?php echo app('translator')->get($message); ?> <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-box col-12">
-                                            <textarea class="form-control <?php $__errorArgs = ['message'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                                      cols="30" rows="3" autocomplete="off" name="message"
-                                                      placeholder="<?php echo app('translator')->get('Your message'); ?>"></textarea>
-                                            <div class="invalid-feedback">
-                                                <?php $__errorArgs = ['message'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> <?php echo app('translator')->get($message); ?> <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                            </div>
-                              div       </div>
-                                        <div class="input-box col-12">
-                                            <button class="btn-custom w-100">
-                                                <?php echo app('translator')->get('submit'); ?>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="side-box claim-business">
-                                <div class="d-flex align-items-center">
-                                    <img
-                                        src="<?php echo e(getFile(config('basic.default_file_driver'),config('basic.logo_image'))); ?>"
-                                        class="img-fluid" alt=""/>
-                                    <div>
-                                        <h5><?php echo app('translator')->get('Claim This Business'); ?></h5>
-                                        <button class="btn-custom" data-bs-toggle="modal"
-                                                data-bs-target="#claimBusiness">
-                                            <?php echo app('translator')->get('Claim'); ?>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
+                
+                
+                    
+                
+                
+                
+                <div id="mainCarousel" class="carousel mx-auto main_carousel">
+                            <?php $__empty_1 = true; $__currentLoopData = $single_listing_details->get_listing_images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $listing_image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <div class="carousel__slide" data-src="<?php echo e(getFile($listing_image->driver, $listing_image->listing_image)); ?>" data-fancybox="gallery" data-caption="">
+                                    <img class="img-fluid" src="<?php echo e(getFile($listing_image->driver, $listing_image->listing_image)); ?>"/>
+                                </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <div class="carousel__slide" data-src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>" data-fancybox="gallery" data-caption="">
+                                    <img class="img-fluid" src="<?php echo e(getFile($single_listing_details->driver, $single_listing_details->thumbnail)); ?>"/>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                            
+                
             </div>
         </div>
     </section>

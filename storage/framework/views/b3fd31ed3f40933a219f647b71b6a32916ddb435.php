@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title',trans('Home')); ?>
 
 <?php $__env->startSection('content'); ?>

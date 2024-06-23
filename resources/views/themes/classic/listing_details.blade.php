@@ -237,69 +237,7 @@
 
                         @include($theme.'partials.xzoom_container')
 
-                        <!-- <div class="navigation">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <span id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                                          type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-                                        <a class="short-nav-item active" href="#description">@lang('Description')</a>
-                                        @if(optional($single_listing_details->get_package)->is_video != 0 && $single_listing_details->youtube_video_id != null)
-                                            <a class="short-nav-item" href="#videobox">@lang('Video')</a>
-                                        @endif
-                                        @if(optional($single_listing_details->get_package)->is_amenities != 0 && count($single_listing_details->get_listing_amenities) > 0)
-                                            <a class="short-nav-item" href="#amenities">@lang('Amenities')</a>
-                                        @endif
-                                        @if(count($single_listing_details->get_products) == 1 && $single_listing_details->get_products[0]->product_title == null && $single_listing_details->get_products[0]->product_price == null && $single_listing_details->get_products[0]->product_description == null && $single_listing_details->get_products[0]->product_thumbnail == null)
-                                        @else
-                                            @if(optional($single_listing_details->get_package)->is_product != 0 && count($single_listing_details->get_products) > 0)
-                                                <a class="short-nav-item" href="#products">@lang('Products')</a>
-                                            @endif
-                                        @endif
-
-                                    </span>
-                                </li> -->
-
-                                <!-- <li class="nav-item ms-1" role="presentation">
-                                    <span id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                                          type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-                                        <a class="short-nav-item" href="#reviews">
-                                            @lang('Reviews')
-                                            <span class="listing__reviews">
-                                                @php
-                                                    $isCheck = 0;
-                                                    $j = 0;
-                                                @endphp
-
-                                                @if($average_review != intval($average_review))
-                                                    @php
-                                                        $isCheck = 1;
-                                                    @endphp
-                                                @endif
-                                                @for($i = $average_review; $i > $isCheck; $i--)
-                                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                                    @php
-                                                        $j = $j + 1;
-                                                    @endphp
-                                                @endfor
-                                                @if($average_review != intval($average_review))
-                                                    <i class="fa fa-star-half-alt"></i>
-                                                    @php
-                                                        $j = $j + 1;
-                                                    @endphp
-                                                @endif
-                                                @if($average_review == 0 || $average_review != null)
-                                                    @for($j; $j < 5; $j++)
-                                                        <i class="far fa-star"></i>
-                                                    @endfor
-                                                @endif
-                                            </span>
-                                            <span class="badge bg-primary font-10">
-                                                {{ $single_listing_details->reviews()[0]->total }}
-                                            </span></a>
-                                    </span>
-                                </li> -->
-                            <!-- </ul>
-                        </div> -->
+                        
 
 
                         <div class="tab-content" id="pills-tabContent">
@@ -344,7 +282,7 @@
                                 @if(count($single_listing_details->get_products) == 1 && $single_listing_details->get_products[0]->product_title == null && $single_listing_details->get_products[0]->product_price == null && $single_listing_details->get_products[0]->product_description == null && $single_listing_details->get_products[0]->product_thumbnail == null)
                                 @else
                                     @if(optional($single_listing_details->get_package)->is_product != 0 && count($single_listing_details->get_products) > 0)
-                                        <div id="products" class="products mb-5">
+                                        <div id="products" class="products mb-2">
                                             <h4>@lang('Products')</h4>
                                             <div class="owl-carousel products-slider">
                                                 @foreach($single_listing_details->get_products as $listing_product)
@@ -427,7 +365,7 @@
 
                                                                                     <div
                                                                                         id="thumbCarousel{{ $listing_product->id }}"
-                                                                                        class="carousel max-w-xl mx-auto mb-5 thumb_carousel">
+                                                                                        class="carousel max-w-xl mx-auto mb-2 thumb_carousel">
                                                                                         @forelse($listing_product->get_product_image as $listing_product_image)
                                                                                             @php
                                                                                                 $all_product_images = App\Models\ProductImage::where('product_id',$listing_product_image->product_id)->count();
@@ -549,7 +487,7 @@
 
                                         @auth
                                             @if($reviewDone <= 0 && $single_listing_details->user_id != Auth::id())
-                                                <div class="add-review mb-5" v-if="item.reviewDone < 1">
+                                                <div class="add-review mb-2" v-if="item.reviewDone < 1">
                                                     <div>
                                                         <h4>@lang('Add Review')</h4>
                                                     </div>
@@ -621,7 +559,7 @@
                                                 </div>
                                             @endif
                                         @else
-                                            <div class="add-review mb-5 add__review__login" v-if="item.reviewDone < 1">
+                                            <div class="add-review mb-2 add__review__login" v-if="item.reviewDone <div 1">
                                                 <div class="d-flex justify-content-between">
                                                     <h4>@lang('Add Review')</h4>
                                                 </div>
@@ -644,162 +582,80 @@
                                         <!-- <img
                                             src="{{ getFile(optional($single_listing_details->get_user)->cover_driver, optional($single_listing_details->get_user)->cover_photo) }}"
                                             alt="{{config('basic.site_title')}}" class="img-fluid cover"/> -->
-                                        <img
+                                            <img
                                             src="{{  getFile($single_listing_details->driver, $single_listing_details->thumbnail) }}"
-                                            class="img-fluid profile" alt="{{config('basic.site_title')}}"/>
-                                    </div>
+                                            class="img-fluid" style="width:300px; height:300px;" alt="{{config('basic.site_title')}}"/>
+                                        </div>
 
-                                    <!-- <div class="text-box">
-                                        <h5 class="creator-name">
-                                            @lang(optional($single_listing_details->get_user)->firstname) @lang(optional($single_listing_details->get_user)->lastname)
-                                        </h5>
-                                        <span>@lang('Member since') @lang(optional($single_listing_details->get_user)->created_at->format('M Y')) </span>
-                                        <div class="d-flex justify-content-between my-3">
-                                            <span>
-                                                @if($total_listings_an_user['totalListing'] > 1)
+                                        <!-- <div class="text-box">
+                                            <h5 class="creator-name">
+                                                @lang(optional($single_listing_details->get_user)->firstname) @lang(optional($single_listing_details->get_user)->lastname)
+                                            </h5>
+                                            <span>@lang('Member since') @lang(optional($single_listing_details->get_user)->created_at->format('M Y')) </span>
+                                            <div class="d-flex justify-content-between my-3">
+                                                <span>
+                                                    @if($total_listings_an_user['totalListing'] > 1)
                                                     {{ $total_listings_an_user['totalListing'] }} @lang('Listings')
-                                                @else
+                                                    @else
                                                     {{ $total_listings_an_user['totalListing'] }} @lang('Listing')
-                                                @endif
-                                            </span>
-                                            <span>{{ $follower_count['totalFollower'] }} @lang('Followers')</span>
+                                                    @endif
+                                                </span>
+                                                <span>{{ $follower_count['totalFollower'] }} @lang('Followers')</span>
+                                            </div> -->
+                                            
+                                            <!-- <a href="{{ route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id]) }}"
+                                                class="btn-custom cursor-pointer">
+                                                @lang('Visit profile')
+                                            </a> -->
+                                            <!-- </div>
+                                            </div>
                                         </div> -->
-
-                                        <!-- <a href="{{ route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id]) }}"
-                                           class="btn-custom cursor-pointer">
-                                            @lang('Visit profile')
-                                        </a> -->
-                                    <!-- </div>
-                                </div>
-                            </div> -->
-
-                            <!-- @if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0)
-                                <div class="side-box">
-                                    <h5>@lang('Opening Hours')</h5>
+                                        
+                                        <!-- @if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0)
+                                            <div class="side-box">
+                                                <h5>@lang('Opening Hours')</h5>
                                     <ul>
                                         @forelse($single_listing_details->get_business_hour as $business_hour)
-                                            @if($business_hour->start_time)
-                                                <li>
-                                                    @lang($business_hour->working_day)
-                                                    <span class="float-end">{{ \Carbon\Carbon::parse($business_hour->start_time)->format('h a') }} - {{ \Carbon\Carbon::parse($business_hour->end_time)->format('h a') }}</span>
-                                                </li>
-                                            @else
-                                                <li>
-                                                    @lang($business_hour->working_day)
-                                                    <span class="float-end">@lang('Closed')</span>
-                                                </li>
-                                            @endif
+                                        @if($business_hour->start_time)
+                                        <li>
+                                            @lang($business_hour->working_day)
+                                            <span class="float-end">{{ \Carbon\Carbon::parse($business_hour->start_time)->format('h a') }} - {{ \Carbon\Carbon::parse($business_hour->end_time)->format('h a') }}</span>
+                                        </li>
+                                        @else
+                                        <li>
+                                            @lang($business_hour->working_day)
+                                            <span class="float-end">@lang('Closed')</span>
+                                        </li>
+                                        @endif
                                         @empty
                                         @endforelse
                                     </ul>
                                 </div>
-                            @endif -->
-
-                                </div>
+                                @endif -->
+                                
                             </div>
-
-                            <div class="side-box">
-                                <!-- <h5>@lang('Contact Seller')</h5> -->
-                                <ul>
-                                    @if(optional($single_listing_details->get_user)->phone)
-                                        <li>
-                                            <i class="far fa-phone-alt" aria-hidden="true"></i>
-                                            <span>{{ optional($single_listing_details->get_user)->phone }}</span>
-                                        </li>
-                                    @endif
-                                    @if(optional($single_listing_details->get_user)->email)
-                                        <li>
-                                            <i class="far fa-envelope" aria-hidden="true"></i>
-                                            <span>{{ optional($single_listing_details->get_user)->email }}</span>
-                                        </li>
-                                    @endif
-                                    @if(optional($single_listing_details->get_user)->address)
-                                        <li>
-                                            <i class="far fa-map-marker-alt" aria-hidden="true"></i>
-                                            <span>{{ optional($single_listing_details->get_user)->address }}</span>
-                                        </li>
-                                    @endif
-                                </ul>
-                                @if(count(optional($single_listing_details->get_user)->get_social_links_user) > 0)
-                                    <div class="social-links mt-4">
-                                        @foreach(optional($single_listing_details->get_user)->get_social_links_user as $social)
-                                            <a href="{{ $social->social_url }}" target="_blank">
-                                                <i class="{{ $social->social_icon }}" aria-hidden="true"></i>
-                                            </a>
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </div>
-
                         </div>
                     </div>
-
-                            
-
-
-                            <div id="mainCarousel" class="carousel mx-auto main_carousel">
-        @forelse($single_listing_details->get_listing_images as $listing_image)
-            <div class="carousel__slide" data-src="{{ getFile($listing_image->driver, $listing_image->listing_image)}}" data-fancybox="gallery" data-caption="">
-                <img class="img-fluid" src="{{ getFile($listing_image->driver, $listing_image->listing_image)}}"/>
-            </div>
-        @empty
-            <div class="carousel__slide" data-src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}" data-fancybox="gallery" data-caption="">
-                <img class="img-fluid" src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}"/>
-            </div>
-        @endforelse
-    </div>
-                            <!--<div class="side-box">
-                                <h5>@lang('Send a Message')</h5>
-                                <form action="{{ route('user.sendListingMessage', $id) }}" method="post"
-                                      enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row g-3">
-                                        <div class="input-box col-12">
-                                            <input class="form-control @error('name') is-invalid @enderror" type="text"
-                                                   autocomplete="off" name="name"
-                                                   @if(Auth::check() == true && Auth::id() != $single_listing_details->user_id)
-                                                   value="@lang(Auth::user()->firstname) @lang(Auth::user()->lastname)"
-                                                   @else
-                                                   placeholder="@lang('Full Name')"
-                                                @endif/>
-                                            <div class="invalid-feedback">
-                                                @error('name') @lang($message) @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="input-box col-12">
-                                            <textarea class="form-control @error('message') is-invalid @enderror"
-                                                      cols="30" rows="3" autocomplete="off" name="message"
-                                                      placeholder="@lang('Your message')"></textarea>
-                                            <div class="invalid-feedback">
-                                                @error('message') @lang($message) @enderror
-                                            </div>
-                              div       </div>
-                                        <div class="input-box col-12">
-                                            <button class="btn-custom w-100">
-                                                @lang('submit')
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="side-box claim-business">
-                                <div class="d-flex align-items-center">
-                                    <img
-                                        src="{{ getFile(config('basic.default_file_driver'),config('basic.logo_image')) }}"
-                                        class="img-fluid" alt=""/>
-                                    <div>
-                                        <h5>@lang('Claim This Business')</h5>
-                                        <button class="btn-custom" data-bs-toggle="modal"
-                                                data-bs-target="#claimBusiness">
-                                            @lang('Claim')
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
+                
+                
+                    
+                
+                
+                
+                <div id="mainCarousel" class="carousel mx-auto main_carousel">
+                            @forelse($single_listing_details->get_listing_images as $listing_image)
+                                <div class="carousel__slide" data-src="{{ getFile($listing_image->driver, $listing_image->listing_image)}}" data-fancybox="gallery" data-caption="">
+                                    <img class="img-fluid" src="{{ getFile($listing_image->driver, $listing_image->listing_image)}}"/>
+                                </div>
+                            @empty
+                                <div class="carousel__slide" data-src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}" data-fancybox="gallery" data-caption="">
+                                    <img class="img-fluid" src="{{ getFile($single_listing_details->driver, $single_listing_details->thumbnail)}}"/>
+                                </div>
+                            @endforelse
+                        </div>
+                            
+                
             </div>
         </div>
     </section>

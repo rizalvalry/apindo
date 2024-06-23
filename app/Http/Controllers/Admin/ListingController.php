@@ -635,7 +635,9 @@ class ListingController extends Controller
             $this->insertSEO($listing, $request, $listing->purchase_package_id);
         }
 
-        return back()->with('success', __('Listing update successfully'));
+        // return back()->with('success', __('Listing update successfully'));
+        return redirect()->route('admin.listingviews')->with('success', __('Listing update successfully!'));
+
     }
 
     public function listingDelete($id)

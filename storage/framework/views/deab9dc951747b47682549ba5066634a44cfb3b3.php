@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('Listing Edit'); ?>
 <?php $__env->stopSection(); ?>
@@ -570,9 +571,9 @@ unset($__errorArgs, $__bag); ?>
                             <?php endif; ?>
 
                             <div class="col-xl-6 col-md-6 col-sm-12">
-                                <h3 class="mt-5 mb-4 listing-tab-heading"><?php echo app('translator')->get('Websites And Social Links'); ?></h3>
+                                <!-- <h3 class="mt-5 mb-4 listing-tab-heading"><?php echo app('translator')->get('Websites And Social Links'); ?></h3> -->
 
-                                <div class="form website_social_links">
+                                <!-- <div class="form website_social_links"> -->
                                     <?php
                                         $oldSocialCounts = max(old('social_icon', $social_links) ? count(old('social_icon', $social_links)) : 1, 1);
                                     ?>
@@ -582,7 +583,7 @@ unset($__errorArgs, $__bag); ?>
                                             <div
                                                 class="d-flex justify-content-between append_new_social_form removeSocialLinksInput">
                                                 <div class="input-group mt-1">
-                                                    <input type="text" name="social_icon[]"
+                                                <input type="hidden" name="social_icon[]"
                                                            value="<?php echo e(old("social_icon.$i", $social_links[$i]->social_icon ?? '')); ?>"
                                                            class="form-control demo__icon__picker iconpicker1 <?php $__errorArgs = ["social_icon.$i"];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -595,7 +596,7 @@ unset($__errorArgs, $__bag); ?>"
                                                            placeholder="Pick a icon" aria-label="Pick a icon"
                                                            aria-describedby="basic-addon1" readonly>
 
-                                                    <div class="invalid-feedback">
+                                                    <!-- <div class="invalid-feedback">
                                                         <?php $__errorArgs = ["social_icon.$i"];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -604,12 +605,12 @@ $message = $__bag->first($__errorArgs[0]); ?> <?php echo app('translator')->get(
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
 
                                                 <div class="input-box w-100 my-1 me-1">
-                                                    <input type="url" name="social_url[]"
-                                                           value="<?php echo e(old("social_url.$i", $social_links[$i]->social_url ?? '')); ?>"
+                                                    <input type="hidden" name="social_url[]"
+                                                           value="https://apindo.com"
                                                            class="form-control h-100 <?php $__errorArgs = ["social_url.$i"];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -631,7 +632,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
 
                                                 </div>
-                                                <div class="my-1 me-1">
+                                                <!-- <div class="my-1 me-1">
                                                     <?php if($i == 0): ?>
                                                         <button class="btn-custom add-new border-0" type="button"
                                                                 id="add_social_links">
@@ -644,8 +645,8 @@ unset($__errorArgs, $__bag); ?>
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     <?php endif; ?>
-                                                </div>
-                                            </div>
+                                                </div> -->
+                                            <!-- </div> -->
                                         <?php endfor; ?>
                                     <?php endif; ?>
 
