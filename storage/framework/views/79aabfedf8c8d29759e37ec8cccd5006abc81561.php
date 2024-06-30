@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('Amenities List'); ?>
 <?php $__env->stopSection(); ?>

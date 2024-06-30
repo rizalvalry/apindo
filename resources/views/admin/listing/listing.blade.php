@@ -245,7 +245,9 @@
                                 <select name="package" id="package" class="form-control">
                                     <option selected disabled>@lang('Select Package')</option>
                                     @foreach($my_packages as $key => $package)
+                                    
                                     @php
+                                    echo $package;
                                         $fundInfo = \App\Models\Fund::where('purchase_package_id', $package->id)->latest()->first();
                                         // print($fundInfo); //
                                         @endphp

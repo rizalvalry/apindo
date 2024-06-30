@@ -13,37 +13,70 @@ use Illuminate\Support\Facades\DB;
 trait ListingTrait
 {
     public function insertBusinessHours(Request $request, $listing, $id)
-    {
-        $businessHours = [];
+{
+    $businessHours = [];
+
+    // Jika working_day adalah array, iterasi seperti biasa
+    if (is_array($request->working_day)) {
         foreach ($request->working_day as $key => $value) {
             $businessHours[] = [
                 'listing_id' => $listing->id,
                 'purchase_package_id' => $id,
                 'working_day' => $value,
-                'start_time' => $request->start_time[$key],
-                'end_time' => $request->end_time[$key],
+                'start_time' => $request->start_time[$key] ?? null,
+                'end_time' => $request->end_time[$key] ?? null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
-        DB::table('business_hours')->insert($businessHours);
+    } else {
+        // Jika working_day adalah string, perlakukan sebagai satu elemen
+        $businessHours[] = [
+            'listing_id' => $listing->id,
+            'purchase_package_id' => $id,
+            'working_day' => $request->working_day,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
     }
 
+    DB::table('business_hours')->insert($businessHours);
+}
+
+
     public function insertSocialAndWebsite(Request $request, $listing, $id)
-    {
-        $socialWebsites = [];
+{
+    $socialWebsites = [];
+
+    // Jika social_icon adalah array, iterasi seperti biasa
+    if (is_array($request->social_icon)) {
         foreach ($request->social_icon as $key => $value) {
             $socialWebsites[] = [
                 'listing_id' => $listing->id,
                 'purchase_package_id' => $id,
                 'social_icon' => $request->social_icon[$key],
-                'social_url' => $request->social_url[$key],
+                'social_url' => $request->social_url[$key] ?? null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
-        DB::table('website_and_socials')->insert($socialWebsites);
+    } else {
+        // Jika social_icon adalah string, perlakukan sebagai satu elemen
+        $socialWebsites[] = [
+            'listing_id' => $listing->id,
+            'purchase_package_id' => $id,
+            'social_icon' => $request->social_icon,
+            'social_url' => $request->social_url[0] ?? null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
     }
+
+    DB::table('website_and_socials')->insert($socialWebsites);
+}
+
 
     public function uploadListingImages($numberOfImgPerListing, Request $request, $listing, $id)
     {
@@ -86,6 +119,7 @@ trait ListingTrait
                         $product->driver = $image['driver'];
                     }
                 }
+                
                 $product->save();
             } catch (\Exception $exp) {
                 continue;

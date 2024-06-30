@@ -57,7 +57,12 @@ class ListingController extends Controller
         $data['listingCategories'] = ListingCategory::with('details')->where('status', 1)->latest()->get();
         $data['allAddresses'] = Place::with('details')->where('status', 1)->latest()->get();
 
-        $data['my_packages'] = PurchasePackage::with('get_package')->where('user_id', auth()->id())->get();
+        // untuk membatasi jika yang menggunakan hanya 1 admin saja
+        // $data['my_packages'] = PurchasePackage::with('get_package')->where('user_id', auth()->id())->get();
+        $data['my_packages'] = PurchasePackage::with('get_package')->get();
+
+
+        // dd($data['my_packages']);
 
         $search = $request->all();
         $categoryIds = $request->category;
@@ -114,19 +119,20 @@ class ListingController extends Controller
 
     public function listingStore(Request $request, $id)
     {
-        // $package_id = $id;
 
-        // if ($request->hasFile('excel_file')) {
-        //     $file = $request->file('excel_file');
+        $package_id = $id;
+
+        if ($request->hasFile('excel_file')) {
+            $file = $request->file('excel_file');
             
-        //     try {
-        //         Excel::import(new ListingImport($package_id), $file);
+            try {
+                Excel::import(new ListingImport($package_id), $file);
     
-        //         return redirect()->route('admin.listingviews')->with('success', __('Data has been imported successfully!'));
-        //     } catch (\Exception $e) {
-        //         return back()->with('error', 'Failed to import data. Error: ' . $e->getMessage());
-        //     }
-        // }
+                return redirect()->route('admin.listingviews')->with('success', __('Data has been imported successfully!'));
+            } catch (\Exception $e) {
+                return back()->with('error', 'Failed to import data. Error: ' . $e->getMessage());
+            }
+        }
 
         $purifiedData = Purify::clean($request->except('image', '_token', '_method', 'thumbnail', 'listing_image', 'seo_image', 'product_image'));
         $purifiedData['thumbnail'] = $request->thumbnail ?? null;
@@ -169,7 +175,6 @@ class ListingController extends Controller
             'category_id.*.exists' => __('The selected category is invalid.'),
             'listing_image.*.mimes' => __('This listing image must be a file of type: jpg, jpeg, png.'),
             'working_day.*.string' => __('The working day must be a string.'),
-            'working_day.*.max' => __('The working day may not be greater than :max characters.'),
             'product_title.*.string' => __('The product title must be a string.'),
             'product_title.*.max' => __('The product title may not be greater than :max characters.'),
             'product_price.*.numeric' => __('The product price should be numeric.'),
@@ -224,23 +229,28 @@ class ListingController extends Controller
         $listing->address = $request->address;
         $listing->lat = $request->lat;
         $listing->long = $request->long;
+        $listing->body_text = $request->input('body_text');
         $listing->status = 1;
-
+    
+        
         if($purchase_package_info->is_whatsapp == 1 || $purchase_package_info->is_messenger == 1){
             $listing->fb_app_id = $request->fb_app_id;
             $listing->fb_page_id = $request->fb_page_id;
             $listing->whatsapp_number = $request->whatsapp_number;
             $listing->replies_text = $request->replies_text;
-            $listing->body_text = $request->body_text;
+            // $listing->body_text = $request->body_text;
         }
+
 
         if ($request->youtube_video_id) {
             $listing->youtube_video_id = $request->youtube_video_id;
         }
-
+        
         $listing->save();
-
-        if ($purchase_package_info->is_business_hour && !empty($request->working_day)) {
+        
+        // dd($purchase_package_info->is_business_hour);
+        // die();
+        if ($purchase_package_info->is_business_hour) {
             $this->insertBusinessHours($request, $listing, $id);
         }
 
@@ -472,6 +482,7 @@ class ListingController extends Controller
             $image->src = getFile($image->driver, $image->listing_image);
             return $image;
         });
+        
         return view('admin.listing.editListing', $data, compact('id'));
     }
 
@@ -495,7 +506,7 @@ class ListingController extends Controller
             'lat' => 'required|between:-90,90',
             'long' => 'required|between:-180,180',
             'working_day.*' => 'nullable|string|max:20',
-            'social_url.*' => 'nullable|url|max:180',
+            'social_url.*' => 'nullable|string',
             'youtube_video_id' => 'nullable|string|max:20',
             'thumbnail' => 'nullable|mimes:jpeg,png,jpg|max:51200',
             'listing_image.*' => 'nullable|mimes:jpeg,png,jpg',

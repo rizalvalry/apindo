@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('Listing Category List'); ?>
 <?php $__env->stopSection(); ?>

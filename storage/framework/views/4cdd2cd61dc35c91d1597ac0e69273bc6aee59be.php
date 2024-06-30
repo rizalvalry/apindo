@@ -248,7 +248,9 @@
                                 <select name="package" id="package" class="form-control">
                                     <option selected disabled><?php echo app('translator')->get('Select Package'); ?></option>
                                     <?php $__currentLoopData = $my_packages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $package): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    
                                     <?php
+                                    echo $package;
                                         $fundInfo = \App\Models\Fund::where('purchase_package_id', $package->id)->latest()->first();
                                         // print($fundInfo); //
                                         ?>

@@ -370,7 +370,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('listing-active', 'Admin\ListingController@listingActive')->name('listingActive');
         Route::post('listing-deactive', 'Admin\ListingController@listingDeactive')->name('listingDeactive');
 
-        Route::get('view-listings/{id?}/{type?}', 'Admin\ListingController@viewListings')->name('viewListings');
+        Route::get('view-listings/{id?}/{type?}', 'Admin\ListingController@listings')->name('viewListings');
         Route::get('edit-listing/{id}', 'Admin\ListingController@editListing')->name('editListing');
         Route::post('listing-update/{id}', 'Admin\ListingController@listingUpdate')->name('listingUpdate');
         Route::delete('view-listing-delete/{id}', 'Admin\ListingController@viewListingDelete')->name('viewListingDelete');
