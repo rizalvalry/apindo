@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title',trans('Sign In')); ?>
 <?php $__env->startSection('banner_heading'); ?>
     <?php echo app('translator')->get('Sign In'); ?>

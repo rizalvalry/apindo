@@ -164,7 +164,10 @@
 <script src="<?php echo e(asset('assets/global/js/vue.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/global/js/pusher.min.js')); ?>"></script>
 
+<?php echo $__env->yieldPushContent('js'); ?>
+<?php echo $__env->yieldPushContent('extra-script'); ?>
 <?php echo $__env->yieldPushContent('extra-js'); ?>
+
 
 <script src="<?php echo e(asset('assets/themes/classic/js/user-script.js')); ?>"></script>
 

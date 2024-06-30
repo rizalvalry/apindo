@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title', trans('Listing')); ?>
 
 <?php $__env->startSection('banner_heading'); ?>
@@ -57,7 +58,12 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>"><?php echo app('translator')->get('Home'); ?></a></li>
                 <?php if(Request::get('region')): ?>
-                    <li class="breadcrumb-item"><a href="<?php echo e(url('/category/' . Request::get('region'))); ?>"><?php echo e(ucfirst(Request::get('region'))); ?></a></li>
+                    <li class="breadcrumb-item">
+                        <a href="<?php echo e(url('category/' . ucfirst(Request::get('region')))); ?>">
+                            <?php echo e(ucfirst(Request::get('region'))); ?>
+
+                        </a>
+                    </li>
                 <?php endif; ?>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo e(Request::segment(2)); ?></li>
             </ol>
@@ -65,19 +71,20 @@
     </div>
 </div>
 
+
 <section class="listing-section">
     <div class="container">
         <div class="row">
             <!-- Search Section -->
             <div class="col-12">
-                <form action="<?php echo e(route('listing')); ?>" method="get" class="d-flex justify-content-center">
+                <form action="<?php echo e(route('listing')); ?>" method="get" class="justify-content-between w-100">
                     <div class="row justify-content-center">
-                        <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="mb-3">
                                 <input type="text" name="name" class="form-control" value="<?php echo e(old('name', request()->name)); ?>" autocomplete="off" placeholder="<?php echo app('translator')->get('Listing name'); ?>" style="background-color: #e9ecef; height: 3rem;">
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="mb-3">
                             <select class="js-example-basic-single form-control" name="location">
                                 <option selected disabled><?php echo app('translator')->get('Select Location'); ?></option>
@@ -94,7 +101,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="mb-3">
                                 <select class="listing__category__select2 form-control" name="category[]" multiple>
                                     <option value="all" <?php if(request()->category && in_array('all', request()->category)): ?> selected <?php endif; ?>><?php echo app('translator')->get('All Category'); ?></option>
@@ -104,20 +111,16 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-12 col-sm-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="mb-3">
-                                <button class="btn btn-primary btn-block" style="height: 3rem;" type="submit"><?php echo app('translator')->get('Submit'); ?></button>
+                                <button class="btn btn-primary btn-lg" style="height: 3rem; width:100%;" type="submit"><?php echo app('translator')->get('Submit'); ?></button>
                             </div>
                         </div>
                     </div>
                 </form>
 
                 
-            </div>
-            <!-- End Search Section -->
-
-            <!-- Listing Section -->
-            <div class="col-12">
+           
                 <?php if(count($all_listings) > 0): ?>
                     <div class="row g-0 d-flex justify-content-sm-center">
                         <?php $__empty_1 = true; $__currentLoopData = $all_listings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $listing): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
@@ -126,7 +129,6 @@
                                 $total = $listing->reviews()[0]->total;
                                 $average_review = $listing->reviews()[0]->average;
                             ?>
-                            <div class="col-12">
                                 <div class="jumbotron d-flex justify-content-center" style="padding:1rem;" data-lat="<?php echo e($listing->lat); ?>" data-long="<?php echo e($listing->long); ?>" data-title="<?php echo app('translator')->get(Str::limit($listing->title, 30)); ?>" data-location="<?php echo app('translator')->get($listing->address); ?>" data-route="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>">
                                     <div class="col-sm-2 m-4">
                                         <img class="img-fluid" style="border-radius:5px;" src="<?php echo e(getFile($listing->driver, $listing->thumbnail)); ?>" alt="<?php echo app('translator')->get(Str::limit($listing->title, 30)); ?>">
@@ -138,7 +140,7 @@
                                                     <i class="fas fa-star<?php echo e($i <= $average_review ? '' : ($i - 1 < $average_review ? '-half-alt' : '-empty')); ?>"></i>
                                                 <?php endfor; ?>
                                             </div>
-                                            <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>?region=<?php echo e(Request::get('region')); ?>&category=<?php echo e(Request::segment(2)); ?>"><h5 class="title"><?php echo app('translator')->get(Str::limit($listing->title, 30)); ?></h5></a>
+                                            <a href="<?php echo e(route('listing-details', [slug($listing->title), $listing->id])); ?>?region=<?php echo e(Request::get('region')); ?>&category=<?php echo e(Request::segment(2)); ?>&id=<?php echo e(Request::segment(3)); ?>"><h5 class="title"><?php echo app('translator')->get(Str::limit($listing->title, 30)); ?></h5></a>
                                             <p class="address mt-1">
                                                 <i class="fal fa-map-marker-alt"></i>
                                                 <?php echo app('translator')->get($listing->address); ?>, <?php echo app('translator')->get(optional(optional($listing->get_place)->details)->place); ?>
@@ -179,8 +181,7 @@
                 <?php endif; ?>
             </div>
             <!-- End Listing Section -->
-            </div>
-        </div>
+      
     </div>
 </section>
 

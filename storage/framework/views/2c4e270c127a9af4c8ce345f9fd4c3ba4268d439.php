@@ -217,9 +217,10 @@
                     <?php
                         $region = str_replace('-', ' ', Request::get('region'));
                         $category = str_replace('-', ' ', Request::get('category'));
+                        $id = str_replace('-', ' ', Request::get('id'));
                     ?>
-                    <li class="breadcrumb-item"><a href="<?php echo e(url('/category/' . $region . '/' . $category)); ?>"><?php echo e($region); ?></a></li>
-                    <li class="breadcrumb-item"><a href="<?php echo e(url( $region . '/' .$category)); ?>"><?php echo e($category); ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo e(url('/category/' . $region )); ?>"><?php echo e($region); ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo e(url( 'listing/' . $category . '/' .$id . '?region=' . $region )); ?>"><?php echo e($category); ?></a></li>
                 <?php endif; ?>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo e(str_replace('-', ' ', Request::segment(2))); ?></li>
             </ol>

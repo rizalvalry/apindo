@@ -164,7 +164,10 @@
 <script src="{{ asset('assets/global/js/vue.min.js') }}"></script>
 <script src="{{ asset('assets/global/js/pusher.min.js') }}"></script>
 
+@stack('js')
+@stack('extra-script')
 @stack('extra-js')
+
 
 <script src="{{ asset('assets/themes/classic/js/user-script.js') }}"></script>
 

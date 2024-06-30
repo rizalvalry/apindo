@@ -9,7 +9,7 @@
             @if(adminAccessRoute(config('role.place.access.add')))
                 <div class="media mb-4 float-right">
                     <a href="{{route('admin.placeCreate')}}" class="btn btn-sm btn-primary mr-2">
-                        <span><i class="fa fa-plus-circle"></i> @lang('Add New')</span>
+                        <span><i class="fa fa-plus-circle"></i> @lang('Add New bro')</span>
                     </a>
                 </div>
             @endif

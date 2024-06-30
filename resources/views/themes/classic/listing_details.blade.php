@@ -217,9 +217,10 @@
                     <?php
                         $region = str_replace('-', ' ', Request::get('region'));
                         $category = str_replace('-', ' ', Request::get('category'));
+                        $id = str_replace('-', ' ', Request::get('id'));
                     ?>
-                    <li class="breadcrumb-item"><a href="{{ url('/category/' . $region . '/' . $category) }}">{{ $region }}</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url( $region . '/' .$category) }}">{{$category}}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/category/' . $region ) }}">{{ $region }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url( 'listing/' . $category . '/' .$id . '?region=' . $region ) }}">{{$category}}</a></li>
                 @endif
                 <li class="breadcrumb-item active" aria-current="page">{{ str_replace('-', ' ', Request::segment(2)) }}</li>
             </ol>
