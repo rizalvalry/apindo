@@ -588,51 +588,7 @@
                                             class="img-fluid" style="width:300px; height:300px;" alt="{{config('basic.site_title')}}"/>
                                         </div>
 
-                                        <!-- <div class="text-box">
-                                            <h5 class="creator-name">
-                                                @lang(optional($single_listing_details->get_user)->firstname) @lang(optional($single_listing_details->get_user)->lastname)
-                                            </h5>
-                                            <span>@lang('Member since') @lang(optional($single_listing_details->get_user)->created_at->format('M Y')) </span>
-                                            <div class="d-flex justify-content-between my-3">
-                                                <span>
-                                                    @if($total_listings_an_user['totalListing'] > 1)
-                                                    {{ $total_listings_an_user['totalListing'] }} @lang('Listings')
-                                                    @else
-                                                    {{ $total_listings_an_user['totalListing'] }} @lang('Listing')
-                                                    @endif
-                                                </span>
-                                                <span>{{ $follower_count['totalFollower'] }} @lang('Followers')</span>
-                                            </div> -->
-                                            
-                                            <!-- <a href="{{ route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id]) }}"
-                                                class="btn-custom cursor-pointer">
-                                                @lang('Visit profile')
-                                            </a> -->
-                                            <!-- </div>
-                                            </div>
-                                        </div> -->
-                                        
-                                        <!-- @if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0)
-                                            <div class="side-box">
-                                                <h5>@lang('Opening Hours')</h5>
-                                    <ul>
-                                        @forelse($single_listing_details->get_business_hour as $business_hour)
-                                        @if($business_hour->start_time)
-                                        <li>
-                                            @lang($business_hour->working_day)
-                                            <span class="float-end">{{ \Carbon\Carbon::parse($business_hour->start_time)->format('h a') }} - {{ \Carbon\Carbon::parse($business_hour->end_time)->format('h a') }}</span>
-                                        </li>
-                                        @else
-                                        <li>
-                                            @lang($business_hour->working_day)
-                                            <span class="float-end">@lang('Closed')</span>
-                                        </li>
-                                        @endif
-                                        @empty
-                                        @endforelse
-                                    </ul>
-                                </div>
-                                @endif -->
+                                  
                                 
                             </div>
                         </div>

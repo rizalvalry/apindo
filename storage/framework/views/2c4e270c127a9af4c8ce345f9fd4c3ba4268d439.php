@@ -603,51 +603,7 @@ unset($__errorArgs, $__bag); ?>
                                             class="img-fluid" style="width:300px; height:300px;" alt="<?php echo e(config('basic.site_title')); ?>"/>
                                         </div>
 
-                                        <!-- <div class="text-box">
-                                            <h5 class="creator-name">
-                                                <?php echo app('translator')->get(optional($single_listing_details->get_user)->firstname); ?> <?php echo app('translator')->get(optional($single_listing_details->get_user)->lastname); ?>
-                                            </h5>
-                                            <span><?php echo app('translator')->get('Member since'); ?> <?php echo app('translator')->get(optional($single_listing_details->get_user)->created_at->format('M Y')); ?> </span>
-                                            <div class="d-flex justify-content-between my-3">
-                                                <span>
-                                                    <?php if($total_listings_an_user['totalListing'] > 1): ?>
-                                                    <?php echo e($total_listings_an_user['totalListing']); ?> <?php echo app('translator')->get('Listings'); ?>
-                                                    <?php else: ?>
-                                                    <?php echo e($total_listings_an_user['totalListing']); ?> <?php echo app('translator')->get('Listing'); ?>
-                                                    <?php endif; ?>
-                                                </span>
-                                                <span><?php echo e($follower_count['totalFollower']); ?> <?php echo app('translator')->get('Followers'); ?></span>
-                                            </div> -->
-                                            
-                                            <!-- <a href="<?php echo e(route('profile', [slug(optional($single_listing_details->get_user)->firstname), optional($single_listing_details->get_user)->id])); ?>"
-                                                class="btn-custom cursor-pointer">
-                                                <?php echo app('translator')->get('Visit profile'); ?>
-                                            </a> -->
-                                            <!-- </div>
-                                            </div>
-                                        </div> -->
-                                        
-                                        <!-- <?php if(optional($single_listing_details->get_package)->is_business_hour != 0 && count($single_listing_details->get_business_hour) > 0): ?>
-                                            <div class="side-box">
-                                                <h5><?php echo app('translator')->get('Opening Hours'); ?></h5>
-                                    <ul>
-                                        <?php $__empty_1 = true; $__currentLoopData = $single_listing_details->get_business_hour; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $business_hour): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                        <?php if($business_hour->start_time): ?>
-                                        <li>
-                                            <?php echo app('translator')->get($business_hour->working_day); ?>
-                                            <span class="float-end"><?php echo e(\Carbon\Carbon::parse($business_hour->start_time)->format('h a')); ?> - <?php echo e(\Carbon\Carbon::parse($business_hour->end_time)->format('h a')); ?></span>
-                                        </li>
-                                        <?php else: ?>
-                                        <li>
-                                            <?php echo app('translator')->get($business_hour->working_day); ?>
-                                            <span class="float-end"><?php echo app('translator')->get('Closed'); ?></span>
-                                        </li>
-                                        <?php endif; ?>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                        <?php endif; ?>
-                                    </ul>
-                                </div>
-                                <?php endif; ?> -->
+                                  
                                 
                             </div>
                         </div>
