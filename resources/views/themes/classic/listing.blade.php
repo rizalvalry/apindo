@@ -148,11 +148,7 @@
                                                 {{ optional($listing)->getCategoriesName() }}
                                             </span>
                                             <span class="badge bg-secondary">
-                                            @if(optional($listing)->getCategoriesName() == "Shopping") 
-                                                    Kontrak
-                                                @else
-                                                    Permanent
-                                                @endif
+                                            @lang($listing->replies_text)
 
                                             </span>
                                         </div>

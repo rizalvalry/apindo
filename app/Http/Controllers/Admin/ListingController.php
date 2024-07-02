@@ -231,13 +231,13 @@ class ListingController extends Controller
         $listing->long = $request->long;
         $listing->body_text = $request->input('body_text');
         $listing->status = 1;
+        $listing->replies_text = $request->replies_text;
     
         
         if($purchase_package_info->is_whatsapp == 1 || $purchase_package_info->is_messenger == 1){
             $listing->fb_app_id = $request->fb_app_id;
             $listing->fb_page_id = $request->fb_page_id;
             $listing->whatsapp_number = $request->whatsapp_number;
-            $listing->replies_text = $request->replies_text;
             // $listing->body_text = $request->body_text;
         }
 

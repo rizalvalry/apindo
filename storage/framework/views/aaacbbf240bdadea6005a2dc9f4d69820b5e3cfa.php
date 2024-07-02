@@ -150,11 +150,7 @@
 
                                             </span>
                                             <span class="badge bg-secondary">
-                                            <?php if(optional($listing)->getCategoriesName() == "Shopping"): ?> 
-                                                    Kontrak
-                                                <?php else: ?>
-                                                    Permanent
-                                                <?php endif; ?>
+                                            <?php echo app('translator')->get($listing->replies_text); ?>
 
                                             </span>
                                         </div>

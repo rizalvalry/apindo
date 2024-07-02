@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\BusinessHour;
 use App\Models\Listing;
 use App\Models\ListingCategoryDetails;
 use App\Models\PlaceDetails;
@@ -23,6 +24,14 @@ class ListingImport implements ToModel, WithHeadingRow
         $namaPerusahaan = $row['nama_perusahaan'];
         $alamat = $row['alamat'];
         $jenisUsaha = $row['jenis_usaha'];
+        $subCategory = $row['sub_kategori'];
+        $catatan = $row['catatan'];
+        
+        // berikut di query dan di insert ke table business_hours
+        $kode = $row['kode']; //field dari working_day
+        $periodeAwal = $row['periode_awal']; //field dari start_time
+        $periodeAkhir = $row['periode_akhir']; //field dari end_time
+        
 
         $placeDetail = PlaceDetails::whereRaw("MATCH(place) AGAINST(? IN NATURAL LANGUAGE MODE)", [$alamat])->first();
 
@@ -45,12 +54,25 @@ class ListingImport implements ToModel, WithHeadingRow
             'phone' => (int)$row['telp'],
             'email' => $row['email'],
             'description' => $row['penjelasan_perusahaan'],
+            'replies_text' => $subCategory,
+            'body_text' => $catatan,
             'status' => 1, // status aktif
             'is_active' => 1, //  aktif
             'purchase_package_id' => $this->purchase_package_id,
         ]);
 
         $listing->save();
+
+        // business_hours insert
+        $businessHours = new BusinessHour([
+            'listing_id' => $listing->id,
+            'purchase_package_id' =>  $this->purchase_package_id,
+            'working_day' => $kode,
+            'start_time' => $periodeAwal,
+            'end_time' => $periodeAkhir,
+        ]);
+
+        $businessHours->save();
 
         return $listing;
     }
