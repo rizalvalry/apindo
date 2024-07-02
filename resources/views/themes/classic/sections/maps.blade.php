@@ -112,7 +112,7 @@
         { name: "Sulawesi Selatan", color: "#FFD647" },
         { name: "Jakarta", color: "#FA70AA" },
         { name: "Jawa Barat", color: "#FA70AA" },
-        { name: "Papua Barat", color: "#46CFDD" },
+        { name: "Papua Tengah", color: "#46CFDD" },
         { name: "Nusa Tenggara Timur", color: "#9D7CD6" },
         { name: "Bali", color: "#FFD647" },
         { name: "Riau", color: "#FFD647" },
