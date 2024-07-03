@@ -35,7 +35,7 @@
                                 </div>
                                 <div>
                                     <h5>@lang(optional($category->details)->name)</h5>
-                                    <span>{{ $category->getCategoryCount() }} @lang('Listings')</span>
+                                    <!-- <span>{{ $category->getCategoryCount() }} @lang('Listings')</span> -->
                                 </div>
                             </div>
                         </a>

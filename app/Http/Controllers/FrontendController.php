@@ -162,24 +162,17 @@ class FrontendController extends Controller
 
     public function listingSearch(Request $request, $type = null, $id = null)
     {
-
         $today = Carbon::now()->format('Y-m-d');
         $search = $request->all();
-        $categoryIds = $request->category;
-        $data['all_listings'] = Listing::with(['get_user', 'get_place', 'get_reviews','get_package','listingSeo'])
-            ->when(isset($categoryIds), function ($query) use ($categoryIds) {
-                if (implode('',$categoryIds) == 'all'){
-                    $query->where('status', 1)->where('is_active', 1);
-                }else{
-                    foreach ($categoryIds as $key => $category_id) {
-                        $query->whereJsonContains('category_id', $category_id);
-                    }
-                }
+        $region = $request->query('region');
+        
+        $data['all_listings'] = Listing::with(['get_user', 'get_place', 'get_reviews', 'get_package', 'listingSeo'])
+            ->when(isset($region), function ($query) use ($region) {
+                return $query->whereHas('get_place.details', function ($q) use ($region) {
+                    $q->where('place', 'LIKE', "%$region%");
+                });
             })
-            ->when(isset($id), function ($query) use ($id) {
-                return $query->whereJsonContains('category_id', $id);
-            })
-            ->withCount(['getFavourite' , 'get_reviews as average_rating' => function($query) {
+            ->withCount(['getFavourite', 'get_reviews as average_rating' => function($query) {
                 $query->select(DB::raw('coalesce(avg(rating2),0)'));
             }])
             ->whereHas('get_package', function ($query5) use ($today) {
@@ -191,11 +184,6 @@ class FrontendController extends Controller
                     ->orWhereHas('listingSeo', function ($tQuery) use($search) {
                         $tQuery->where('meta_keywords', 'LIKE', "%{$search['name']}%");
                     });
-            })
-            ->when(isset($search['location']) && $search['location'] != 'all', function ($query2) use ($search) {
-                return $query2->whereHas('get_place', function ($q) use ($search) {
-                    $q->where('id', $search['location']);
-                });
             })
             ->when(isset($search['user']) && $search['user'] != 'all', function ($query4) use ($search) {
                 return $query4->where('user_id', $search['user']);
@@ -211,23 +199,36 @@ class FrontendController extends Controller
                 $query5->orderByDesc('average_rating');
             })
             ->when($request->exists('popular') == false, function ($query5) use ($search) {
-                return $query5->orderBy('id','desc');
+                return $query5->orderBy('id', 'desc');
             })
             ->paginate(8);
 
-            $data['distinctUser'] = User::where('status',1)->where('email_verification',1)->where('sms_verification',1)->whereHas('get_listing', function ($query){
-                $query->where('status',1);
-            })->select(['id', 'username','firstname', 'lastname'])->tobase()->get()->map(function ($item){
+        $data['distinctUser'] = User::where('status', 1)
+            ->where('email_verification', 1)
+            ->where('sms_verification', 1)
+            ->whereHas('get_listing', function ($query) {
+                $query->where('status', 1);
+            })
+            ->select(['id', 'username', 'firstname', 'lastname'])
+            ->tobase()->get()->map(function ($item) {
                 $item->fullname = $item->firstname . ' ' . $item->lastname;
                 return $item;
             });
 
+        $data['all_places'] = Place::with('details:id,place_id,place')
+            ->where('status', 1)
+            ->latest()
+            ->get();
 
-            $data['all_places'] = Place::with('details:id,place_id,place')->where('status', 1)->latest()->get();
+        $data['all_categories'] = ListingCategory::with('details:id,listing_category_id,name')
+            ->where('status', 1)
+            ->latest()
+            ->get();
 
-            $data['all_categories'] = ListingCategory::with('details:id,listing_category_id,name')->where('status', 1)->latest()->get();
-            return view($this->theme . 'listing', $data);
+        return view($this->theme . 'listing', $data);
     }
+
+
 
     public function category()
     {

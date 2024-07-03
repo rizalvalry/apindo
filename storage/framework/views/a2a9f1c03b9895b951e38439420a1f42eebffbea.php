@@ -28,14 +28,14 @@
             <div class="row g-3 g-lg-4">
                 <?php $__empty_1 = true; $__currentLoopData = $allListingsAndCategory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <div class="col-xl-3 col-md-6 col-6">
-                        <a href="<?php echo e(route('listing', [slug(optional($category->details)->name), $category->id])); ?>?region=<?php echo e(Request::segment(2)); ?>">
+                        <a href="<?php echo e(route('listing', [slug(optional($category->details)->name)])); ?>?region=<?php echo e(Request::segment(2)); ?>">
                             <div class="category-box">
                                 <div class="icon-box">
                                     <i class="<?php echo e($category->icon); ?>"></i>
                                 </div>
                                 <div>
                                     <h5><?php echo app('translator')->get(optional($category->details)->name); ?></h5>
-                                    <span><?php echo e($category->getCategoryCount()); ?> <?php echo app('translator')->get('Listings'); ?></span>
+                                    <!-- <span><?php echo e($category->getCategoryCount()); ?> <?php echo app('translator')->get('Listings'); ?></span> -->
                                 </div>
                             </div>
                         </a>
